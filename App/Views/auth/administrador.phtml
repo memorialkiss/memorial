@@ -1,0 +1,54 @@
+<div class="page-header clear-filter" filter-color="orange">
+    <div class="page-header-image fundoLogin"></div>
+    <div class="moving-clouds imgNuvens"></div>
+    <div class="content">
+        <div class="container">
+            <div class="col-md-4 ml-auto mr-auto">
+                <div class="card card-login card-plain">
+                    <form class="form" method="post" action="/autenticar">
+                        <div class="card-header text-center">
+                            <div class="logo-container">
+                                <img src="public/assets/login/img/logo-avtsm.png" alt="">
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="input-group no-border input-lg">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="now-ui-icons users_circle-08"></i>
+                                    </span>
+                                </div>
+                                <input type="text" name="email" class="form-control" placeholder="Nome de usuário" autocomplete="off">
+                            </div>
+
+                            <div class="input-group no-border input-lg">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="now-ui-icons text_caps-small"></i>
+                                    </span>
+                                </div>
+                                <input name="senha" type="password" placeholder="Senha" class="form-control" />
+                            </div>
+
+                            <?php if ($this->view->errologin == true) { ?>
+                                <div class="row">
+                                    <div class="col">
+                                        <span class="text erroLogin">*Nome de usuário e ou senha inválido(s)</span>
+                                    </div>
+                                </div>
+                                <?php
+                            } ?>
+                        </div>
+                        <div class="card-footer text-center">
+                            <button type="submit" class="btn btn-primary btn-round btn-lg btn-block">Entrar</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="float-right desenvolvedor">
+            Desenvolvido por: Rafael Nascimento
+            <br />rdsnascimento@inf.ufpel.edu.br
+        </div>
+    </div>
+</div>

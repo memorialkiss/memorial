@@ -1,0 +1,32 @@
+.navbar-wrapper{
+    text-align: center;
+}
+
+.secaoComentario{
+    margin-top: 30px;
+}
+
+#pagina{
+    border: none; 
+    text-align: center;
+}
+
+#pagina > a{
+    text-decoration: none
+}
+
+#email{
+    overflow: hidden;
+}
+
+#descricao{
+    cursor:text;
+}
+
+.dataHora{
+    font-size: 12px; font-weight: 400;
+}
+
+.desativarInput{
+    cursor: text!important
+}

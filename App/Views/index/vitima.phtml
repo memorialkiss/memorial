@@ -1,0 +1,397 @@
+<!-- Inicio navbar -->
+<style>
+    #textoDescricao {
+        color: #3c4858;
+        font-size: 16px;
+    }
+
+    #textoDescricao > a {
+        text-decoration: none;
+        color: #3c4858;
+        font-weight: 400
+    }
+
+    #textoDescricao > a:hover {
+        color: #3B74AD;
+    }
+
+    #textoDescricao > div > a {
+        text-decoration: none;
+        color: #3c4858;
+        font-weight: 400
+    }
+
+    #textoDescricao > div > a:hover {
+        color: #3B74AD;
+    }
+
+    #textoDescricao > p {
+        font-size: 15px;
+    }
+
+    p > em {
+        font-size: 15px !important;
+    }
+
+    .blockquote>p {
+        font-size: 16px !important;
+    }
+</style>
+
+<nav class="navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg" color-on-scroll="270" onscroll="disableNavbar()" id="sectionsNav">
+    <div class="container">
+        <div class="navbar-translate">
+            <a class="navbar-brand" href="/">
+                Início </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <?php if ($this->view->perfil_vitima['idVitima'] > 1) { ?>
+                        <a class="nav-link" href="/vitima?id=<?php echo ($this->view->perfil_vitima['idVitima'] - 1) ?>">
+                            <i class="material-icons icone">arrow_back_ios</i> Anterior
+                        </a>
+                    <?php
+                } ?>
+                </li>
+                <li class="nav-item">
+                    <?php if ($this->view->perfil_vitima['idVitima'] < 242) { ?>
+                        <a class="nav-link" href="/vitima?id=<?php echo ($this->view->perfil_vitima['idVitima'] + 1) ?>">
+                            Próximo&nbsp&nbsp&nbsp<i class="material-icons icone">arrow_forward_ios</i>
+                        </a>
+                    <?php
+                } ?>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- fim navbar -->
+
+<div class="page-header header-filter" style="background-image: url('public/img/fotografias/frente2.jpg');"></div>
+<div class="moving-clouds" style="background-image: url(public/img/clouds.png);"></div>
+
+<!-- Modal comentario -->
+<div class="modal" id="modalMensagem" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Comentário realizado com sucesso!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Aguarde a aprovação!</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- fim modal -->
+
+<div class="main main-raised">
+    <div class="profile-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 ml-auto mr-auto">
+                    <div class="profile">
+                        <div class="avatar">
+                            <img src="public/img/vitimas/<?php
+                                                            if ($this->view->perfil_vitima['estado'] == 1)
+                                                                echo $this->view->perfil_vitima['foto_perfil'];
+                                                            else
+                                                                echo "00.jpg";
+                                                            ?>" class="img-raised rounded-circle img-fluid">
+                        </div>
+
+                        <div class="name">
+                            <h3 class="title"><?php echo $this->view->perfil_vitima['nome']; ?></h3>
+                            <?php if ($this->view->perfil_vitima['estado'] == 1) { ?>
+                                <span style="font-weight: 400; font-size: 17px">
+                                    <?php
+                                    if (($this->view->perfil_vitima['legenda']) != null) {
+                                        echo $this->view->perfil_vitima['legenda'];
+                                    } else {
+                                        echo "Quisque eu nisi ut lectus";
+                                    }
+                                    ?>
+                                </span>
+                            <?php } ?>
+                        </div>
+
+                        
+                        <div class="follow">                            
+                            <button class="btn btn-fab btn-round" rel="tooltip" title="" data-original-title="Compartilhar" style="color: #fff; background-color: #3b5998; border-color: #3b5998; box-shadow: 0 2px 2px 0 rgba(59,89,152,.14), 0 3px 1px -2px rgba(59,89,152,.2), 0 1px 5px 0 rgba(59,89,152,.12);" onclick='shareFacebook("memorialkiss.org/vitima?id=<?php echo ($this->view->perfil_vitima["idVitima"])?>")'>
+                                <i class="fab fa-facebook-f fa-sm"></i>
+                                <div class="ripple-container"></div>
+                            </button>
+<!-- 
+                            <button class="btn btn-fab btn-round" rel="tooltip" title="" data-original-title="Compartilhar" style="color: #fff;
+    background-color: #55acee;
+    border-color: #55acee;
+    box-shadow: 0 2px 2px 0 rgba(85,172,238,.14), 0 3px 1px -2px rgba(85,172,238,.2), 0 1px 5px 0 rgba(85,172,238,.12);">
+                                <i class="fab fa-twitter fa-sm"></i>
+                                <div class="ripple-container"></div>
+                            </button> -->
+                        </div>
+                               
+                    </div>
+                </div>
+            </div>
+
+            <!-- Se a vitima esta com status ativado no sistema -->
+            <?php if ($this->view->perfil_vitima['estado'] == 1) { ?>
+                <div class="col-md-12 ml-auto mr-auto">
+                    <div class="row">
+                        <div class="col-md-7 mr-auto ml-auto">
+                            <!-- descricao -->
+                            <div class="description text-center">
+                                <div id="textoDescricao"><?php echo $this->view->perfil_vitima['descricao']; ?><br /></div>
+                            </div>
+                            <!-- fim descricao -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content tab-space">
+                    <div class="row">
+                        <div class="col-md-7 mr-auto ml-auto">
+                            <h4 class="text-center card-title" style="font-size: 22px;">Galeria de Memórias</h4><br />
+                            <div class="demo-gallery">
+                                <div id="galeria_fotos">
+                                    <?php
+                                    if ($this->view->fotos != '') {
+                                        foreach ($this->view->fotos as $key => $fotos) {
+                                            ?>
+                                            <a href="public/img/fotos_vitimas/<?php echo $fotos['endereco_foto'] ?>" data-sub-html="<?php echo $fotos['legenda'] ?>">
+                                                <img class="img-responsive" src="public/img/fotos_vitimas/<?php echo $fotos['endereco_foto'] ?>">
+                                                <div class="demo-gallery-poster">
+                                                    <img src="public/img/zoom.png">
+                                                </div>
+                                            </a>
+                                        <?php
+                                    }
+                                }
+                                ?>
+
+                                    <a class="" href="public/img/fotografias/frente.jpg" data-sub-html="Frente da boate hoje">
+                                        <img class="img-responsive" src="public/img/fotografias_thumbnails/frente.jpg">
+                                        <div class="demo-gallery-poster">
+                                            <img src="public/img/zoom.png">
+                                        </div>
+                                    </a>
+                                    <a class="" href="public/img/fotografias/ciluetas.jpg" data-sub-html="Silhuetas das vítimas">
+                                        <img class="img-responsive" src="public/img/fotografias_thumbnails/ciluetas.jpg">
+                                        <div class="demo-gallery-poster">
+                                            <img src="public/img/zoom.png">
+                                        </div>
+                                    </a>
+                                    <a class="" href="public/img/fotografias/cartases.jpg" data-sub-html="Manifestação nas ruas de Santa Maria">
+                                        <img class="img-responsive" src="public/img/fotografias_thumbnails/cartases.jpg">
+                                        <div class="demo-gallery-poster">
+                                            <img src="public/img/zoom.png">
+                                        </div>
+                                    </a>
+                                    <a class="" href="public/img/fotografias/vigilia.jpg" data-sub-html="Aniversário da tragédia">
+                                        <img class="img-responsive" src="public/img/fotografias_thumbnails/vigilia.jpg">
+                                        <div class="demo-gallery-poster">
+                                            <img src="public/img/zoom.png">
+                                        </div>
+                                    </a>
+                                    <a class="" href="public/img/fotografias/desfile.jpg" data-sub-html="Manifestação nas ruas de Santa Maria">
+                                        <img class="img-responsive" src="public/img/fotografias_thumbnails/desfile.jpg">
+                                        <div class="demo-gallery-poster">
+                                            <img src="public/img/zoom.png">
+                                        </div>
+                                    </a>
+                                    <a class="" href="public/img/fotografias/tenda.jpg" data-sub-html="Tenda da tragédia">
+                                        <img class="img-responsive" src="public/img/fotografias_thumbnails/tenda.jpg">
+                                        <div class="demo-gallery-poster">
+                                            <img src="public/img/zoom.png">
+                                        </div>
+                                    </a>
+                                    <a class="" href="public/img/fotografias/marcha.jpg" data-sub-html="Passeata em Demanda de Justiça">
+                                        <img class="img-responsive" src="public/img/fotografias_thumbnails/marcha.jpg">
+                                        <div class="demo-gallery-poster">
+                                            <img src="public/img/zoom.png">
+                                        </div>
+                                    </a>
+                                    <a class="" href="public/img/fotografias/movimiento.jpg" data-sub-html="Associação dos Familiares das Vítimas">
+                                        <img class="img-responsive" src="public/img/fotografias_thumbnails/movimiento.jpg">
+                                        <div class="demo-gallery-poster">
+                                            <img src="public/img/zoom.png">
+                                        </div>
+                                    </a>
+                                    <a class="" href="public/img/fotografias/chicos.jpg" data-sub-html="Dia das Crianças na Tenda">
+                                        <img class="img-responsive" src="public/img/fotografias_thumbnails/chicos.jpg">
+                                        <div class="demo-gallery-poster">
+                                            <img src="public/img/zoom.png">
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-7 col-sm-8 col-10 ml-auto mr-auto">
+                        <div class="media-area">
+                            <h3 class="title text-center">Recordações</h3>
+
+                            <?php
+                            if (!empty($this->view->comentarios)) {
+                                foreach ($this->view->comentarios as $key => $comentarios) { ?>
+                                    <div class="media">
+                                        <div class="media-body">
+                                            <h4 class="media-heading"><?php echo $comentarios['autor'] ?>
+                                                <small><em>em <?php echo date('d-m-Y H:i', strtotime($comentarios['data'])); ?></em></small>
+                                            </h4>
+                                            <div class="blockquote">
+                                                <p>
+                                                    "<?php echo $comentarios['comentario'] ?></small>"
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php }
+                        } else { /* Se não tem nenhum comentario */
+                            ?>
+
+                                <div class="media-area">
+                                    <h4 class="text-center"><?php echo strstr($this->view->perfil_vitima['nome'], ' ', true); ?> ainda não tem nenhuma recordação.</h4>
+                                </div>
+
+                            <?php
+                        } ?>
+                            <!-- <div class="media">
+                                    <div class="media-body">
+                                        <h4 class="media-heading">Mariana Vieira
+                                            <small><em>em 27-03-2017 10:15</em></small>
+                                        </h4>
+                                        <div class="blockquote">
+                                            <p>
+                                                “Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sed vehicula ligula. Sed congue
+                                                interdum ligula, ut vulputate ex volutpat a. Nulla iaculis ex at ante malesuada sollicitudin.
+                                                Nulla hendrerit lectus et gravida dapibus.”
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div> -->
+                        </div>
+                    </div>
+                </div>
+            <?php } ?>
+            <!-- fim de se vitima estiver com status de ativado -->
+        </div>
+
+        <!-- fim do carousel -->
+        <div class="contato" style="margin-top: -50px;">
+            <hr style="width:70%; padding-bottom: 50px; border-width: 1px" />
+            <div class="container">
+                <?php if ($this->view->perfil_vitima['estado'] == 1) { ?>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="col-md-10 ml-auto mr-auto">
+                                <br />
+                                <h3 class="title text-center">Conhecia<?php if($this->view->perfil_vitima['sexo'] == '0') { echo " o ";} else { echo " a "; }; echo strstr($this->view->perfil_vitima['nome'], ' ', true); ?>?</h3>
+                                <p class="text-gray" style="text-align: justify">
+                                    <h5 class="info-title text-center">Ajude a melhorarmos a descrição <?php if($this->view->perfil_vitima['sexo'] == '0') { echo " do ";} else { echo " da "; }; echo strstr($this->view->perfil_vitima['nome'], ' ', true); ?>, enviando informações como:</h5>
+                                    <ul>
+                                        <li>Fotos e videos
+                                        <li>Detalhes como: </li>
+                                        <ul>
+                                            <li>O que ela gostava de fazer</li>
+                                            <li>Quais características impactantes</li>
+                                            <li>Como era o relacionamento com os amigos</li>
+                                            <li>Momentos bons vivido com ela</li>
+                                            <li>Quais eram seus sonhos</li>
+                                            <li>Qual time do coração</li>
+                                            <li>Qual era sua comida predileta</li>
+                                            <li>Qual era sua música favorita</li>
+                                            <li>Ou aquilo que você entende que seja relevante</li>
+                                        </ul>
+                                    </ul>
+                                    <br />
+                                    <ul class="nav nav-pills nav-pills-icons justify-content-center">
+                                        <a href="/infoajudar?id=<?php echo $this->view->perfil_vitima['idVitima'] ?>" class="btn" style="background-color: #f44336; padding: 15px 40px 15px 40px; color: #fff; border-color: #999; box-shadow: 0 2px 2px 0 hsla(0,0%,60%,.14), 0 3px 1px -2px hsla(0,0%,60%,.2), 0 1px 5px 0 hsla(0,0%,60%,.12);">
+                                            <i class="material-icons">favorite</i> Clique aqui para Ajudar
+                                        </a>
+                                    </ul>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 ml-auto mr-auto">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="card card-contact">
+                                        <form id="" method="post">
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <h3 class="card-title text-center">Faça uma contribuição <br/>para o perfil de <?php echo strstr($this->view->perfil_vitima['nome'], ' ', true); ?><br /><small style="font-size: 13px">*Necessário aprovação</small></h3>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group label-floating is-empty bmd-form-group">
+                                                            <label class="bmd-label-floating">Nome</label>
+                                                            <input type="text" id="nome" class="form-control" required>
+                                                            <span class="material-input"></span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <div class="form-group label-floating is-empty bmd-form-group">
+                                                            <label class="bmd-label-floating">Sobrenome</label>
+                                                            <input type="text" id="sobrenome" class="form-control" required>
+                                                            <span class="material-input"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group label-floating is-empty bmd-form-group">
+                                                    <label class="bmd-label-floating">E-mail</label>
+                                                    <input type="email" id="email" class="form-control" required>
+                                                    <span class="material-input"></span>
+                                                </div>
+                                                <div class="form-group label-floating is-empty bmd-form-group">
+                                                    <label class="bmd-label-floating">Comentário</label>
+                                                    <textarea id="comentario" class="form-control" rows="8"></textarea>
+                                                    <span class="material-input"></span>
+                                                </div>
+                                            </div>
+                                            <div class="card-footer" style="float: right">
+                                                <button type="button" id="btnEnviarComentario" class="btn btn-primary pull-right" style="float: right">ENVIAR MENSAGEM</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <!-- rodape -->
+                                    <footer style="margin-bottom: -110px; font-size: 13px; text-align:right">
+                                        <div class="container">
+                                            <div class="float-right">
+                                                Desenvolvido por: Rafael Nascimento<br />rdsnascimento@inf.ufpel.edu.br
+                                            </div>
+                                        </div>
+                                    </footer>
+                                    <!-- fim rodape -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
+            </div>
+
+        </div>
+    </div>
+</div>

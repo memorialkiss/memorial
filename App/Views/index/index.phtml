@@ -1,0 +1,687 @@
+<!-- Navegacao -->
+<nav class="navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg" color-on-scroll="100" id="sectionsNav">
+    <div class="container">
+        <div class="navbar-translate">
+            <a class="navbar-brand" href="#">Início</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+
+        <!-- menu -->
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item navegacao">
+                    <a href="#historia" class="nav-link">
+                        <span class="font-navegacao">
+                            <i class="material-icons">layers</i> História
+                        </span>
+                    </a>
+                </li>
+
+                <li class="nav-item navegacao">
+                    <a href="#memorial" class="nav-link">
+                        <span class="font-navegacao">
+                            <i class="material-icons">supervised_user_circle</i> Memorial
+                            <span class="font-navegacao">
+                    </a>
+                </li>
+
+                <li class="nav-item navegacao">
+                    <a href="#objetivo" class="nav-link">
+                        <span class="font-navegacao">
+                            <i class="material-icons">language</i> Objetivo
+                        </span>
+                    </a>
+                </li>
+
+                <li class="nav-item navegacao">
+                    <a href="#avtsm" class="nav-link">
+                        <span class="font-navegacao">
+                            <i class="material-icons">local_florist</i> AVTSM
+                        </span>
+                    </a>
+                </li>
+
+                <li class="nav-item navegacao">
+                    <a href="#equipe" class="nav-link">
+                        <span class="font-navegacao">
+                            <i class="material-icons">school</i> Equipe
+                        </span>
+                    </a>
+                </li>
+
+                <li class="nav-item navegacao">
+                    <a href="#galeria" class="nav-link">
+                        <span class="font-navegacao">
+                            <i class="material-icons">photo_library</i> Galeria
+                        </span>
+                    </a>
+                </li>
+
+                <!-- <li class="nav-item navegacao">
+                    <a href="#vitimas" class="nav-link">
+                        <span class="font-navegacao">
+                            <i class="material-icons">people</i> Vítimas
+                            <span class="font-navegacao">
+                    </a>
+                </li> -->
+
+                <li class="nav-item navegacao">
+                    <a href="#contato" class="nav-link">
+                        <span class="font-navegacao">
+                            <i class="material-icons">contact_mail</i> Contato
+                        </span>
+                    </a>
+                </li>
+
+
+                <!-- <li class="nav-item">
+                    <a href="#" class="btn" data-toggle="tooltip" title="Acesse o Portal">
+                        <span class="font-navegacao">
+                            <i class="fa fa-globe"></i> Notícias
+                        </span>
+                    </a>
+                </li> -->
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- Fim navegacao -->
+
+<style>
+    .box {
+        background-color: gray;
+        height: 240px;
+        width: 90%;
+        position: relative;
+        display: inline-block;
+        overflow: hidden;
+    }
+
+    .overlay {
+        position: absolute;
+        background: #d31111;
+        background: rgba(40, 40, 40, 0.9);
+        width: 700px;
+        height: 300px;
+        mix-blend-mode: multiply;
+        z-index: 100;
+        /* -webkit-transition: .20s ease; 
+        transition: .20s ease; */
+        top: 180px;
+        left: -110px;
+    }
+
+
+    /***********************
+    Names and titles
+************************/
+
+    .exec-name {
+        color: white;
+        font-size: 1.2em;
+        font-weight: 200;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        margin: 0 30px 15px 0;
+        z-index: 100;
+    }
+
+    /*for button in box 1*/
+    .box-button {
+        /* background-color: white;
+        border: 1px solid #fff; */
+        border-radius: 4px;
+        color: red;
+        position: absolute;
+        right: 0;
+        font-weight: 700;
+        left: 20%;
+        padding: .8em 0;
+        /* -webkit-transition: .1s ease;
+        transition: .1s ease; */
+        text-align: center;
+        width: 60%;
+        z-index: 100;
+    }
+
+    /********************  
+    Hover Styles
+********************/
+
+    .box:hover .overlay {
+        top: 0;
+
+    }
+
+    .box:hover .exec-name {
+        top: -30px;
+    }
+
+    .box:hover .exec-title {
+        opacity: 0;
+    }
+
+    /*For Hover CTA Number 1*/
+    .box:hover .box-button {
+        bottom: 85px;
+        color: white;
+    }
+
+
+    #btnportal:hover {
+        text-decoration: none;
+    }
+
+    
+    @media only screen and (min-width: 600px) {
+        .modalConfiguracao{
+            padding-left: 160px; 
+            padding-right: 160px;
+        }
+    }
+</style>
+
+
+<div class="modal fade" id="modalMensagem" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm modalConfiguracao" style="">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 id="modalTitulo" class="modal-title"></h5>
+            </div>
+            <div class="modal-body">
+                <p id="modalComentario"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Principal -->
+<main id="inicio" class="page-header header-filter cd-section" data-parallax="true" style="background-image: url('public/img/capa2.jpg')">
+
+
+    <div class="container">
+        <div class="row">
+
+
+            <div class="col-md-5" style="text-align: center;">
+                <br />
+                <h1 class="title" style="margin-top: 70px; font-family: Montserrat; font-size: 2.4em; font-weight: 300;">Memorial Virtual às Vítimas da Boate Kiss</h1>
+                <br />
+                <!--
+                <a href="#vitimas" class="btn btn-danger">
+                    Conheça as vítimas
+                    <div class="ripple-container"></div>
+                </a>-->
+            </div>
+
+            <div class="col-md-5 ml-auto" style="margin-top: 30px">
+                <!-- <div class="iframe-container">
+                  <iframe src="https://www.youtube.com/embed/VYRCTpMfRfk?modestbranding=1&amp;autohide=1&amp;showinfo=0" frameborder="0" allowfullscreen="" height="250"></iframe>
+                </div> -->
+
+                <div class="box box-1">
+                    <a href="/portal" target="_blank">
+                        <div class="overlay"></div>
+                        <img src="public/img/noticias.png" width="500" />
+                        <h2 class="exec-name">Últimas notícias</h2>
+                        <div id="btnportal" class="box-button">ACESSAR</div>
+                    </a>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-5 ml-auto">
+
+            </div>
+        </div>
+    </div>
+</main>
+
+<div class="main main-raised" id="principal">
+    <!-- historia -->
+    <div class="container">
+        <div id="historia" class="section cd-section">
+            <h2 class="title text-center" style="margin-top: 100px">
+                Uma Noite, 242 Vítimas
+            </h2>
+            <div class="col-md-8 ml-auto mr-auto">
+                <h4>
+                    Na madrugada do dia 27 de Janeiro de 2013 mais de mil jovens estavam na casa noturna Kiss, na
+                    cidade de Santa Maria (RS). Muitos jovens estavam comemorando aniversários, formaturas
+                    universitárias, a chegada das férias de verão. <br /><br />No palco principal, a banda Gurizada
+                    Fandangueira fazia um show, no qual utilizava fogos de artifícios como parte da sua
+                    apresentação.
+
+                    <br /><br />Foram esses fogos que provocaram o incêndio que vitimou 242 pessoas. Muitos jovens
+                    morreram no local, outros nos dias que se seguiram ao incêndio. Uma soma de fatores como a
+                    toxicidade do material utilizado como isolamento acústico, a ausência de saídas de emergência em
+                    funcionamento, a superlotação da boate, o despreparo, entre outros, ocasionaram a tragédia.
+                </h4>
+            </div>
+        </div>
+    </div>
+    <!-- fim historia -->
+
+    <!-- memorial -->
+    <div class="container">
+        <div id="memorial" class="section cd-section">
+            <div class="row">
+                <div class="col-md-8 ml-auto mr-auto">
+                    <h2 class="title text-center">Futuro Memorial</h2>
+                    <h4 class="formatacaoTextoMobile">
+                        O Memorial da Kiss será construído no local onde funcionava a boate. Em 2017 por meio de um
+                        concurso público foi escolhido o projeto arquitetônico de Felipe Zene Motta.<br /><br />Em
+                        2018 a AVTSM firmou um contrato com uma equipe de pesquisadores responsáveis por desenvolver
+                        o projeto curatorial do futuro Memorial. Abaixo estão algumas imagens do futuro memorial:
+                    </h4>
+
+                    <div class="card card-raised card-carousel">
+                        <div id="indicador" class="carousel slide" data-ride="carousel" data-interval="3000">
+                            <ol class="carousel-indicators">
+                                <li data-target="#indicador" data-slide-to="0" class="active"></li>
+                                <li data-target="#indicador" data-slide-to="1"></li>
+                                <li data-target="#indicador" data-slide-to="2"></li>
+                            </ol>
+
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img class="d-block w-100" src="public/img/carrossel/header2.jpg" alt="First slide">
+                                    <div class="carousel-caption d-none d-md-block">
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <img class="d-block w-100" src="public/img/carrossel/auditorio.jpg" alt="Second slide">
+                                    <div class="carousel-caption d-none d-md-block">
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <img class="d-block w-100" src="public/img/carrossel/fachada.jpg" alt="Third slide">
+                                    <div class="carousel-caption d-none d-md-block">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <a class="carousel-control-prev" href="#indicador" role="button" data-slide="prev">
+                                <i class="material-icons" style="color: white">keyboard_arrow_left</i>
+                                <span class="sr-only">Anterior</span>
+                            </a>
+                            <a class="carousel-control-next" href="#indicador" role="button" data-slide="next">
+                                <i class="material-icons" style="color: white">keyboard_arrow_right</i>
+                                <span class="sr-only">Próximo</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- fim memorial -->
+
+    <!-- objetivo -->
+    <div class="section">
+        <div class="container">
+            <div id="objetivo" class="section cd-section">
+                <div class="row">
+                    <div class="col-md-8 ml-auto mr-auto">
+                        <h2 class="title text-center">Nosso objetivo</h2>
+                        <h4 class="formatacaoTextoMobile">
+                            Este site se propõe como uma plataforma de diálogo com a sociedade em torno do conteúdo do
+                            futuro memorial às vítimas da tragédia de Santa Maria. Se espera que este site auxilie no
+                            processo de criação e planejamento do conteúdo do futuro Memorial.
+                            <br /><br />Perante o desafio de criar o futuro Memorial queremos convidar a todos a
+                            participar. Como deve ser contada a tragédia? Através de quais recursos? Com quais
+                            objetivos? Qual o público alvo do Memorial? Quais atividades poderiam ser desenvolvidas
+                            neste espaço?
+                            <br /><br />Este projeto é resultado de uma parceria entre a Associação de Familiares de
+                            Vítimas da Tragédia de Santa Maria (AVTSM) e especialistas na área que atuam em projetos de
+                            pesquisa na UFSM e na UFPEL.
+                        </h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- fim objetivo -->
+
+    <!-- avtsm -->
+    <div class="section" style="padding-bottom: 60px">
+        <div class="container">
+            <div id="avtsm" class="section cd-section">
+                <div class="row">
+                    <div class="col-md-10 ml-auto mr-auto">
+                        <h2 class="title text-center">AVTSM</h2>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div>
+                                    <img class="logo-avtsm" src="public/img/logo-avtsm.png">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <h5 class="formatacaoTextoMobile">
+                                    A AVTSM (Associação dos Familiares de Vítimas e Sobreviventes da Tragédia de Santa
+                                    Maria) foi criada oficialmente no dia 23 de fevereiro de 2013 poucos dias depois da
+                                    tragedia.<br /><br />A sua missão é assegurar os direitos e interesses bem como
+                                    garantir o auxílio e o amparo aos familiares das vítimas e aos sobreviventes da
+                                    tragédia.<br /><br />A AVTSM luta pela defesa dos direitos e interesses dos
+                                    que sofreram com a morte de seus entes queridos, bem como daqueles que sobreviveram
+                                    ao ocorrido. Junto à luta pela justiça, a AVTSM promove a criação de um Memorial em
+                                    homenagem às vitímas. São seus representantes Sergio da Silva e Flávio Silva.
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- fim avtsm -->
+
+    <!-- Equipe responsável -->
+    <div class="section" id="headers" style="padding-top: 0px">
+        <div id="equipe" class="team-4 section-image cd-section" style="background-image: url('public/img/capa2.jpg')">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 ml-auto mr-auto text-center">
+                        <h2 class="title">Equipe responsável</h2><br /><br />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-10 ml-auto mr-auto">
+                        <div class="card card-profile card-efeito">
+                            <div class="card-header card-avatar">
+                                <a href="#">
+                                    <img class="img" src="public/img/equipe/juliane.png" />
+                                </a>
+                            </div>
+                            <div class="card-body">
+                                <h4 class="card-title titulo-card">Juliane Serres</h4>
+                                <h6 class="card-category text-muted"></h6>
+                                <p class="card-description fonte-card texto-card-equipe">
+                                    Doutora em História pela UNISINOS<br />Professora PPG em Memória Social<br />e
+                                    Patrimonio Cultural UFPEL
+                                </p>
+                                <br />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-10 ml-auto mr-auto card-distancia">
+                        <div class="card card-profile card-efeito">
+                            <div class="card-header card-avatar">
+                                <a href="#">
+                                    <img class="img" src="public/img/equipe/virginia.png" />
+                                </a>
+                            </div>
+                            <div class="card-body">
+                                <h4 class="card-title titulo-card">Virginia Vecchioli</h4>
+                                <p class="card-description fonte-card texto-card-equipe">
+                                    Doutora em Antropologia pelo<br /> Museu Nacional UFRJ<br />Professora PPG em
+                                    Ciências Sociais UFSM
+                                </p>
+                                <br />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-10 ml-auto mr-auto card-distancia">
+                        <div class="card card-profile card-efeito">
+                            <div class="card-header card-avatar">
+                                <a href="#">
+                                    <img class="img" src="public/img/equipe/leticia.png" />
+                                </a>
+                            </div>
+                            <div class="card-body ">
+                                <h4 class="card-title titulo-card">María Leticia Mazzucchi</h4>
+                                <p class="card-description fonte-card texto-card-equipe">
+                                    Doutora em História pela PUCRS<br />Professora PPG em Memória Social<br /> e
+                                    Patrimonio Cultural UFPEL
+                                </p>
+                                <br />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-8 col-10 ml-auto mr-auto">
+                        <h2 class="title text-center" style="margin-top: 80px; margin-bottom: 30px">Comitê Científico</h2>
+                        <div class="card">
+                            <div class="card-body">
+                                <h4>
+                                    <ul class="card-title texto-comite">
+                                        <li>Felipe Zene Motta, Arquiteto (Brasil)</li>
+                                        <li>Joel Candau, Antropologo (França)</li>
+                                        <li>Luis Carlos Toro Tamayo, Estudos Culturais (Colombia)</li>
+                                        <li>Marcelo Canellas, Jornalista (Brasil)</li>
+                                        <li>Marcio Seligmann-Silva, Teoria Literaria (Brasil)</li>
+                                        <li>Núcleo de Estudios sobre Memoria (Argentina)</li>
+                                        <li>Ruben Chababo, Letras (Argentina)</li>
+                                        <li>Bolsista: Danilo Rangel, graduando em Museologia, UFPEL.</li>
+                                        <li>Bolsista: Rafael Nascimento, graduando em Computação, UFPEL.</li>
+                                        <li>Bolsista: Pedro Leal Gomes, estudante de Licenciatura em História, UFSM.</li>
+                                        <li>Bolsista: Lucas Back de Araujo, graduando em Ciências Sociais, UFSM.</li>
+                                    </ul>
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- fim equipe -->
+
+    <!-- inicio do carrossel -->
+    <div id="galeria" class="section cd-section section-white-gradient" style="padding-bottom: 150px">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 mr-auto ml-auto">
+                    <h2 class="title text-center">Galeria de Imagens</h2>
+
+                    <h4 class="text-center text-muted texto-comite">Fotografias das Movimentações em Santa Maria.<br />Fotográfo: Dartanhan Baldez Figueiredo</h4><br />
+
+                    <div class="demo-gallery">
+                        <div id="galeria_fotos">
+                            <a class="" href="public/img/fotografias/frente.jpg" data-sub-html="Frente da boate hoje">
+                                <img class="img-responsive" src="public/img/fotografias_thumbnails/frente.jpg">
+                                <div class="demo-gallery-poster">
+                                    <img src="public/img/zoom.png">
+                                </div>
+                            </a>
+                            <a class="" href="public/img/fotografias/ciluetas.jpg" data-sub-html="Silhuetas das vítimas">
+                                <img class="img-responsive" src="public/img/fotografias_thumbnails/ciluetas.jpg">
+                                <div class="demo-gallery-poster">
+                                    <img src="public/img/zoom.png">
+                                </div>
+                            </a>
+                            <a class="" href="public/img/fotografias/cartases.jpg" data-sub-html="Manifestação nas ruas de Santa Maria">
+                                <img class="img-responsive" src="public/img/fotografias_thumbnails/cartases.jpg">
+                                <div class="demo-gallery-poster">
+                                    <img src="public/img/zoom.png">
+                                </div>
+                            </a>
+                            <a class="" href="public/img/fotografias/vigilia.jpg" data-sub-html="Aniversário da tragédia">
+                                <img class="img-responsive" src="public/img/fotografias_thumbnails/vigilia.jpg">
+                                <div class="demo-gallery-poster">
+                                    <img src="public/img/zoom.png">
+                                </div>
+                            </a>
+                            <a class="" href="public/img/fotografias/desfile.jpg" data-sub-html="Manifestação nas ruas de Santa Maria">
+                                <img class="img-responsive" src="public/img/fotografias_thumbnails/desfile.jpg">
+                                <div class="demo-gallery-poster">
+                                    <img src="public/img/zoom.png">
+                                </div>
+                            </a>
+                            <a class="" href="public/img/fotografias/tenda.jpg" data-sub-html="Tenda da tragédia">
+                                <img class="img-responsive" src="public/img/fotografias_thumbnails/tenda.jpg">
+                                <div class="demo-gallery-poster">
+                                    <img src="public/img/zoom.png">
+                                </div>
+                            </a>
+                            <a class="" href="public/img/fotografias/marcha.jpg" data-sub-html="Passeata em Demanda de Justiça">
+                                <img class="img-responsive" src="public/img/fotografias_thumbnails/marcha.jpg">
+                                <div class="demo-gallery-poster">
+                                    <img src="public/img/zoom.png">
+                                </div>
+                            </a>
+                            <a class="" href="public/img/fotografias/movimiento.jpg" data-sub-html="Associação dos Familiares das Vítimas">
+                                <img class="img-responsive" src="public/img/fotografias_thumbnails/movimiento.jpg">
+                                <div class="demo-gallery-poster">
+                                    <img src="public/img/zoom.png">
+                                </div>
+                            </a>
+                            <a class="" href="public/img/fotografias/baile.jpg" data-sub-html="Tenda da Vigília">
+                                <img class="img-responsive" src="public/img/fotografias_thumbnails/baile.jpg">
+                                <div class="demo-gallery-poster">
+                                    <img src="public/img/zoom.png">
+                                </div>
+                            </a>
+                            <a class="" href="public/img/fotografias/chicos.jpg" data-sub-html="Dia das Crianças na Tenda">
+                                <img class="img-responsive" src="public/img/fotografias_thumbnails/chicos.jpg">
+                                <div class="demo-gallery-poster">
+                                    <img src="public/img/zoom.png">
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- fim do carousel -->
+
+
+    <div id="vitimas" class="main main-dark cd-section sections-creators">
+        <div class="row">
+            <div class="container">
+                <div class="collaborators-card">
+                    <div class="col-md-10 ml-auto mr-auto">
+                        <h2 class="title text-center" style="padding-top: 60px; padding-bottom: 10px">Conheça a história das vítimas da tragédia</h2>
+                        <img class="img-fluid" src="public/img/mural-das-vitimas.jpg" style="border-radius: 10px;" /><br /><br /><br />
+                        <!--
+                        <h4 class="text-center text-muted" style="padding-bottom: 35px">Clique em uma das fotos abaixo para conhecer um pouco da vítima</h4>
+                        <div class="demo-gallery">
+                            <div class="galeria_fotos">
+                                <?php foreach ($this->view->vitimas as $key => $vitima) { ?>
+                                                    <a href='/vitima?id=<?= $vitima['idVitima'] ?>'>
+                                                        <img alt='<?= $vitima['nome'] ?>' src='public/img/vitimas/<?= $vitima['foto_perfil'] ?>' />
+                                                    </a>
+                                <?php
+                            } ?>
+                            </div>
+                        </div>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+        <br />
+    </div>
+
+
+    <!-- contato -->
+    <div id="contato" class="main cd-section">
+        <div class="contactus-1" style="background-image: url('public/img/fotografias/cartases.jpg'); background-repeat: no-repeat; background-size: cover; box-shadow: 0 16px 24px 2px rgba(0,0,0,.14), 0 6px 30px 5px rgba(0,0,0,.12), 0 8px 10px -5px rgba(0,0,0,.2);border-radius: 0px 0px 3px 3px">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-5">
+                    </div>
+                    <div class="col-md-5 ml-auto">
+                        <div class="card card-contact" style="background-color: rgba(255,255,255,0.97); border-radius: 20px 20px 10px 10px">
+                            <!-- <form action="/enviarEmail" method="post"> -->
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-12 text-center">
+                                        <br />
+                                        <h2 class="card-title text-center">Contate-nos<br /></h2>
+                                        <span style="font-size: 14px;">Preencha o formulário abaixo ou envie um e-mail para: memorialkissconsultas@gmail.com</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group label-floating is-empty bmd-form-group">
+                                            <label class="bmd-label-floating">Nome</label>
+                                            <input type="text" id="nome" name="nome" class="form-control">
+                                            <span class="material-input"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group label-floating is-empty bmd-form-group">
+                                            <label class="bmd-label-floating">Sobrenome</label>
+                                            <input type="text" id="sobrenome" name="sobrenome" class="form-control">
+                                            <span class="material-input"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group label-floating is-empty bmd-form-group">
+                                    <label class="bmd-label-floating">E-mail</label>
+                                    <input type="email" id="email" name="email" class="form-control">
+                                    <span class="material-input"></span>
+                                </div>
+                                <div class="form-group label-floating is-empty bmd-form-group">
+                                    <label class="bmd-label-floating">Sua mensagem</label>
+                                    <textarea name="mensagem" id="mensagem" class="form-control" rows="5"></textarea>
+                                    <span class="material-input"></span>
+                                </div>
+                            </div>
+                            <div class="card-footer justify-content-between">
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input id="naorobo" class="form-check-input" type="checkbox" value=""> Eu não sou robô
+                                        <span class="form-check-sign">
+                                            <span class="check"></span>
+                                        </span>
+                                    </label>
+                                </div>
+                                <button id="btnEnviarEmail" type="submit" class="btn btn-primary pull-right">ENVIAR MENSAGEM</button>
+                            </div>
+                            <!-- </form> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- fim contato -->
+</div>
+<!-- Fim Principal -->
+
+
+
+<!-- rodape -->
+<footer class="footer footer-default">
+    <div class="container">
+        <div class="copyright float-right">
+            Desenvolvido por: Rafael Nascimento<br />rdsnascimento@inf.ufpel.edu.br
+        </div>
+    </div>
+</footer>
+<!-- fim rodape -->
+
+<!-- Barra de navegacao - direita -->
+<nav id="cd-vertical-nav" class="d-none d-sm-block">
+    <ul>
+        <li><a href="#inicio" data-number="1"><span class="cd-dot"></span><span class="cd-label">Inicio</span></a></li>
+        <li><a href="#historia" data-number="2"><span class="cd-dot"></span><span class="cd-label">História</span></a></li>
+        <li><a href="#memorial" data-number="3"><span class="cd-dot"></span><span class="cd-label">Memorial</span></a></li>
+        <li><a href="#objetivo" data-number="4"><span class="cd-dot"></span><span class="cd-label">Objetivo</span></a></li>
+        <li><a href="#avtsm" data-number="5"><span class="cd-dot"></span><span class="cd-label">AVTSM</span></a></li>
+        <li><a href="#equipe" data-number="6"><span class="cd-dot"></span><span class="cd-label">Equipe</span></a></li>
+        <li><a href="#galeria" data-number="7"><span class="cd-dot"></span><span class="cd-label">Galeria</span></a></li>
+        <li><a href="#vitimas" data-number="8"><span class="cd-dot"></span><span class="cd-label">Conheça às Vítimas</span></a></li>
+        <li><a href="#contato" data-number="9"><span class="cd-dot"></span><span class="cd-label">Contato</span></a></li>
+    </ul>
+</nav>

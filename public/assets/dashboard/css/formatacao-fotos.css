@@ -1,0 +1,62 @@
+.navbar-wrapper{
+    text-align: center;
+}
+
+.secaoFotos{
+    margin-top: 30px;
+}
+
+#pagina{
+    border: none; 
+    text-align: center;
+}
+
+#pagina > a{
+    text-decoration: none
+}
+
+#email{
+    overflow: hidden;
+}
+
+.imagem {
+    cursor: pointer;
+}
+
+.modal {
+    /* Hidden by default */
+    padding-top: 4%;
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.9);
+    /* Black w/ opacity */
+}
+
+.modal-dialog {
+    max-width: 700px;
+}
+
+#caption {
+    margin: auto;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    height: 150px;
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}

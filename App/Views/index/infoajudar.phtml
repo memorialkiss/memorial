@@ -1,0 +1,240 @@
+<!-- Navbar -->
+<nav id="navegacao" class="navbar navbar-expand-lg fixed-top navbar-transparent" onscroll="disableNavbar()" color-on-scroll="250">
+    <div class="container">
+        <div class="navbar-translate">
+            <a class="navbar-brand" href="/vitima?id=<?php echo $this->view->perfil_vitima['idVitima'] ?>" rel="tooltip" title="Coded by Creative Tim" data-placement="bottom">
+                VOLTAR
+            </a>
+        </div>
+
+    </div>
+</nav>
+<!-- End Navbar -->
+
+<div class="page-header page-header-xs" data-parallax="true" style="background-image: url('public/img/fotografias/frente4.jpg');">
+    <div class="filter"></div>
+</div>
+
+<!-- Modal comentario -->
+<div class="modal" id="modalMensagem" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="border: none">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title">Informações enviadas com sucesso!</h5>
+            </div>
+            <div class="modal-body">
+                <span class="textoDescricao text-center">Estaremos analisando! Muito obrigado! <span style="color: red"><i class="fas fa-heart"></i></span></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="modalMensagem2" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="border: none; margin-bottom: -30px">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h5 id="mensagemDaModal" class="modal-title"></h5>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- fim modal -->
+
+<div class="modal fade" id="termosdeuso" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-full" role="document">
+        <div class="modal-content" style="background: #41355a; padding: 3em 5%; overflow-y: auto; ">
+            <div class="modal-header">
+                <button class='open-close-button close' data-dismiss="modal" aria-label="Close" style="outline:none;"></button>
+            </div>
+
+            <div class="modal-body">
+                <h2 id="tituloPolitica" style="">POLÍTICA DE COMPARTILHAMENTO</h2><br />
+                <div id="textoTermosDeUso" style="">
+                    <p>
+                        O Memorial Virtual às Vítimas da Kiss tem como política promover o acesso universal e
+                        gratuito a seu acervo de depoimentos e informações, bem como às suas ferramentas de
+                        interação.
+                    </p>
+
+                    <p>
+                        1. Cada usuário é responsável pelo conteúdo enviado - depoimentos, textos, fotografias,
+                        documentos, ilustrações, vídeos e áudios - bem como por sua autoria, sem prejuízo de
+                        direitos
+                        autorais alheios, conforme declara ao enviá-lo. O Memorial Virtual às Vítimas da Kiss não se
+                        responsabiliza pelo conteúdo ou por danos causados por eventuais erros de conteúdo.
+                    </p>
+
+                    <p>
+                        2. Ao enviar qualquer conteúdo - depoimentos, textos, fotografias, documentos, ilustrações,
+                        vídeos e áudios - o usuário autoriza sua integração ao acervo do Memorial Virtual às Vítimas
+                        da Kiss, bem como sua e reprodução, por tempo indeterminado, a título gratuito, neste
+                        Memorial ou em outras iniciativas sem fins lucrativos do grupo vinculado a coordenação do
+                        projeto.
+                    </p>
+
+                    <p>
+                        3. Os materiais, histórias, depoimentos ou qualquer outro material encaminhado pelo usuário
+                        ao Portal que incitarem violência, racismo, xenofobia, infração à Lei de Direitos Autorais
+                        nº
+                        9.610/98, que não forem autênticos e originais, de teor sabidamente falso, inclusive
+                        publicidade enganosa e calúnia, injúria e difamação serão previamente censurados e não
+                        serão disponibilizados nesse Memorial para consulta.
+                    </p>
+
+                    <p>
+                        4. Somente serão aceitos para publicação e divulgação nesse Memorial os materiais
+                        encaminhados por seus usuários, desde que os mesmos sejam autênticos e originais.
+                    </p>
+
+                    <p>
+                        5. Os usuários desse Memorial autorizam a divulgação, reprodução e disponibilidade dos
+                        materiais encaminhados, sem qualquer restrição, manifestando livremente sua vontade no
+                        envio de materiais, compartilhando os propósitos e valores do Memorial Virtual às Vítimas
+                        da Kiss, cujo objetivo é construir um repositório de informações sobre a tragédia ocorrida
+                        na
+                        boate Kiss e seus desdobramentos.a
+                    </p>
+                    <p>
+                        6. As informações contidas nesse Memorial são fornecidas exclusivamente com propósito
+                        informativo e de divulgação de memória social, com o objetivo de compartilhar propósitos,
+                        valores, histórias de vida relacionadas as vítimas e grupos ligados a tragédia.
+                    </p>
+                    <p>
+                        7. O uso por terceiros do conteúdo disponibilizado neste Memorial somente está autorizado,
+                        para finalidades culturais, sociais, acadêmicas e educativas, sem finalidade lucrativa. Em
+                        qualquer caso, para que seja válida esta permissão, deve ser citado o Memorial Virtual às
+                        Vítimas da Kiss como fonte. É expressamente proibida sua utilização na elaboração de
+                        produtos (livros, apostilas, sites, exposições, entre outros) sem prévia autorização. No
+                        caso de
+                        dúvida sobre a utilização do acervo, sugerimos uma consulta ao Memorial Virtual às Vítimas
+                        da Kiss, através do e-mail ___________________.
+                    </p>
+                    <p>
+                        8. As dúvidas não previstas poderão ser encaminhadas para o Memorial Virtual às Vítimas da
+                        Kiss, pelo e-mail _____________________.
+                    </p>
+                </div>
+                </br></br>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section profile-content">
+    <div class="container">
+        <div class="owner">
+            <div class="avatar">
+                <img src="public/img/vitimas/<?php echo $this->view->perfil_vitima['foto_perfil']; ?>" class="img-no-padding img-responsive img-arredondada">
+            </div>
+            <div class="name">
+                <h4 class="title"><?php echo $this->view->perfil_vitima['nome']; ?>
+                    <br />
+                </h4>
+                <h6 class="description" style="color: #3c4858">
+                    Ajude-nos enviando informações
+                </h6>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 ml-auto mr-auto">
+                <div class="textoDescricao text-center" style="font-weight: 400">A memória é um dos alicerces que dá sentido a vida. Ajude-nos enviando informações sobre <?php echo $this->view->perfil_vitima['nome']; ?>, para que sua memória seja preservada.
+                </div>
+                <br />
+            </div>
+        </div>
+        <br />
+
+        <div class="nav-tabs-navigation">
+            <div class="nav-tabs-wrapper">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#tabinfo" role="tab">Informações</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#tabfotos" role="tab">Enviar fotos</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Tab panes -->
+        <div class="tab-content following">
+            <div class="tab-pane active" id="tabinfo" role="tabpanel">
+                <div class="row">
+                    <div class="col-md-8 ml-auto mr-auto">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="form-group">
+                                        <label>Nome*</label>
+                                        <input id="nome" name="nome" type="text" class="form-control border-input" placeholder="Digite seu nome" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="form-group">
+                                        <label>E-mail*</label>
+                                        <input id="email" name="email" type="email" class="form-control border-input" placeholder="Digite seu e-mail" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>O que você era da vítima?</label>
+                                        <input id="parentesco" name="parentesco" type="text" class="form-control border-input" placeholder="Amigo, primo, irmão etc">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Tem um vídeo no YouTube? </label>
+                                        <input id="youtube" name="youtube" type="text" class="form-control border-input" placeholder="Coloque o link aqui">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Dados biográficos*</label>
+                                <textarea id="descricao" name="descricao" class="form-control" placeholder="Digite aqui o que considera relevante." rows="15" minlength="50" maxlength="8000" required></textarea>
+                            </div>
+                            <br />
+
+                            <div class="form-check">
+                                <label class="form-check-label textoCheckbox">
+                                    <input id="termodecompartilhamento" class="form-check-input" type="checkbox" value="">
+                                    Estou de acordo com a 
+                                    <span class="form-check-sign">
+                                        <span class="check"></span>
+                                    </span>
+                                    <a href="#" data-toggle="modal" data-target="#termosdeuso" style="font-weight: 500;">política de compartilhamento</a>
+                                </label>
+                            </div>
+                            <br/>
+
+                            <div class="text-center">
+                                <button type="button" id="btnEnviarInformacao" class="btn btn-outline-info btn-round btn-wd"><i class="fas fa-heart"></i>&nbsp;&nbsp;Enviar</button>
+                            </div>
+                            <input id="idVitima" name="idVitima" type="text" value="<?php echo $this->view->perfil_vitima['idVitima'] ?>" style="display: none">
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane text-center" id="tabfotos" role="tabpanel">
+                <div class="row">
+                    <div class="col-md-6 ml-auto mr-auto">
+                        <div class="textoDescricao text-center" style="font-weight: 400; color: #3c4858">Você tem fotos com/ou de <?php echo $this->view->perfil_vitima['nome']; ?> e gostaria de compartilhar? Clique no botão abaixo para enviar para o Memorial.<br/><br/>Ao enviar fotos você concorda com a <a href="#" data-toggle="modal" data-target="#termosdeuso" style="font-weight: 500;">política de compartilhamento</a>
+                        </div><br />
+                        <button class="btn btn-outline-default btn-round" id="uppyModalOpener"><i class="fas fa-heart"></i>&nbsp;&nbsp;Enviar Fotos</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

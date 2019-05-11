@@ -1,0 +1,19 @@
+{
+	"name": "miniframework",
+	"require": {
+		"php": ">= 7.0",
+		"phpmailer/phpmailer": "^6.0"
+	},
+	"authors": [
+		{
+			"name": "Rafael Nascimento",
+			"email": "rdsnascimento@inf.ufpel.edu.br"
+		}
+	],
+	"autoload": {
+		"psr-4": {
+			"App\\": "App/",
+			"MF\\": "vendor/MF/"
+		}
+	}
+}

@@ -1,0 +1,293 @@
+<link href="../public/assets/dashboard/css/formatacao-fotos.css" rel="stylesheet" />
+
+<style>
+    .nav-tabs-navigation {
+        text-align: center;
+        border-bottom: 1px solid #F1EAE0;
+        margin-bottom: 30px;
+    }
+
+    .nav-tabs-wrapper {
+        display: inline-block;
+
+        position: relative;
+        width: auto;
+    }
+
+    .nav-tabs .nav-item.show .nav-link,
+    .nav-tabs .nav-link.active {
+        color: #495057;
+        background-color: inherit;
+        border-color: #dee2e6 #dee2e6 #f4f3ef;
+    }
+
+    .nav-tabs-navigation {
+        text-align: center;
+        border-bottom: 1px solid #dee2e6;
+    }
+
+    .nav-tabs {
+        border-bottom: 0 none;
+    }
+
+    .nav {
+        display: flex;
+        flex-wrap: wrap;
+        padding-left: 0;
+        margin-bottom: 0;
+        list-style: none;
+    }
+
+    ul,
+    menu,
+    dir {
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start: 0px;
+        margin-inline-end: 0px;
+        padding-inline-start: 40px;
+    }
+
+    .nav-item>a {
+        color: #9b9b9b;
+    }
+
+    .uppy-Dashboard--modal {
+        z-index: 3000 !important;
+    }
+
+    .desativarInput{
+        cursor: text!important
+    }
+</style>
+
+<div class="main-panel">
+    <!-- Modal imagem -->
+    <div id="modalImagem" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div id="modalConteudo" class="modal-body" style="text-align: center;"></div>
+        </div>
+    </div>
+    <!-- Fim modal imagem -->
+
+    <!-- Modal sucesso ou erro -->
+    <div class="modal fade" id="modalMensagem" tabindex="-1" role="dialog" aria-labelledby="modalMensagem" aria-hidden="true" style="z-index: 5000!important">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <h5 id="textoModal"></h5>
+                </div>
+                <div class="modal-footer">
+                    <div class="right-side">
+                        <button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Fechar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- fim modal sucesso ou erro -->
+
+    <!-- Navbar -->
+    <nav id="navegacao" class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
+        <div class="container-fluid">
+            <div class="navbar-wrapper">
+                <div class="navbar-toggle">
+                    <button type="button" class="navbar-toggler">
+                        <span class="navbar-toggler-bar bar1"></span>
+                        <span class="navbar-toggler-bar bar2"></span>
+                        <span class="navbar-toggler-bar bar3"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Fim navbar -->
+
+    <div class="content">
+        <div class="row">
+            <div class="col-md-12 ml-auto mr-auto">
+                <div class="navbar-wrapper">
+                    <a class="navbar-brand">Fotos</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="nav-tabs-navigation">
+            <div class="nav-tabs-wrapper">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#tabrecebidas" role="tab">Recebidas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#tabadicionar" role="tab">Adicionar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#tabremover" role="tab">Editar/Remover</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="tab-content">
+            <div class="tab-pane active" id="tabrecebidas" role="tabpanel">
+                <?php foreach ($this->view->fotos as $key => $fotos) { ?>
+                    <div class="row secaoFotos">
+                        <div class="col-md-10 ml-auto mr-auto">
+                            <div class="card card-user">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <label>Foto recebida</label>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <img src="../public/img/fotos_vitimas/<?php echo $fotos['endereco_foto']?>" 
+                                                        style="width: 190px; height: 190px; object-fit: cover;" 
+                                                        alt="<?php if ($fotos['legenda']){
+                                                            echo $fotos['legenda'];
+                                                        }?>" class="img-thumbnail imagem">
+                                                </div>
+                                            </div><br />
+                                        </div>
+
+                                        <div class="col-md-9">
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label>Id da vítima</label>
+                                                        <input id="idVitima" class="form-control desativarInput" value="<?php echo $fotos['idVitima']?>" disabled>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-7">
+                                                    <div class="form-group">
+                                                        <label>Nome da Vítima</label>
+                                                        <input class="form-control desativarInput" value="<?php echo $fotos['nome'] ?>" disabled>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label>Página da Vítima</label>
+                                                        <div id="pagina" class="form-control"><a target="_blank" href="/vitima?id=<?php echo $fotos['idVitima'] ?>">Acessar</a></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Nome do Remetente</label>
+                                                        <input id="nome" class="form-control desativarInput" value="<?php if ($fotos['nomeRemetente']){
+                                                            echo $fotos['nomeRemetente'];
+                                                        }else {
+                                                            echo "Nome";
+                                                        }?>" disabled>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>E-mail do Remetente</label>
+                                                        <input id="email" class="form-control desativarInput" value="<?php if ($fotos['email']) {
+                                                                echo $fotos['email'];
+                                                            } else {
+                                                                echo "Email";
+                                                            } ?>" disabled>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label>Descrição da foto</label>
+                                                        <input id="legenda" class="form-control desativarInput" value="<?php if ($fotos['legenda']) {
+                                                                echo $fotos['legenda'];
+                                                            } else {
+                                                                echo "Descrição";
+                                                            }?>" disabled>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="ml-auto float-right">
+                                                <button type="button" data-id_rejeitar="<?php echo $fotos['idFoto']; ?>" class="btn btn-danger btn-round btnRejeitarFoto">REJEITAR</button>
+                                                <button type="button" data-id_aceitar="<?php echo $fotos['idFoto']; ?>" class="btn btn-primary btn-round btnAceitarFoto">ACEITAR</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end col-md-12 -->
+                    </div>
+                <?php } ?>
+            </div>
+
+            <div class="tab-pane" id="tabadicionar" role="tabpanel">
+                <div class="row">
+                    <div class="col-md-6 mr-auto ml-auto">
+                        <div class="form-group">
+                            <select id="listaVitimasAddFoto" class="form-control">
+                                <option selected disabled>Selecione a vítima</option>
+                                <?php foreach ($this->view->vitimas as $key => $vitima) { ?>
+                                    <option value="<?php echo $vitima['idVitima']; ?>"><?php echo $vitima['nome']; ?></option>
+                                <?php
+                            } ?>
+                            </select>
+                        </div>
+                    </div>
+                    <br /><br /><br />
+                </div>
+                <div class="row">
+                    <input id="idVitimaAdd" name="id" type="hidden">
+                    <div class="col-md-12 ml-auto mr-auto" style="text-align: center">
+                        <button class="btn btn-outline-default btn-round" id="uppyModalOpener" style="display: none">
+                            <i class="fas fa-heart"></i>&nbsp;&nbsp;Enviar Fotos
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane" id="tabremover" role="tabpanel">
+                <div class="row">
+                    <div class="col-md-6 mr-auto ml-auto">
+                        <div class="form-group">
+                            <select id="listaVitimasEditFoto" class="form-control">
+                                <option selected disabled>Selecione a vítima</option>
+                                <?php foreach ($this->view->vitimas as $key => $vitima) { ?>
+                                    <option value="<?php echo $vitima['idVitima']; ?>"><?php echo $vitima['nome']; ?></option>
+                                <?php
+                            } ?>
+                            </select>
+                        </div>
+                    </div>
+                    <br /><br /><br />
+                </div>
+
+                <div id="fotosupadas" style="display:none">
+                    <div class="row secaoFotos">
+                        <div id="fotosRecebidas" class="col-md-10 ml-auto mr-auto"></div> <!-- recebe as fotos dinamicamente do bd -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end row -->
+    </div>
+
+    <!-- rodape -->
+    <footer class="footer footer-default">
+        <div class="container">
+            <div class="copyright float-right">
+                Desenvolvido por: Rafael Nascimento<br />rdsnascimento@inf.ufpel.edu.br
+            </div>
+        </div>
+    </footer>
+    <!-- fim rodape -->
+</div>

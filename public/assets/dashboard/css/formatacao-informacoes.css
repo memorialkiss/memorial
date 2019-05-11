@@ -1,0 +1,113 @@
+.navbar-wrapper{
+    text-align: center;
+}
+
+.secaoFotos{
+    margin-top: 30px;
+}
+
+#pagina{
+    border: none; 
+    text-align: center;
+}
+
+#pagina > a{
+    text-decoration: none
+}
+
+#email{
+    overflow: hidden;
+}
+
+.imagem {
+    cursor: pointer;
+}
+
+.modal {
+    /* Hidden by default */
+    padding-top: 4%;
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.9);
+    /* Black w/ opacity */
+}
+
+.modal-dialog {
+    max-width: 700px;
+}
+
+#caption {
+    margin: auto;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    height: 150px;
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.nav-tabs-navigation {
+    text-align: center;
+    border-bottom: 1px solid #F1EAE0;
+    margin-bottom: 30px;
+}
+
+.nav-tabs-wrapper {
+    display: inline-block;
+
+    position: relative;
+    width: auto;
+}
+
+.nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active {
+    color: #495057;
+    background-color: inherit;
+    border-color: #dee2e6 #dee2e6 #f4f3ef;
+}
+
+.nav-tabs-navigation {
+    text-align: center;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.nav-tabs {
+    border-bottom: 0 none;
+}
+
+.nav {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+}
+
+ul,
+menu,
+dir {
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
+
+.nav-item>a {
+    color: #9b9b9b;
+}

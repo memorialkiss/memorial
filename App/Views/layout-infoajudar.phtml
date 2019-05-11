@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>Ajude o Memorial</title>
+
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link href="public/assets/infoajudar/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="public/assets/infoajudar/css/paper-kit.css?v=2.2.0" rel="stylesheet" />
+    <link href="public/assets/infoajudar/demo/demo.css" rel="stylesheet" />
+    <link href="public/assets/infoajudar/css/uppy.min.css" rel="stylesheet">
+    <link rel="shortcut icon" type="image/png" href="public/img/favicon.png" />
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+
+    <style>
+        body {
+            color: #3c4858;
+            font-family: Roboto, Helvetica;
+        }
+
+        .title,
+        .card-title,
+        .info-title,
+        .footer-brand,
+        .footer-big h5,
+        .footer-big h4,
+        .media .media-heading {
+            font-family: Roboto, Helvetica;
+        }
+
+        .img-arredondada {
+            margin-bottom: 10px;
+            border-radius: 50% !important;
+            max-width: 100%;
+        }
+
+
+
+
+
+
+
+
+
+        #termosdeuso .modal-full {
+            min-width: 100%;
+            margin: 0;
+        }
+
+        #termosdeuso .modal-full .modal-content {
+            min-height: 100%;
+            margin: 0;
+        }
+
+        #termosdeuso .modal-dialog {
+            position: fixed;
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            padding: 0;
+        }
+
+        #termosdeuso .modal-content {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            border-radius: 0;
+            box-shadow: none;
+        }
+
+        .open-close-button {
+            display: inline-block;
+            width: 1.5em;
+            height: 1.5em;
+            font-size: 3em;
+            border-radius: 50%;
+            position: relative;
+            -moz-transform: rotate(225deg);
+            -ms-transform: rotate(225deg);
+            -webkit-transform: rotate(225deg);
+            transform: rotate(225deg);
+            background-color: #372D4D;
+        }
+
+        .open-close-button:hover {
+            background-color: #2E253F;
+        }
+
+        .open-close-button:before {
+            content: "";
+            display: block;
+            position: absolute;
+            background-color: white;
+            width: 80%;
+            height: 6%;
+            left: 10%;
+            top: 47%;
+        }
+
+        .open-close-button:after {
+            content: "";
+            display: block;
+            position: absolute;
+            background-color: white;
+            width: 6%;
+            height: 80%;
+            left: 47%;
+            top: 10%;
+        }
+
+        h2 {
+            font-size: 25.6px;
+            font-family: "Lato", sans-serif;
+            text-align: center;
+            margin-bottom: .4em;
+            font-size: 39px;
+            font-weight: 300;
+        }
+
+        p {
+            line-height: 1.6;
+            margin: 2em auto;
+            max-width: 800px;
+            font-size: 19px;
+            font-weight: 400;
+        }
+
+        #termosdeuso {
+            font-family: "Lato", sans-serif;
+            color: #ffffff;
+        }
+
+        #termosdeuso .modal-header {
+            border: none;
+            padding-bottom: 50px;
+        }
+
+        ::placeholder {
+            color: #3c4858 !important;
+        }
+
+        .active {
+            color: #3c4858 !important;
+        }
+
+        .textoDescricao {
+            font-size: 15px;
+            line-height: 1.5em;
+            margin-bottom: 5px;
+            display: block;
+            margin-block-start: 1em;
+            margin-block-end: 1em;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+            -webkit-font-smoothing: antialiased;
+            font-family: "Montserrat", "Helvetica", Arial, sans-serif;
+        }
+
+        .textoCheckbox {
+            font-size: 15px;
+            font-family: "Montserrat", "Helvetica", Arial, sans-serif;
+        }
+
+        .form-control{
+            border: 1px solid #b4b4b4;
+        }
+
+        #tituloPolitica{
+            text-align: center; 
+            color: #ffffff;
+        }
+
+        #textoTermosDeUso > p {
+            text-align: justify; 
+            color: #ffffff;
+        }
+
+        @media only screen and (max-width: 600px){
+            #textoTermosDeUso > p {
+                font-size: 15px;
+            }
+
+            #tituloPolitica{
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+
+<body class="profile-page sidebar-collapse">
+    <?= $this->content() ?>
+    <script src="public/assets/dashboard/js/core/jquery.min.js" type="text/javascript"></script>
+    <script src="public/assets/dashboard/js/core/popper.min.js" type="text/javascript"></script>
+    <script src="public/assets/dashboard/js/core/bootstrap.min.js" type="text/javascript"></script>
+    <script src="public/assets/infoajudar/js/paper-kit.js?v=2.2.0" type="text/javascript"></script>
+    <script src="public/assets/infoajudar/js/uppy.min.js"></script>
+    <script src="public/assets/infoajudar/js/formatacao-infoajudar.js" type="text/javascript"></script>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+.login-page .card-login .logo-container {
+    width: 80px;
+    margin: 0 auto;
+    margin-bottom: 30px;
+}
+
+.moving-clouds {
+    position: absolute;
+    z-index: 1;
+    bottom: 0;
+    left: 0;
+    width: 250.625em;
+    height: 43.75em;
+    animation: c 120s linear infinite;
+    animation-duration: 100s;
+    animation-timing-function: linear;
+       animation-delay: 0s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    animation-fill-mode: none;
+    animation-play-state: running;
+}
+
+@keyframes c {
+    0% {
+        transform: translateZ(0);
+    }
+
+    100% {
+        transform: translate3d(-50%,0,0);
+    }
+}
+
+.fundoLogin{
+    background-image:url(../img/login.jpg);
+}
+
+.imgNuvens{
+    background-image:url(../../../img/clouds.png);
+}
+
+.erroLogin{
+    color: #b74e4d;
+}
+
+.desenvolvedor{
+    font-size: 10px;
+}
