@@ -21,6 +21,8 @@ $(document).ready(function () {
                 $("#idVtm").val(data.idVitima);
                 $("#pagina-vitima").attr("href", "/vitima?id=".concat(data.idVitima));
                 $("#nome").val(data.nome);
+                CKEDITOR.instances['descricao'].destroy();
+                CKEDITOR.replace("descricao");
                 CKEDITOR.instances['descricao'].setData(data.descricao);
                 //$("#descricao").val(data.descricao);
                 $("#idade").val(data.idade);
