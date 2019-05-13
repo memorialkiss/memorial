@@ -33,7 +33,8 @@ $(document).ready(function () {
     if ($animThumb.length) {
         $animThumb.justifiedGallery({
             rowHeight: 120,
-            margins: 4,
+            maxRowHeight: 140,
+            margins: 2,
             lastRow: 'justify',
         }).on('jg.complete', function () {
             $animThumb.lightGallery({
