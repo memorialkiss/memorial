@@ -29,6 +29,11 @@ class Administrador extends Model {
         if($usuario['idAdmin'] != '' && $usuario['nome']) {
             $this->__set('id', $usuario['idAdmin']);
             $this->__set('nome', $usuario['nome']);
+
+            $query = "insert into logLogin(nome) values(:nome)";
+            $stmt = $this->db->prepare($query);
+            $stmt->bindValue(':nome', $usuario['nome']);
+            $stmt->execute();
         }
         return $this;
     }
