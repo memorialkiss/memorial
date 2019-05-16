@@ -1,7 +1,9 @@
 RewriteEngine On
+
+RewriteCond %{HTTP_HOST} memorialkiss\.org [NC]
+RewriteCond %{SERVER_PORT} 80
+RewriteRule ^(.*)$ https://memorialkiss/$1 [R,L]
+
 # Handle Front Controller...
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^ index.php [QSA,L]
-# Force SSL
-RewriteCond %{HTTPS} !=on
-RewriteRule ^ https://%{HTTP_HOST} [L,R=301]
