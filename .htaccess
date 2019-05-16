@@ -1,6 +1,6 @@
 RewriteEngine On
 # Remove public folder form URL
-RewriteRule ^ index.php [QSA,L]
+RewriteRule ^(.*)$ index.php [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 # Force SSL
 RewriteCond %{HTTPS} !=on
