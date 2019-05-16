@@ -5,4 +5,4 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^ index.php [QSA,L]
 
 RewriteCond %{HTTPS} !=on
-RewriteRule ^ https://memorialkiss.org/{REQUEST_URI} [L,R=301]
+RewriteRule ^ https://memorialkiss.org/%{REQUEST_URI} [L,R=301]
