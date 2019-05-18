@@ -10,8 +10,6 @@ disableNavbar();
 window.addEventListener("resize", disableNavbar);
 
 
-
-
 $(document).ready(function () {
     //atualiza a vitima
     $('#btnEnviarEmail').click(function() {

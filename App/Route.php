@@ -170,6 +170,12 @@ class Route extends Bootstrap {
 			'action' => 'enviarEmail'
 		);
 
+		$routes['listarComentarios'] = array(
+			'route' => '/listarComentarios',
+			'controller' => 'IndexController',
+			'action' => 'listarComentarios'
+		);
+
 		$this->setRoutes($routes);
 	}
 

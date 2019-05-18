@@ -69,6 +69,23 @@ class Comentarios extends Model {
         $stmt->bindValue(':id', $this->__get('id'));
         $stmt->execute();
     }
+
+    public function getComentariosPorPaginacao($inicio, $fim){
+        $query = "select comentarios.nome as autor, comentario, data from comentarios where status = 1 AND fk_idVitima = :id order by idComentario desc limit {$inicio}, {$fim}";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindValue(':id', $this->__get('idVitima'));
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    public function getContComentariosAceitos(){
+        $query = "select count(*) as contador from comentarios where status = 1 and fk_idVitima = :id";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindValue(':id', $this->__get('idVitima'));
+        $stmt->execute();
+        $quantidade = $stmt->fetch(\PDO::FETCH_ASSOC);
+        return $quantidade['contador'];
+    }
 }
 
 ?>

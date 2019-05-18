@@ -37,6 +37,8 @@ class IndexController extends Action
 		$this->view->comentarios = $comentarios->getComentariosAprovado();
 		$this->view->fotos = $fotos->getFotosVitima();
 
+		$this->view->contRecordacoes = $comentarios->getContComentariosAceitos();
+
 		$this->render('vitima', 'layout-vitima');
 	}
 
@@ -122,5 +124,21 @@ class IndexController extends Action
 		$info->__set('youtube', $tmp->youtube);
 		$info->__set('descricao', $tmp->descricao);
         print_r($info->submeterFormulario());
+	}
+
+	public function listarComentarios(){
+		//recebe id da vitima
+		$id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
+		$comentarios = Container::getModel('Comentarios');
+		$comentarios->__set('idVitima', $id);
+
+		//recebe pagina atual e quantidade de comentarios por pagina
+		$paginaAtual = $_POST['paginaAtual'];
+		$quantidadePorPagina = $_POST['quantidadePorPagina'];
+		$inicio = ($paginaAtual * $quantidadePorPagina) - $quantidadePorPagina;
+
+		$resultado = $comentarios->getComentariosPorPaginacao($inicio, $quantidadePorPagina);
+		
+		echo json_encode ($resultado);
 	}
 }

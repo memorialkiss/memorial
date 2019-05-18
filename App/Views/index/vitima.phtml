@@ -15,8 +15,51 @@
         color: #3B74AD;
     }
 
-    #textoDescricao > blockquote em {
+    #textoDescricao>blockquote em {
         font-size: 14px;
+    }
+
+    .colunaTabela {
+        border: none !important;
+        width: 200px !important;
+    }
+
+    .colunaTabelaSimbolo {
+        border: none !important;
+    }
+
+    #iconeComentarioF {
+        /* color: #5E6B75; */
+        color: #9c27b0;
+    }
+
+    #iconeComentarioF:hover {
+        color: #5E6B75;
+    }
+
+    .linkPgAtivadaF {
+        font-weight: bold !important;
+        color: #8F3E97 !important;
+        font-size: 15px !important;
+    }
+
+    #iconeComentarioM {
+        /* color: #5E6B75; */
+        color: #3b5a99;
+    }
+
+    #iconeComentarioM:hover {
+        color: #5E6B75;
+    }
+
+    .linkPgAtivadaM {
+        font-weight: bold !important;
+        color: #3b5a99 !important;
+        font-size: 15px !important;
+    }
+
+    .modal-backdrop.show {
+        opacity: 1;
     }
 </style>
 
@@ -60,7 +103,7 @@
 <div class="page-header header-filter" style="background-image: url('public/img/fotografias/frente2.jpg');"></div>
 <div class="moving-clouds" style="background-image: url(public/img/clouds.png);"></div>
 
-<!-- Modal comentario -->
+<!-- Modal comentarios -->
 <div class="modal" id="modalMensagem" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -79,7 +122,31 @@
         </div>
     </div>
 </div>
-<!-- fim modal -->
+<!-- fim modal comentarios -->
+
+<!-- Modal recordacoes -->
+<div class="modal fade" id="recordacaoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="recordacaoTitulo">Yuri Berry<br></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h6 id="recordacaoData" style="margin-top: -15px; text-transform: none;"></h6><br/>
+                <div id="recordacaoTexto"></div>
+                <br/>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                <!-- <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button> -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- fim modal recordacoes -->
 
 <div class="main main-raised">
     <div class="profile-content">
@@ -111,22 +178,13 @@
                             <?php } ?>
                         </div>
 
-                        
-                        <div class="follow">                            
-                            <button class="btn btn-fab btn-round" rel="tooltip" title="" data-original-title="Compartilhar" style="color: #fff; background-color: #3b5998; border-color: #3b5998; box-shadow: 0 2px 2px 0 rgba(59,89,152,.14), 0 3px 1px -2px rgba(59,89,152,.2), 0 1px 5px 0 rgba(59,89,152,.12);" onclick='shareFacebook("memorialkiss.org/vitima?id=<?php echo ($this->view->perfil_vitima["idVitima"])?>")'>
+
+                        <div class="follow">
+                            <button class="btn btn-fab btn-round" rel="tooltip" title="" data-original-title="Compartilhar" style="color: #fff; background-color: #3b5998; border-color: #3b5998; box-shadow: 0 2px 2px 0 rgba(59,89,152,.14), 0 3px 1px -2px rgba(59,89,152,.2), 0 1px 5px 0 rgba(59,89,152,.12);" onclick='shareFacebook("memorialkiss.org/vitima?id=<?php echo ($this->view->perfil_vitima["idVitima"]) ?>")'>
                                 <i class="fab fa-facebook-f fa-sm"></i>
                                 <div class="ripple-container"></div>
                             </button>
-<!-- 
-                            <button class="btn btn-fab btn-round" rel="tooltip" title="" data-original-title="Compartilhar" style="color: #fff;
-    background-color: #55acee;
-    border-color: #55acee;
-    box-shadow: 0 2px 2px 0 rgba(85,172,238,.14), 0 3px 1px -2px rgba(85,172,238,.2), 0 1px 5px 0 rgba(85,172,238,.12);">
-                                <i class="fab fa-twitter fa-sm"></i>
-                                <div class="ripple-container"></div>
-                            </button> -->
                         </div>
-                               
                     </div>
                 </div>
             </div>
@@ -150,7 +208,7 @@
                         <div class="col-md-7 mr-auto ml-auto">
                             <h4 class="text-center card-title" style="font-size: 22px;">Galeria de Memórias</h4><br />
                             <div class="demo-gallery">
-                                <div id="galeria_fotos">
+                                <div id="galeria-vitima">
                                     <?php
                                     if ($this->view->fotos != '') {
                                         foreach ($this->view->fotos as $key => $fotos) {
@@ -220,12 +278,6 @@
                                             <img src="public/img/zoom.png">
                                         </div>
                                     </a>
-                                    <!-- <a class="">
-                                        <div style="text-align: center; padding: 40px; font-size: 35px;">Rafael Nascimento</div>
-                                        <div class="demo-gallery-poster">
-                                            <img src="public/img/zoom.png">
-                                        </div>
-                                    </a> -->
                                 </div>
                             </div>
                         </div>
@@ -237,64 +289,59 @@
                         <div class="media-area">
                             <h3 class="title text-center">Recordações</h3>
 
-                            <?php
-                            if (!empty($this->view->comentarios)) {
-                                foreach ($this->view->comentarios as $key => $comentarios) { ?>
-                                    <div class="media">
-                                        <div class="media-body">
-                                            <h4 class="media-heading"><?php echo $comentarios['autor'] ?>
-                                                <small><em>em <?php echo date('d-m-Y H:i', strtotime($comentarios['data'])); ?></em></small>
-                                            </h4>
-                                            <div class="blockquote">
-                                                <p>
-                                                    "<?php echo $comentarios['comentario'] ?></small>"
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                <?php }
-                        } else { /* Se não tem nenhum comentario */
-                            ?>
-
+                            <?php if ($this->view->contRecordacoes == 0) { ?>
                                 <div class="media-area">
                                     <h4 class="text-center"><?php echo strstr($this->view->perfil_vitima['nome'], ' ', true); ?> ainda não tem nenhuma recordação.</h4>
                                 </div>
+                            <?php } ?>
 
-                            <?php
-                        } ?>
-                            <!-- <div class="media">
-                                    <div class="media-body">
-                                        <h4 class="media-heading">Mariana Vieira
-                                            <small><em>em 27-03-2017 10:15</em></small>
-                                        </h4>
-                                        <div class="blockquote">
-                                            <p>
-                                                “Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sed vehicula ligula. Sed congue
-                                                interdum ligula, ut vulputate ex volutpat a. Nulla iaculis ex at ante malesuada sollicitudin.
-                                                Nulla hendrerit lectus et gravida dapibus.”
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div> -->
+                            <table class="table table-striped" style="margin-top: -15px">
+                                <thead>
+                                    <tr>
+                                        <th class="colunaTabela"></th>
+                                        <th class="colunaTabelaSimbolo"></th>
+                                        <th class="colunaTabela"></th>
+                                        <th class="colunaTabelaSimbolo"></th>
+                                        <th class="colunaTabela"></th>
+                                        <th class="colunaTabelaSimbolo"></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="recordacoes"></tbody>
+                            </table>
+                            <nav>
+                                <ul id="paginasRecordacoes" class="pagination justify-content-end"></ul>
+                            </nav>
                         </div>
                     </div>
                 </div>
             <?php } ?>
             <!-- fim de se vitima estiver com status de ativado -->
         </div>
-
         <!-- fim do carousel -->
+
+        <!-- colabore e fazer recordacao -->
         <div class="contato" style="margin-top: -50px;">
             <hr style="width:70%; padding-bottom: 50px; border-width: 1px" />
             <div class="container">
                 <?php if ($this->view->perfil_vitima['estado'] == 1) { ?>
                     <div class="row">
+                        <!-- colabore com a vitima -->
                         <div class="col-md-6">
                             <div class="col-md-10 ml-auto mr-auto">
                                 <br />
-                                <h3 class="title text-center">Conhecia<?php if($this->view->perfil_vitima['sexo'] == '0') { echo " o ";} else { echo " a "; }; echo strstr($this->view->perfil_vitima['nome'], ' ', true); ?>?</h3>
+                                <h3 class="title text-center">Conhecia<?php if ($this->view->perfil_vitima['sexo'] == '0') {
+                                                                            echo " o ";
+                                                                        } else {
+                                                                            echo " a ";
+                                                                        };
+                                                                        echo strstr($this->view->perfil_vitima['nome'], ' ', true); ?>?</h3>
                                 <p class="text-gray" style="text-align: justify">
-                                    <h5 class="info-title text-center">Ajude a melhorarmos a descrição <?php if($this->view->perfil_vitima['sexo'] == '0') { echo " do ";} else { echo " da "; }; echo strstr($this->view->perfil_vitima['nome'], ' ', true); ?>, enviando informações como:</h5>
+                                    <h5 class="info-title text-center">Ajude a melhorarmos a descrição <?php if ($this->view->perfil_vitima['sexo'] == '0') {
+                                                                                                            echo " do ";
+                                                                                                        } else {
+                                                                                                            echo " da ";
+                                                                                                        };
+                                                                                                        echo strstr($this->view->perfil_vitima['nome'], ' ', true); ?>, enviando informações como:</h5>
                                     <ul>
                                         <li>Fotos e videos
                                         <li>Detalhes como: </li>
@@ -319,7 +366,9 @@
                                 </p>
                             </div>
                         </div>
+                        <!-- fim colabore -->
 
+                        <!-- enviar recordacao -->
                         <div class="col-md-6 ml-auto mr-auto">
                             <div class="row">
                                 <div class="col-md-12">
@@ -328,7 +377,7 @@
                                             <div class="card-body">
                                                 <div class="row">
                                                     <div class="col-md-12">
-                                                        <h3 class="card-title text-center">Colabore com uma recordação <br/>da vida de <?php echo strstr($this->view->perfil_vitima['nome'], ' ', true); ?><br /><small style="font-size: 13px">*Necessário aprovação</small></h3>
+                                                        <h3 class="card-title text-center">Colabore com uma recordação <br />da vida de <?php echo strstr($this->view->perfil_vitima['nome'], ' ', true); ?><br /><small style="font-size: 13px">*Necessário aprovação</small></h3>
                                                     </div>
                                                 </div>
                                                 <div class="row">
@@ -354,7 +403,7 @@
                                                     <span class="material-input"></span>
                                                 </div>
                                                 <div class="form-group label-floating is-empty bmd-form-group">
-                                                    <label class="bmd-label-floating">Comentário</label>
+                                                    <label class="bmd-label-floating">Recordação</label>
                                                     <textarea id="comentario" class="form-control" rows="8"></textarea>
                                                     <span class="material-input"></span>
                                                 </div>
@@ -376,10 +425,11 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- fim enviar recordacao -->
                     </div>
                 <?php } ?>
             </div>
-
         </div>
+        <!-- fim contato -->
     </div>
 </div>
