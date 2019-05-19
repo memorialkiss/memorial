@@ -96,7 +96,7 @@
     .box {
         background-color: gray;
         height: 240px;
-        width: 90%;
+        width: 80%;
         position: relative;
         display: inline-block;
         overflow: hidden;
@@ -137,7 +137,6 @@
         /* background-color: white;
         border: 1px solid #fff; */
         border-radius: 4px;
-        color: red;
         position: absolute;
         right: 0;
         font-weight: 700;
@@ -148,6 +147,7 @@
         text-align: center;
         width: 60%;
         z-index: 100;
+        bottom: -50px;
     }
 
     /********************  
@@ -178,7 +178,43 @@
         text-decoration: none;
     }
 
-    
+    #imgNoticias{
+        width: 450px;
+    }
+
+    #boxNoticias{
+        display: block;
+        text-align: -webkit-center;
+    }
+
+    @media only screen and (max-width: 768px) {
+        .box {
+            background-color: gray;
+            height: 200px;
+            width: 70%;
+            position: relative;
+            display: inline-block;
+            overflow: hidden;
+        }
+
+        .box:hover .box-button {
+            bottom: 70px;
+        }
+
+        .overlay {
+            top: 140px;
+        }
+
+        .modalConfiguracao{
+            padding-left: 0px; 
+            padding-right: 0px;
+        }
+
+        #imgNoticias{
+            width: 350px;
+        }
+    }
+
     @media only screen and (min-width: 600px) {
         .modalConfiguracao{
             padding-left: 160px; 
@@ -223,15 +259,15 @@
                 </a>-->
             </div>
 
-            <div class="col-md-5 ml-auto" style="margin-top: 30px">
+            <div class="col-md-5 ml-auto" id="boxNoticias" style="margin-top: 30px">
                 <!-- <div class="iframe-container">
                   <iframe src="https://www.youtube.com/embed/VYRCTpMfRfk?modestbranding=1&amp;autohide=1&amp;showinfo=0" frameborder="0" allowfullscreen="" height="250"></iframe>
                 </div> -->
 
-                <div class="box box-1">
+                <div class="box">
                     <a href="/portal" target="_blank">
                         <div class="overlay"></div>
-                        <img src="public/img/noticias.png" width="500" />
+                        <img id="imgNoticias" src="public/img/noticias.png"/>
                         <h2 class="exec-name">Últimas notícias</h2>
                         <div id="btnportal" class="box-button">ACESSAR</div>
                     </a>
@@ -239,12 +275,6 @@
             </div>
 
 
-        </div>
-
-        <div class="row">
-            <div class="col-md-5 ml-auto">
-
-            </div>
         </div>
     </div>
 </main>
