@@ -97,6 +97,24 @@
         var paginaAtual = 1;
         var id = window.location.href.split('id=')[1];
 
+        if ($(window).width() >= 768) {
+            var quantidadePorPagina = 15;
+            var colunas = `
+            <th class="colunaTabela"></th>
+            <th class="colunaTabelaSimbolo"></th>
+            <th class="colunaTabela"></th>
+            <th class="colunaTabelaSimbolo"></th>
+            <th class="colunaTabela"></th>
+            <th class="colunaTabelaSimbolo"></th>`;
+            $("#colunasRecordacoes").html(colunas);
+        } else {
+            var quantidadePorPagina = 6;
+            var colunas = `
+            <th class="colunaTabela"></th>
+            <th class="colunaTabelaSimbolo"></th>`;
+            $("#colunasRecordacoes").html(colunas);
+        }
+
         $(document).ready(function() {
             listarComentario(paginaAtual, quantidadePorPagina, id); //Chamar a função para listar os registros
         });
@@ -115,18 +133,28 @@
                 var contDePagina = 0;
 
                 obj.forEach(function (recordacao, index){
-                    if(coluna == 0){
+                    if ($(window).width() >= 768) {
+                        if(coluna == 0){
+                            textoHtml += "<tr>\n";
+                        }
+                    } else {
                         textoHtml += "<tr>\n";
                     }
+
                     textoHtml += `  <td>${recordacao.autor}</td>
                     <td style="text-align: right">
-                        <span autor="${recordacao.autor}" dataRecordacao="${recordacao.data}" comentario="${recordacao.comentario}" onclick="modalRecordacao(this)" style="cursor: pointer">
-                            <i class="fas fa-plus-circle" id="<?php if($this->view->perfil_vitima['sexo'] == '0'){echo 'iconeComentarioM';} else {echo 'iconeComentarioF';} ?>"></i>
+                        <span autor="${recordacao.autor}" dataRecordacao="${recordacao.data}" comentario="${recordacao.comentario}" onclick="modalRecordacao(this)" style="cursor: pointer;">
+                            <i class="fas fa-star" id="<?php if($this->view->perfil_vitima['sexo'] == '0'){echo 'iconeComentarioM';} else {echo 'iconeComentarioF';} ?>"></i>
                         </span>
                     </td>\n`;
-                    coluna += 1;
-                    if(coluna == 3){
-                        coluna = 0;
+
+                    if ($(window).width() >= 768) {
+                        coluna += 1;
+                        if(coluna == 3){
+                            coluna = 0;
+                            textoHtml += "</tr>\n";
+                        }
+                    } else {
                         textoHtml += "</tr>\n";
                     }
                 });

@@ -29,12 +29,13 @@
     }
 
     #iconeComentarioF {
-        /* color: #5E6B75; */
-        color: #9c27b0;
+        color: #5E6B75;
+        /* color: #9c27b0; */
     }
 
     #iconeComentarioF:hover {
-        color: #5E6B75;
+        /* color: #5E6B75; */
+        color: #9c27b0;
     }
 
     .linkPgAtivadaF {
@@ -129,7 +130,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="recordacaoTitulo">Yuri Berry<br></h5>
+                <h5 class="modal-title" id="recordacaoTitulo"></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -171,7 +172,12 @@
                                     if (($this->view->perfil_vitima['legenda']) != null) {
                                         echo $this->view->perfil_vitima['legenda'];
                                     } else {
-                                        echo "Quisque eu nisi ut lectus";
+                                        if (($this->view->perfil_vitima['cidade']) != null) {
+                                            echo $this->view->perfil_vitima['cidade'].". ";
+                                        }
+                                        if (($this->view->perfil_vitima['idade']) != null) {
+                                            echo $this->view->perfil_vitima['idade']." anos";
+                                        }
                                     }
                                     ?>
                                 </span>
@@ -297,7 +303,7 @@
 
                             <table class="table table-striped" style="margin-top: -15px">
                                 <thead>
-                                    <tr>
+                                    <tr id="colunasRecordacoes">
                                         <th class="colunaTabela"></th>
                                         <th class="colunaTabelaSimbolo"></th>
                                         <th class="colunaTabela"></th>
