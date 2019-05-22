@@ -98,9 +98,9 @@ uppy.use(Uppy.Dashboard, {
     animateOpenClose: true,
     closeModalOnClickOutside: true,
     metaFields: [
-    {id: 'caption', name: 'Descrição da foto', placeholder: 'campo não obrigatório'},
-    {id: 'nome', name: 'Seu nome', placeholder: 'campo não obrigatório'},
-    {id: 'email', name: 'Seu email', placeholder: 'campo não obrigatório'}
+    {id: 'caption', name: 'Descrição da foto', placeholder: ''},
+    {id: 'nome', name: 'Seu nome', placeholder: ''},
+    {id: 'email', name: 'Seu email', placeholder: ''}
     ],
     locale: {
         strings: {
@@ -152,7 +152,7 @@ uppy.use(Uppy.XHRUpload, {
 var tmp = 0;
 uppy.on('upload-success', function (fileId, data) { 
     uppy.getPlugin('Dashboard').closeModal();
-    $('#mensagemDaModal').html('Upload completado com sucesso! <span style="color: red"><i class="fas fa-heart"></i>');
+    $('#mensagemDaModal').html('Envio completado com sucesso! <span style="color: red"><i class="fas fa-heart"></i>');
     $('#modalMensagem2').modal('show');
     tmp = 1;
 });
