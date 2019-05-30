@@ -54,8 +54,21 @@ class DashboardController extends Action {
         $this->validaAutenticacao();
         $comentario = Container::getModel('Comentarios');
         $this->view->comentarios = $comentario->getComentariosNaoAprovado();
+
+        $vitimas = Container::getModel('Vitimas');
+        $this->view->vitimas = $vitimas->getAllDashboard();
+
         $this->menu();
         $this->render('comentarios', 'layout-dashboard');
+    }
+
+    //retorna comentarios aceitos no dashboard na aba visualizar/remover recordacoes
+    public function listarComentariosAceitos(){
+        $this->validaAutenticacao();
+        $comentario = Container::getModel('Comentarios');
+        $comentario->__set('idVitima', $_POST['idVitima']);
+
+        echo (json_encode($comentario->getComentariosAprovadosDashboard()));
     }
 
     //fazer comentarios

@@ -111,6 +111,7 @@ $(document).ready(function () {
         }
     });
 
+    //rejeitar comentario
     $('.btnRejeitar').click(function () {
         var id = $(this).data('id_rejeitar');
         if (id != '') {
@@ -131,6 +132,7 @@ $(document).ready(function () {
         }
     });
 
+    //aceitar comentario
     $('.btnAceitar').click(function () {
         var id = $(this).data('id_aceitar');
         if (id != '') {
@@ -151,6 +153,7 @@ $(document).ready(function () {
         }
     });
 
+    //modal foto visualizar
     $(".imagem").click(function () {
         $("#modalConteudo").html("<img class='img-responsive' style='max-height: 500px' src='" + this.src + "'><div id='caption'>" + this.alt + "</div>");
         $("#modalImagem").modal();
@@ -230,11 +233,13 @@ $(document).ready(function () {
         location.reload();
     });
 
+    //listar vitimas na aba "adicionar foto"
     $('#listaVitimasAddFoto').change(function () {
         $("#idVitimaAdd").val($(this).val());
         $("#uppyModalOpener").css("display", "inline");
     });
 
+    //listar vitimas na aba "editar fotos"
     $('#listaVitimasEditFoto').change(function () {
         $("#fotosupadas").css("display", "none");
         var resultado = '';
@@ -284,8 +289,8 @@ $(document).ready(function () {
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label>Página da Vítima</label>
-                            <div id="pagina" class="form-control"><a target="_blank" href="/vitima?id=${foto['fk_idVitima']}">Acessar</a></div>
+                            <label></label>
+                            <div id="pagina" class="form-control"><a target="_blank" href="/vitima?id=${foto['fk_idVitima']}">Acessar perfil</a></div>
                         </div>
                     </div>
                 </div>
@@ -358,6 +363,109 @@ $(document).ready(function () {
                             });
                         }
                     });
+                });
+            }
+        });
+    });
+
+
+    //listar comentarios aceitos
+    $('#listarComentariosAceitos').change(function () {
+        $("#fotosupadas").css("display", "none");
+        var resultado = '';
+        var tmp = '';
+        $.ajax({
+            url: "/listarComentariosAceitos",
+            method: "POST",
+            dataType: 'json',
+            data: {
+                idVitima: $(this).val()
+            },
+            success: function (data) {
+                console.log(data);
+                $.each(data, function (i, comentario) {
+                    resultado += `
+<div class="row secaoComentario">
+    <div class="col-md-10 ml-auto mr-auto">
+        <div class="card card-user">
+            <div class="card-body">
+                <form>
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label>Remetente</label>
+                                <div id="nome" class="form-control">${comentario['autor']}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>E-mail do Remetente</label>
+                                <div id="email" class="form-control">${comentario['email']}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label></label>
+                                <div id="pagina" class="form-control"><a target="_blank" href="/vitima?id=${comentario['fk_idVitima']}">Acessar perfil</a></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Recordação:</label>
+                                <textarea id="comentario" class="form-control" rows="5" placeholder="Descrição"
+                                    style="cursor: auto" disabled>${comentario['comentario']}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <footer>
+                                <div class="container dataHora">
+                                    <div class="copyright float-left">
+                                        Recordação feita em:
+                                        <br />${comentario['data']}
+                                    </div>
+                                </div>
+                            </footer>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="ml-auto float-right">
+                                <button type="button" data-id_rejeitar="${comentario['idComentario']}" class="btn btn-danger btn-round btnRejeitar">EXCLUIR</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- end col-md-12 -->
+</div>     
+`;
+                });
+
+                $("#campoDeRecordacoes").html(resultado);
+                $("#recordacoesRecebidas").css("display", "inline");
+                $('.btnRejeitar').click(function () {
+                    var id = $(this).data('id_rejeitar');
+                    if (id != '') {
+                        $.ajax({
+                            url: "/rejeitarComentario",
+                            method: "POST",
+                            data: {
+                                id: id
+                            },
+                            success: function (data) {
+                                $('#textoModal').html('Recordação excluída com sucesso!');
+                                $('#modalMensagem').modal('show');
+                            },
+                            error: function (request, status, error) {
+                                alert(request.responseText);
+                            }
+                        });
+                    }
                 });
             }
         });

@@ -31,9 +31,17 @@ class Comentarios extends Model {
         return $this;
     }
 
-    //retorna todos os comentarios nao aprovados
+    //retorna todos os comentarios aprovados
     public function getComentariosAprovado(){
-        $query = "select comentarios.nome as autor, comentario, data from comentarios where status = 1 AND fk_idVitima = :id order by idComentario desc";
+        $query = "select idComentario, comentarios.nome as autor, comentario, data from comentarios where status = 1 AND fk_idVitima = :id order by idComentario desc";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindValue(':id', $this->__get('idVitima'));
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    public function getComentariosAprovadosDashboard(){
+        $query = "select idComentario, comentarios.nome as autor, email, comentario, data, fk_idVitima from comentarios where status = 1 AND fk_idVitima = :id order by idComentario desc";
         $stmt = $this->db->prepare($query);
         $stmt->bindValue(':id', $this->__get('idVitima'));
         $stmt->execute();

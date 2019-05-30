@@ -98,6 +98,13 @@ class Route extends Bootstrap {
 			'action' => 'aceitarComentario'
 		);
 
+		$routes['listarComentariosAceitos'] = array(
+			'route' => '/listarComentariosAceitos',
+			'controller' => 'DashboardController',
+			'action' => 'listarComentariosAceitos'
+		);
+
+
 		$routes['infoajudar'] = array(
 			'route' => '/infoajudar',
 			'controller' => 'indexController',
