@@ -1,0 +1,224 @@
+main .filter {
+  transition: all .15s linear;
+}
+
+main .page-header {
+  background-color: #b2afab;
+  background-position: 50%;
+  background-size: cover;
+  min-height: 100vh;
+  max-height: 999px;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  z-index: 1;
+}
+
+main .header-3 .carousel .carousel-control-prev {
+  margin-left: 35px;
+}
+
+main .fa {
+  width: 18px;
+  text-align: center;
+}
+
+main .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+main .page-header .content-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 3;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #fff;
+  width: 100%;
+}
+
+main .page-header .filter:after {
+  background-color: rgba(0, 0, 0, .5);
+  content: "";
+  display: block;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 2;
+}
+
+main .page-carousel {
+  border-radius: 12px !important;
+  border: none !important;
+  width: 100%;
+}
+
+.carousel-control.left, .carousel-control.right, .form-control, .input-group-addon, .navbar, .navbar .alert, .tagsinput {
+  transition: all .3s linear
+}
+
+main .carousel-control {
+  background-color: #f5593d;
+  border-radius: 50%;
+  opacity: 1;
+  text-shadow: none;
+}
+
+main .carousel-control:focus, main .carousel-control:hover {
+  opacity: 1;
+  background-color: #f5593d
+}
+
+main .carousel-control.left {
+  height: 30px;
+  width: 30px;
+  left: 50px;
+  opacity: 0;
+  z-index: 1000;
+}
+
+main .carousel-control.right {
+  height: 30px;
+  width: 30px;
+  right: 50px;
+  opacity: 0;
+  z-index: 1000;
+}
+
+main .carousel-control .fa, .carousel-control .icon-next, .carousel-control .icon-prev {
+  display: inline-block;
+  z-index: 5
+}
+
+main .carousel-control .fa {
+  margin-top: -3px;
+  font-size: 30px;
+}
+
+.carousel-control.left, .carousel-control.right {
+  background-image: none
+}
+
+main .page-carousel {
+  border-radius: 12px !important;
+  border: none !important;
+  width: 100%
+}
+
+main .page-carousel:hover .carousel-control.left, .page-carousel:hover .carousel-control.right {
+  opacity: 1;
+  z-index: 1
+}
+
+main .carousel-inner>.carousel-item>a>img, .carousel-inner>.carousel-item>img {
+  border-radius: 12px;
+  box-shadow: 0 2px 2px hsla(38, 16%, 76%, .5)
+}
+
+main .carousel-inner .carousel-item img {
+  width: 100%
+}
+
+
+main .carousel-indicators>li {
+  background-color: hsla(0, 0%, 80%, .49) !important;
+  border: 0 none !important
+}
+
+.carousel-control.left, .carousel-control.right {
+  opacity: 1;
+  z-index: 1
+}
+
+main .card .carousel .carousel-indicators {
+  bottom: 0 !important
+}
+
+main .card .carousel a {
+  position: absolute
+}
+
+main .card .carousel a, .card .carousel a:hover {
+  color: #fff !important
+}
+
+main .card .carousel a .fa-angle-left:before {
+  padding-right: 3px
+}
+
+main .card .carousel a .fa-angle-right:before {
+  padding-left: 3px
+}
+
+@media (-ms-high-contrast:active), (-ms-high-contrast:none) {
+  main .page-carousel .carousel-inner {
+    max-height: 570px !important
+  }
+}
+
+main #carousel {
+  max-width: 385px
+}
+
+main #carousel .card .carousel-item.active {
+  display: block !important
+}
+
+main #carousel .card .carousel-control:focus {
+  color: #fff
+}
+
+main .carousel-inner {
+  background-color: transparent
+}
+
+main .product-page .carousel-inner .item {
+  padding: 40px 30px
+}
+
+main .header-3 .carousel .carousel-inner .carousel-item img {
+  width: 100%;
+  height: 100vh;
+  border-radius: 0 !important
+}
+
+main .header-3 .carousel .carousel-inner .carousel-caption {
+  bottom: 30% !important
+}
+
+main .header-3 .carousel .navbar-absolute {
+  position: absolute;
+  width: 100%;
+  padding-top: 10px;
+  z-index: 9
+}
+
+main .header-3 .carousel .carousel-control-prev {
+  margin-left: 35px
+}
+
+main .header-3 .carousel .carousel-control-next {
+  margin-right: 35px
+}
+
+@media (max-width:767px) {
+  main .page-carousel .carousel-inner [class*=col-md] {
+    margin-left: 0 !important
+  }
+  main .page-carousel .right.carousel-control {
+    margin-right: 0 !important
+  }
+  main .page-carousel .left.carousel-control {
+    margin-left: 0 !important
+  }
+}

@@ -176,13 +176,19 @@
         text-decoration: none;
     }
 
-    #imgNoticias{
+    #imgNoticias {
         width: 450px;
     }
 
-    #boxNoticias{
+    #boxNoticias {
         display: block;
         text-align: -webkit-center;
+    }
+
+    .jovensMural {
+        background-color: rgba(0, 0, 0, .6);
+        padding: 34px 10px;
+        border-radius: 10px;
     }
 
     @media only screen and (max-width: 768px) {
@@ -203,25 +209,25 @@
             top: 140px;
         }
 
-        .modalConfiguracao{
-            padding-left: 0px; 
+        .modalConfiguracao {
+            padding-left: 0px;
             padding-right: 0px;
         }
 
-        #imgNoticias{
+        #imgNoticias {
             width: 350px;
         }
     }
 
     @media only screen and (min-width: 600px) {
-        .modalConfiguracao{
-            padding-left: 160px; 
+        .modalConfiguracao {
+            padding-left: 160px;
             padding-right: 160px;
         }
     }
 </style>
 
-
+<!-- Modal confirmação de envio de formulario -->
 <div class="modal fade" id="modalMensagem" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-sm modalConfiguracao" style="">
         <div class="modal-content">
@@ -239,39 +245,86 @@
 </div>
 
 <!-- Principal -->
-<main id="inicio" class="page-header header-filter cd-section" data-parallax="true" style="background-image: url('public/img/capa2.jpg')">
+<main class="page-header" data-parallax="true">
+    <div class="page-carousel">
+        <div id="carouselExemplo" class="carousel slide" data-interval="3000">
 
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExemplo" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExemplo" data-slide-to="1"></li>
+                <li data-target="#carouselExemplo" data-slide-to="2"></li>
+            </ol>
 
-    <div class="container">
-        <div class="row">
+            <div class="carousel-inner" role="listbox">
+                <div class="carousel-item active">
+                    <div class="page-header" style="background-image: url('public/img/capa2.jpg');">
+                        <div class="filter"></div>
+                        <div class="content-center">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-5 ml-auto text-right">
+                                        <h1 class="title" style="font-family: Montserrat; font-size: 2.4em; font-weight: 300;">Memorial Virtual às Vítimas da Boate Kiss</h1>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
+                <div class="carousel-item">
+                    <div class="page-header" style="background-image: url('public/img/mural.jpg')">
+                        <div class="filter"></div>
+                        <div class="content-center">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-8 ml-auto mr-auto text-center jovensMural">
+                                        <h2 class="title" style="text-shadow: 0.1em 0.1em 0.2em black;">Conheça os Jovens</h2>
+                                        <h5 style="font-family: Montserrat; font-size: 17px; text-shadow: 0.05em 0.05em 0.1em black">Na madrugada do dia 27 de Janeiro de 2013 mais de mil jovens estavam na casa noturna Kiss, na cidade de Santa Maria (RS). Muitos jovens estavam comemorando aniversários, formaturas universitárias, a chegada das férias de verão.</h5>
+                                        <br />
+                                        <div class="buttons">
+                                            <a href="#" class="btn btn-danger btn-round btn-lg">
+                                                <i class="material-icons">people</i>&nbsp&nbsp&nbspAcessar
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-            <div class="col-md-5" style="text-align: center;">
-                <br />
-                <h1 class="title" style="margin-top: 70px; font-family: Montserrat; font-size: 2.4em; font-weight: 300;">Memorial Virtual às Vítimas da Boate Kiss</h1>
-                <br />
-                <!--
-                <a href="#vitimas" class="btn btn-danger">
-                    Conheça as vítimas
-                    <div class="ripple-container"></div>
-                </a>-->
-            </div>
-
-            <div class="col-md-5 ml-auto" id="boxNoticias" style="margin-top: 30px">
-                <!-- <div class="iframe-container">
-                  <iframe src="https://www.youtube.com/embed/VYRCTpMfRfk?modestbranding=1&amp;autohide=1&amp;showinfo=0" frameborder="0" allowfullscreen="" height="250"></iframe>
-                </div> -->
-
-                <div class="box">
-                    <a href="/portal" target="_blank">
-                        <div class="overlay"></div>
-                        <img id="imgNoticias" src="public/img/noticias.png"/>
-                        <h2 class="exec-name">Últimas notícias</h2>
-                        <div id="btnportal" class="box-button">ACESSAR</div>
-                    </a>
+                <div class="carousel-item">
+                    <div class="page-header" style="background-image: url('public/img/fotografias/tenda.jpg')">
+                        <div class="filter"></div>
+                        <div class="content-center">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-7 ml-auto text-right">
+                                        <h2 class="title" style="text-shadow: 0.02em 0.02em 0.05em black">Últimas notícias</h2>
+                                        <h5 style="font-family: Montserrat; font-size: 16px; text-shadow: 0.02em 0.02em 0.05em black">Acesse nosso portal de notícias e fique por dentro dos últimos acontecimentos. Este projeto é resultado de uma parceria entre a Associação de Familiares de Vítimas da Tragédia de Santa Maria (AVTSM) e especialistas na área que atuam em projetos de pesquisa na UFSM e na UFPEL.</h5>
+                                        <br />
+                                        <div class="buttons">
+                                            <a href="/portal" class="btn btn-danger btn-round btn-lg">
+                                                <i class="material-icons">public</i>&nbsp&nbspAcessar
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
+            <a class="left carousel-control carousel-control-prev" href="#carouselExemplo" role="button" data-slide="prev">
+                <span class="fa fa-angle-left" style="margin-left: -5px;"></span>
+                <span class="sr-only">Prev</span>
+            </a>
+
+            <a class="right carousel-control carousel-control-next" href="#carouselExemplo" role="button" data-slide="next">
+                <span class="fa fa-angle-right" style="margin-left: 3px;"></span>
+                <span class="sr-only">Next</span>
+            </a>
 
         </div>
     </div>
@@ -597,14 +650,14 @@
                     <div class="col-md-10 ml-auto mr-auto">
                         <h2 class="title text-center" style="padding-top: 60px; padding-bottom: 10px">Conheça a história das vítimas da tragédia</h2>
                         <img class="img-fluid" src="public/img/mural-das-vitimas.jpg" style="border-radius: 10px;" /><br /><br /><br />
-                        
+
                         <!-- <h4 class="text-center text-muted" style="padding-bottom: 35px">Clique em uma das fotos abaixo para conhecer um pouco da vítima</h4> -->
                         <!-- <div class="demo-gallery">
                             <div class="galeria_fotos">
                                 <?php foreach ($this->view->vitimas as $key => $vitima) { ?>
-                                                    <a href='/vitima?id=<?= $vitima['idVitima'] ?>'>
-                                                        <img alt='<?= $vitima['nome'] ?>' src='public/img/vitimas/<?= $vitima['foto_perfil'] ?>' />
-                                                    </a>
+                                                        <a href='/vitima?id=<?= $vitima['idVitima'] ?>'>
+                                                            <img alt='<?= $vitima['nome'] ?>' src='public/img/vitimas/<?= $vitima['foto_perfil'] ?>' />
+                                                        </a>
                                 <?php
                             } ?>
                             </div>
@@ -700,7 +753,7 @@
 <!-- fim rodape -->
 
 <!-- Barra de navegacao - direita -->
-<nav id="cd-vertical-nav" class="d-none d-sm-block">
+<!-- <nav id="cd-vertical-nav" class="d-none d-sm-block">
     <ul>
         <li><a href="#inicio" data-number="1"><span class="cd-dot"></span><span class="cd-label">Inicio</span></a></li>
         <li><a href="#historia" data-number="2"><span class="cd-dot"></span><span class="cd-label">História</span></a></li>
@@ -712,4 +765,4 @@
         <li><a href="#vitimas" data-number="8"><span class="cd-dot"></span><span class="cd-label">Conheça às Vítimas</span></a></li>
         <li><a href="#contato" data-number="9"><span class="cd-dot"></span><span class="cd-label">Contato</span></a></li>
     </ul>
-</nav>
+</nav> -->
