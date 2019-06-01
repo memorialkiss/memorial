@@ -1,0 +1,88 @@
+<!-- Navegacao -->
+<nav class="navbar navbar-transparent fixed-top navbar-expand-lg" id="sectionsNav">
+    <div class="container">
+        <div class="navbar-translate">
+            <a class="navbar-brand" href="/">Início</a>
+            <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
+            </button> -->
+        </div>
+    </div>
+</nav>
+<!-- Fim navegacao -->
+
+<div class="page-header header-filter header-small" data-parallax="true" style="background-image: url('public/img/mural.jpg');">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 ml-auto mr-auto text-center">
+                <h1 class="title">CONHEÇA OS JOVENS</h1>
+                <h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel fermentum augue.</h4>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="main main-raised">
+    <div>
+        <div class="container">
+            <div class="row">
+                <div class="container">
+                    <div class="section section-text">
+                        <div class="row">
+                            <div class="col-md-10 ml-auto mr-auto">
+                                <h3 class="title">The Castle Looks Different at Night...</h3>
+                                <h4>This is the paragraph where you can write more details. Keep you user engaged by providing meaningful information. Remember that by this time, the user is curious, otherwise he wouldn't scroll to get here. I'm here to improve your life! Aliquam id enim iaculis, elementum turpis et, tristique lorem.
+                                    <br/>
+                                    <br/> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel fermentum augue, et mattis diam. Aliquam tincidunt sem ac arcu dignissim condimentum. Praesent est augue, sollicitudin sed nunc interdum, posuere mattis mi. Integer quis massa mollis, auctor ex eu, varius ex.
+                                    <br/>
+                                </h4>
+                            </div>
+                        </div>
+                    
+                        <div class="row">
+                            <div class="col-md-10 ml-auto mr-auto">
+                                <h4 class="text-center text-muted" style="padding-bottom: 35px"></h4>
+                                <div class="demo-gallery">
+                                    <div class="galeriaJovens">
+                                        <?php foreach ($this->view->jovens as $key => $jovem) { ?>
+                                            <a href='/vitima?id=<?= $jovem['idVitima'] ?>'>
+                                                <img alt='<?= $jovem['nome'] ?>' src='public/img/vitimas/<?= $jovem['foto_perfil'] ?>' />
+                                            </a>
+                                        <?php
+                                    } ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="footer">
+    <div class="container">
+        <nav class="float-left">
+            <ul>
+                <li>
+                    <a href="/">
+                    Inicio
+                    </a>
+                </li>
+                <li>
+                    <a href="/portal">
+                    Portal
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="copyright float-right" style="font-size: 14px;">
+            © <span id="anoRodape"></span> Memorial Virtual Kiss<br/>
+            <div style="font-size: 11px; margin-top: -5px;">Desenvolvedor: Rafael Nascimento<br/><div style="margin-top: -5px">rdsnascimento@inf.ufpel.edu.br</div></div>
+        </div>
+    </div>
+</footer>

@@ -1,7 +1,6 @@
 $(document).ready(function () {
 
-    window.prettyPrint && prettyPrint()
-
+    // window.prettyPrint && prettyPrint()
     var urlAtual = window.location.href;
     urlAtual = urlAtual.split('/vitima')[1];
 

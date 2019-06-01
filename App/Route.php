@@ -26,6 +26,12 @@ class Route extends Bootstrap {
 			'action' => 'administrador'
 		);
 
+		$routes['jovens'] = array(
+			'route' => '/jovens',
+			'controller' => 'JovensController',
+			'action' => 'jovens'
+		);
+
 		$routes['autenticar'] = array(
 			'route' => '/autenticar',
 			'controller' => 'AuthController',
