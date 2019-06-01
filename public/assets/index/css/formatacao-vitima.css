@@ -1,4 +1,4 @@
-body{
+body {
     overflow-x: hidden!important;
 }
 
@@ -8,6 +8,7 @@ body{
 }
 
 /* Efeito movimento nuvem */
+
 .moving-clouds {
     position: absolute;
     z-index: 1;
@@ -23,14 +24,12 @@ body{
     animation-direction: normal;
     animation-fill-mode: none;
     animation-play-state: running;
-    
 }
 
 @keyframes c {
     0% {
         transform: translateZ(0);
     }
-
     100% {
         transform: translate3d(-50%, 0, 0);
     }
@@ -68,4 +67,62 @@ iframe {
     .icone {
         display: none;
     }
+}
+
+#textoDescricao {
+    color: #3c4858;
+    font-size: 15px;
+}
+
+#textoDescricao a {
+    text-decoration: none;
+    color: #3c4858;
+    font-weight: 400;
+}
+
+#textoDescricao a:hover {
+    color: #3B74AD;
+}
+
+#textoDescricao>blockquote em {
+    font-size: 14px;
+}
+
+.colunaTabela {
+    border: none !important;
+    width: 200px !important;
+}
+
+.colunaTabelaSimbolo {
+    border: none !important;
+}
+
+.iconeComentario {
+    color: #5E6B75;
+}
+
+.iconeComentario:hover {
+    color: #9c27b0;
+}
+
+.linkPgAtivada {
+    font-weight: bold !important;
+    color: #8F3E97 !important;
+    font-size: 15px !important;
+}
+
+.modal-backdrop.show {
+    opacity: 1;
+}
+
+.ajudaDetalhes {
+    margin-left: -22px;
+}
+
+.follow {
+    padding: 15px 10px;
+}
+
+.fixed-top {
+    position: absolute;
 }

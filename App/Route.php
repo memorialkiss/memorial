@@ -16,7 +16,7 @@ class Route extends Bootstrap {
 
 		$routes['vitima'] = array(
 			'route' => '/vitima',
-			'controller' => 'indexController',
+			'controller' => 'VitimaController',
 			'action' => 'vitima'
 		);
 
@@ -28,7 +28,7 @@ class Route extends Bootstrap {
 
 		$routes['jovens'] = array(
 			'route' => '/jovens',
-			'controller' => 'JovensController',
+			'controller' => 'VitimaController',
 			'action' => 'jovens'
 		);
 
@@ -113,25 +113,25 @@ class Route extends Bootstrap {
 
 		$routes['infoajudar'] = array(
 			'route' => '/infoajudar',
-			'controller' => 'indexController',
+			'controller' => 'VitimaController',
 			'action' => 'infoajudar'
 		);
 
 		$routes['uploadimagens'] = array(
 			'route' => '/uploadimagens',
-			'controller' => 'indexController',
+			'controller' => 'VitimaController',
 			'action' => 'uploadimagens'
 		);
 
 		$routes['uploadimagensadmin'] = array(
 			'route' => '/uploadimagensadmin',
-			'controller' => 'indexController',
+			'controller' => 'VitimaController',
 			'action' => 'uploadimagensadmin'
 		);
 
 		$routes['formAjudar'] = array(
 			'route' => '/formAjudar',
-			'controller' => 'indexController',
+			'controller' => 'VitimaController',
 			'action' => 'formAjudar'
 		);
 
@@ -161,7 +161,7 @@ class Route extends Bootstrap {
 
 		$routes['enviarInformacao'] = array(
 			'route' => '/enviarInformacao',
-			'controller' => 'indexController',
+			'controller' => 'VitimaController',
 			'action' => 'enviarInformacao'
 		);
 
@@ -185,7 +185,7 @@ class Route extends Bootstrap {
 
 		$routes['listarComentarios'] = array(
 			'route' => '/listarComentarios',
-			'controller' => 'IndexController',
+			'controller' => 'VitimaController',
 			'action' => 'listarComentarios'
 		);
 

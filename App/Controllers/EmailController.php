@@ -17,10 +17,12 @@ class EmailController extends Action
 		$mensagem->__set('email', $tmp->email);
 		$mensagem->__set('mensagem', $tmp->mensagem);
 
+		//mensagem invalida
 		if (!$mensagem->mensagemValida()) {
 			echo '0';
 			die();
 		}
+		//mensagem valida, envia o email
 		$mensagem->enviarEmail();
 		echo "1";
 	}

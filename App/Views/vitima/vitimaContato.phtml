@@ -1,0 +1,122 @@
+<div class="contato" style="margin-top: -50px;">
+    <hr style="width:70%; padding-bottom: 50px; border-width: 1px"/>
+    <div class="container">
+        <?php if ($this->view->perfil_vitima['estado'] == 1) { ?>
+            <div class="row">
+                <!-- colabore com a vitima -->
+                <div class="col-md-6">
+                    <div class="col-md-10 ml-auto mr-auto">
+                        <br />
+                        <h3 class="title text-center">Conhecia
+                            <?php
+                            if ($this->view->perfil_vitima['sexo'] == '0') {
+                                echo " o ";
+                            } else {
+                                echo " a ";
+                            };
+                            echo strstr($this->view->perfil_vitima['nome'], ' ', true);
+                            ?>
+                            ?
+                        </h3>
+                        <p class="text-gray" style="text-align: justify">
+                            <h5 class="info-title text-center">
+                                Ajude a melhorarmos a descrição
+                                <?php
+                                if ($this->view->perfil_vitima['sexo'] == '0') {
+                                    echo " do ";
+                                } else {
+                                    echo " da ";
+                                };
+                                echo strstr($this->view->perfil_vitima['nome'], ' ', true);
+                                ?>, enviando informações como:
+                            </h5>
+
+                            <ul>
+                                <li>Fotos e videos
+                                <li>Detalhes como: </li>
+                                <ul>
+                                    <li class="ajudaDetalhes">O que ela gostava de fazer</li>
+                                    <li class="ajudaDetalhes">Quais características impactantes</li>
+                                    <li class="ajudaDetalhes">Como era o relacionamento com os amigos</li>
+                                    <li class="ajudaDetalhes">Momentos bons vivido com ela</li>
+                                    <li class="ajudaDetalhes">Quais eram seus sonhos</li>
+                                    <li class="ajudaDetalhes">Qual time do coração</li>
+                                    <li class="ajudaDetalhes">Qual era sua comida predileta</li>
+                                    <li class="ajudaDetalhes">Qual era sua música favorita</li>
+                                    <li class="ajudaDetalhes">Ou aquilo que você entende que seja relevante</li>
+                                </ul>
+                            </ul>
+                            <br />
+                            <ul class="nav nav-pills nav-pills-icons justify-content-center">
+                                <a href="/infoajudar?id=<?php echo $this->view->perfil_vitima['idVitima'] ?>" class="btn" style="background-color: #f44336; padding: 15px 40px 15px 40px; color: #fff; border-color: #999; box-shadow: 0 2px 2px 0 hsla(0,0%,60%,.14), 0 3px 1px -2px hsla(0,0%,60%,.2), 0 1px 5px 0 hsla(0,0%,60%,.12);">
+                                    <i class="material-icons">favorite</i> Clique aqui para Ajudar
+                                </a>
+                            </ul>
+                        </p>
+                    </div>
+                </div>
+                <!-- fim colabore -->
+
+                <!-- enviar recordacao -->
+                <div class="col-md-6 ml-auto mr-auto">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card card-contact">
+                                <form id="" method="post">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <h3 class="card-title text-center">Colabore com uma recordação <br />da vida de <?php echo strstr($this->view->perfil_vitima['nome'], ' ', true); ?><br /><small style="font-size: 13px">*Necessário aprovação</small></h3>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group label-floating is-empty bmd-form-group">
+                                                    <label class="bmd-label-floating">Nome</label>
+                                                    <input type="text" id="nome" class="form-control" required>
+                                                    <span class="material-input"></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group label-floating is-empty bmd-form-group">
+                                                    <label class="bmd-label-floating">Sobrenome</label>
+                                                    <input type="text" id="sobrenome" class="form-control" required>
+                                                    <span class="material-input"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group label-floating is-empty bmd-form-group">
+                                            <label class="bmd-label-floating">E-mail</label>
+                                            <input type="email" id="email" class="form-control" required>
+                                            <span class="material-input"></span>
+                                        </div>
+                                        <div class="form-group label-floating is-empty bmd-form-group">
+                                            <label class="bmd-label-floating">Recordação</label>
+                                            <textarea id="comentario" class="form-control" rows="8"></textarea>
+                                            <span class="material-input"></span>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer" style="float: right">
+                                        <button type="button" id="btnEnviarComentario" class="btn btn-primary pull-right" style="float: right">ENVIAR RECORDAÇÃO</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- rodape -->
+                            <footer style="margin-bottom: -110px; font-size: 13px; text-align:right">
+                                <div class="container">
+                                    <div class="float-right">
+                                        Desenvolvedor: Rafael Nascimento<br />rdsnascimento@inf.ufpel.edu.br
+                                    </div>
+                                </div>
+                            </footer>
+                            <!-- fim rodape -->
+                        </div>
+                    </div>
+                </div>
+                <!-- fim enviar recordacao -->
+            </div>
+        <?php } ?>
+    </div>
+</div>
+<!-- fim contato -->

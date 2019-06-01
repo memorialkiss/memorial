@@ -20,14 +20,18 @@ abstract class Action {
 		}
 	}
 
-	protected function content() {
+	protected function content($trecho = null) {
 		$classAtual = get_class($this);
 
 		$classAtual = str_replace('App\\Controllers\\', '', $classAtual);
 
 		$classAtual = strtolower(str_replace('Controller', '', $classAtual));
 
-		require_once "App/Views/".$classAtual."/".$this->view->page.".phtml";
+		if($trecho == null){
+			require_once "App/Views/".$classAtual."/".$this->view->page.".phtml";
+		} else {
+			require_once "App/Views/".$classAtual."/".$trecho.".phtml";
+		}
 	}
 }
 

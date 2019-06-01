@@ -180,5 +180,4 @@ class DashboardController extends Action {
         echo $foto->atualizarFoto();
     }
 }
-
 ?>
