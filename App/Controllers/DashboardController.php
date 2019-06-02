@@ -82,6 +82,16 @@ class DashboardController extends Action {
         print_r($comentario->fazerComentario());
     }
 
+    public function fazerComentarioAdmin(){
+        $comentario = Container::getModel('Comentarios');
+        $tmp = json_decode($_POST['recordacao']);
+        $comentario->__set('idVitima', $tmp->id);
+        $comentario->__set('nome', $tmp->nome);
+        $comentario->__set('comentario', $tmp->descricao);
+        $comentario->__set('data', $tmp->data);
+        print_r($comentario->fazerComentarioAdmin());
+    }
+
     //atualiza vitima no BD
     public function atualizarVitima(){
         $this->validaAutenticacao();

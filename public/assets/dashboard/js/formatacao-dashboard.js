@@ -209,7 +209,6 @@ $(document).ready(function () {
             });
         }
     });
-
     $('.btnArquivarInfo').click(function () {
         var id = $(this).data('id_arquivar');
         if (id != '') {
@@ -227,8 +226,43 @@ $(document).ready(function () {
         }
     });
 
+    //selecionar vitima em "recordacao" na aba adicionar 
+    $('#vtmAdicionarRecordacao').change(function () {
+        $("#recordacoesAdicionar").css("display", "block");
+        var link = "/vitima?id=" + $("#vtmAdicionarRecordacao").val();
+        $("#linkVtm"). attr("href", link);
+    });
 
+    $('#btnAdicionarRecordacao').click(function () {
+        if($("#recordacaoNome").val()&&$("#recordacaoSobrenome").val()&&$("#recordacaoData").val()&&$("#recordacaoDescricao").val()&&$("#recordacaoLugar").val()){
+            var nome = $("#recordacaoNome").val() + " " + $("#recordacaoSobrenome").val(); 
+            var data = $("#recordacaoData").val() + " 04:44:44";
+            var descricao = $("#recordacaoDescricao").val() + "<br/><br/><sup>"+$("#recordacaoLugar").val()+"</sup>";
 
+            var recordacao = {};
+            recordacao.id = $("#vtmAdicionarRecordacao").val();
+            recordacao.nome = nome;
+            recordacao.data = data;
+            recordacao.descricao = descricao;
+            recordacao = JSON.stringify(recordacao);
+            $.ajax({
+                url: "/fazerComentarioAdmin",
+                method: "POST",
+                data: {
+                    recordacao: recordacao
+                },
+                success: function(data) {
+                    $('#textoModal').html('Recordação realizada com sucesso!');
+                    $('#modalMensagem').modal('show');
+                }
+            });
+        } else {
+            $('#textoModalSemReload').html('Todos os campos são obrigatórios');
+            $('#modalMensagemSemReload').modal('show');
+        }
+    });
+
+    //recarregar pagina após fechamento do modal
     $('#modalMensagem').on('hidden.bs.modal', function () {
         location.reload();
     });

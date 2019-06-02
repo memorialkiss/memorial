@@ -31,6 +31,17 @@ class Comentarios extends Model {
         return $this;
     }
 
+    public function fazerComentarioAdmin(){
+        $query = "insert into comentarios(nome, comentario, status, fk_idVitima, data, email) values(:nome, :comentario, 1, :id, :data, 'administrador')";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindValue(':nome', $this->__get('nome'));
+        $stmt->bindValue(':comentario', $this->__get('comentario'));
+        $stmt->bindValue(':id', $this->__get('idVitima'));
+        $stmt->bindValue(':data', $this->__get('data'));
+        $stmt->execute();
+        return $this;
+    }
+
     //retorna todos os comentarios aprovados
     public function getComentariosAprovado(){
         $query = "select idComentario, comentarios.nome as autor, comentario, data from comentarios where status = 1 AND fk_idVitima = :id order by idComentario desc";

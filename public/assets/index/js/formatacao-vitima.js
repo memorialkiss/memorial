@@ -169,8 +169,15 @@ function modalRecordacao(componente){
     ano = data[0];
     mes = data[1];
     dia = data[2].split(" ")[0];
-    hora = data[2].split(" ")[1].substring(0,5);
-    data = "Em " + dia + "-" + mes + "-" + ano + " às " + hora; 
+
+    //04:44:44 foi especificada como hora default caso seja uma recordacao enviada pelo administrador
+    //nesse caso nao eh exibida a hora
+    if(data[2].split(" ")[1].substring(0,8) != '04:44:44'){
+        hora = data[2].split(" ")[1].substring(0,5);
+        data = "Em " + dia + "/" + mes + "/" + ano + " às " + hora; 
+    } else {
+        data = "Publicado em " + dia + "/" + mes + "/" + ano;
+    }
 
     $("#recordacaoTitulo").html(autor);
     $("#recordacaoData").html(data);

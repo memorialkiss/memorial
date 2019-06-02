@@ -92,6 +92,12 @@ class Route extends Bootstrap {
 			'action' => 'fazerComentario'
 		);
 
+		$routes['fazerComentarioAdmin'] = array(
+			'route' => '/fazerComentarioAdmin',
+			'controller' => 'DashboardController',
+			'action' => 'fazerComentarioAdmin'
+		);
+
 		$routes['rejeitarComentario'] = array(
 			'route' => '/rejeitarComentario',
 			'controller' => 'DashboardController',

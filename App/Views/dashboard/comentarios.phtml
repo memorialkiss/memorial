@@ -1,4 +1,3 @@
-
 <link href="../public/assets/dashboard/css/formatacao-comentarios.css" rel="stylesheet" />
 
 <style>
@@ -60,21 +59,43 @@
             </div>
         </div>
     </nav>
-    <!-- Fim navbar -->    
+    <!-- Fim navbar -->
 
     <!-- Modal comentario -->
     <div class="modal fade" id="modalMensagem" tabindex="-1" role="dialog" aria-labelledby="modalMensagem" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header" style="border: none">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" style="border: none; padding-top: 0; padding-bottom: 0;">
                     <h5 id="textoModal"></h5>
                 </div>
-                <div class="modal-footer">
+                <div class="modal-footer" style="border: none; padding-top: 0;">
+                    <div class="right-side">
+                        <button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Fechar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- fim modal comentario-->
+
+    <!-- Modal sem reload de pagina -->
+    <div class="modal fade" id="modalMensagemSemReload" tabindex="-1" role="dialog" aria-labelledby="modalMensagem" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="border: none">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="border: none; padding-top: 0; padding-bottom: 0;">
+                    <h5 id="textoModalSemReload"></h5>
+                </div>
+                <div class="modal-footer" style="border: none; padding-top: 0;">
                     <div class="right-side">
                         <button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Fechar</button>
                     </div>
@@ -98,6 +119,9 @@
                 <ul class="nav nav-tabs" role="tablist">
                     <li class="nav-item">
                         <a class="nav-link active" data-toggle="tab" href="#tabrecebidas" role="tab">Recebidas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#tabadicionar" role="tab">Adicionar</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="tab" href="#tabremover" role="tab">Visualizar/Remover</a>
@@ -124,7 +148,7 @@
                                             <div class="col-md-8">
                                                 <div class="form-group">
                                                     <label>Nome da Vítima</label>
-                                                    <div id="idade" class="form-control"><?php echo $comentario['nome'] ?></div>
+                                                    <div class="form-control"><?php echo $comentario['nome'] ?></div>
                                                 </div>
                                             </div>
                                             <div class="col-md-2">
@@ -206,6 +230,85 @@
                     <div class="row">
                         <div id="campoDeRecordacoes" class="col-md-10 ml-auto mr-auto">
                         </div> <!-- recebe as fotos dinamicamente do bd -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane" id="tabadicionar" role="tabpanel">
+                <div class="row">
+                    <div class="col-md-6 mr-auto ml-auto">
+                        <div class="form-group">
+                            <select id="vtmAdicionarRecordacao" class="form-control">
+                                <option selected disabled>Selecione a vítima</option>
+                                <?php foreach ($this->view->vitimas as $key => $vitima) { ?>
+                                    <option value="<?php echo $vitima['idVitima']; ?>"><?php echo $vitima['nome']; ?></option>
+                                <?php
+                            } ?>
+                            </select>
+                        </div>
+                    </div>
+                    <br /><br /><br />
+                </div>
+
+                <div id="recordacoesAdicionar" class="row" style="display:none">
+                    <div class="col-md-8 mr-auto ml-auto">
+                        <div class="card card-user">
+                            <div class="card-header">
+                                <div class="text-center">
+                                    <h5 class="card-title">
+                                        Adicionar recordação&nbsp&nbsp
+                                        <a id="linkVtm" target="_blank">
+                                            <i class="fas fa-external-link-alt" style="font-size: 18px"></i>
+                                        </a>
+                                    </h5>
+                                    <sup>Exclusivo para adicionar recordações da vítima que foram publicadas em algum lugar (como jornal).</sup>
+                                    <br/><br/>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Nome</label>
+                                            <input id="recordacaoNome" name="nome" type="text" class="form-control" placeholder="Nome" autocomplete="off" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Sobrenome</label>
+                                            <input id="recordacaoSobrenome" name="sobrenome" type="text" class="form-control" placeholder="Sobrenome" autocomplete="off" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Data</label>
+                                            <input id="recordacaoData" type="date" class="form-control" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Lugar, data (formatada) e página da publicação</label>
+                                            <input id="recordacaoLugar" name="legenda" type="text" class="form-control" placeholder="Exemplo: Publicado no Diário de Santa Maria, 26 de fevereiro de 2013. Página 38." autocomplete="off" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Recordação</label>
+                                            <textarea id="recordacaoDescricao" name="descricao" class="form-control" rows="10" placeholder="Digite a recordação" required></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="ml-auto mr-auto">
+                                        <button id="btnAdicionarRecordacao" type="button" class="btn btn-primary btn-round">Adicionar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
