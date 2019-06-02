@@ -11,7 +11,7 @@ class VitimaController extends Action
 	public function vitima()
 	{
 		if (!isset($_GET['id']) || $_GET['id'] == '' || $_GET['id'] < 1 || $_GET['id'] > 242) {
-			header('Location: /');
+			header('Location: /jovens');
 		}
 		//recebe informacoes da vitima
 		$pessoa = Container::getModel('Vitimas');
@@ -34,7 +34,7 @@ class VitimaController extends Action
 	public function infoajudar()
 	{
 		if (!isset($_GET['id']) || $_GET['id'] == '' || $_GET['id'] < 1 || $_GET['id'] > 242) {
-			header('Location: /');
+			header('Location: /jovens');
 		}
 		$pessoa = Container::getModel('Vitimas');
 		$pessoa->__set('id', $_GET['id']);
