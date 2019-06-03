@@ -12,13 +12,13 @@ CKEDITOR.editorConfig = function( config ) {
 	config.toolbarGroups = [
 		{ name: 'clipboard',   groups: [ 'undo' ] },
 		{ name: 'links' },
-		{ name: 'insert' },
+		{ name: 'insert'},
 		{ name: 'forms' },
 		{ name: 'others' },
 		{ name: 'basicstyles', groups: [ 'basicstyles'] },
 		{ name: 'tools' },
 		'/',
-		{ name: 'styles' },
+		{ name: 'styles', groups: [ 'styles' ] },
 		{ name: 'colors' },
 		{ name: 'paragraph',   groups: [ 'align', 'bidi', 'list', 'blocks' ] },
 		{ name: 'document',	   groups: [ 'mode', 'document', 'doctools' ] },
@@ -29,4 +29,5 @@ CKEDITOR.editorConfig = function( config ) {
 	config.format_tags = 'p;h1;h2;h3;h4;pre';
 
 	config.removeDialogTabs = 'image:advanced;link:advanced';
+	config.removeButtons = 'Styles';
 };

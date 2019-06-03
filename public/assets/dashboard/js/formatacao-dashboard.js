@@ -268,7 +268,7 @@ $(document).ready(function () {
         let titulo = $("#documentoTitulo").val();
         let local = $("#documentoLocal").val();
         let data = $("#documentoData").val();
-        let descricao = $("#documentoDescricao").val();
+        let descricao = CKEDITOR.instances.documentoDescricao.getData();
         let checkDesdobramento = $("#documentoCheckDescobramento").is(':checked');
         let checkVitima = $("#documentoCheckVitima").is(':checked');
         let idVitima = $("#documentoIdVitima").val();

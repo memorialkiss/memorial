@@ -241,7 +241,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label></label>
-                                            <textarea id="documentoDescricao" name="descricao" class="form-control" rows="10" placeholder="Transcreva a matéria aqui" required></textarea>
+                                            <textarea id="documentoDescricao" name="descricao" class="form-control ckeditor" rows="15" required></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -342,8 +342,10 @@
                                     <div class="row" style="padding-bottom: 30px;">
                                         <div class="col-md-12 espacamentoCampo">
                                             <label>Transcrição da Matéria</label>
-                                            <div type="text" class="form-control">
-                                                <?php echo $documento['descricao']; ?>
+                                            <div type="text" class="form-control" style="cursor:auto;" disabled>
+                                                <div style="padding: 8px 3px">
+                                                    <?php echo $documento['descricao']; ?>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
