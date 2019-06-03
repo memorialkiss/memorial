@@ -233,6 +233,7 @@ $(document).ready(function () {
         $("#linkVtm"). attr("href", link);
     });
 
+    //adiciona nova recordacao com administrador na aba "recordacoes"
     $('#btnAdicionarRecordacao').click(function () {
         if($("#recordacaoNome").val()&&$("#recordacaoSobrenome").val()&&$("#recordacaoData").val()&&$("#recordacaoDescricao").val()&&$("#recordacaoLugar").val()){
             var nome = $("#recordacaoNome").val() + " " + $("#recordacaoSobrenome").val(); 
@@ -260,6 +261,74 @@ $(document).ready(function () {
             $('#textoModalSemReload').html('Todos os campos são obrigatórios');
             $('#modalMensagemSemReload').modal('show');
         }
+    });
+
+    $('#documentoBtnAdicionar').click(function () {
+        // let titulo = 
+        let titulo = $("#documentoTitulo").val();
+        let local = $("#documentoLocal").val();
+        let data = $("#documentoData").val();
+        let descricao = $("#documentoDescricao").val();
+        let checkDesdobramento = $("#documentoCheckDescobramento").is(':checked');
+        let checkVitima = $("#documentoCheckVitima").is(':checked');
+        let idVitima = $("#documentoIdVitima").val();
+        let pagina = $("#documentoPagina").val();
+
+        //verificacoes dos campos
+        if(!titulo){
+            $('#textoModalSemReload').html('Você deve colocar um título na publicação');
+            $('#modalMensagemSemReload').modal('show');
+            return;
+        } else if(!local){
+            $('#textoModalSemReload').html('Você deve colocar o local da publicação');
+            $('#modalMensagemSemReload').modal('show');
+            return;
+        } else if(!data){
+            $('#textoModalSemReload').html('Você deve colocar a data da publicação');
+            $('#modalMensagemSemReload').modal('show');
+            return;
+        } else if(!descricao){
+            $('#textoModalSemReload').html('Você deve transcrever a matéria');
+            $('#modalMensagemSemReload').modal('show');
+            return;
+        } else if(!checkDesdobramento&&!checkVitima){
+            $('#textoModalSemReload').html('Você deve selecionar o assunto da publicação');
+            $('#modalMensagemSemReload').modal('show');
+            return;
+        } else if(checkVitima&&!idVitima){
+            $('#textoModalSemReload').html('Você deve selecionar a vítima');
+            $('#modalMensagemSemReload').modal('show');
+            return;
+        }
+
+        //atribuicoes padrao
+        if (!pagina) pagina = null;
+        if (!idVitima) idVitima = null;
+        if (!checkDesdobramento) checkDesdobramento = 0;
+        if (!checkVitima) checkVitima = 0;
+        
+        //enviar documento
+        var documento = {};
+        documento.titulo = titulo;
+        documento.localPublicacao = local;
+        documento.data = data;
+        documento.numPagina = pagina;
+        documento.descricao = descricao;
+        documento.flagDesdobramento = checkDesdobramento;
+        documento.flagVitima = checkVitima;
+        documento.fk_idVitima = idVitima;
+        documento = JSON.stringify(documento);
+        $.ajax({
+            url: "/adicionarDocumento",
+            method: "POST",
+            data: {
+                documento: documento
+            },
+            success: function(data) {
+                $('#textoModal').html("Documento cadastrado com sucesso");
+                $('#modalMensagem').modal('show');
+            }
+        });
     });
 
     //recarregar pagina após fechamento do modal
@@ -503,5 +572,13 @@ $(document).ready(function () {
                 });
             }
         });
+    });
+
+    $("#documentoCheckVitima").click(function () {  
+        if( $("#documentoCheckVitima").is(':checked') ){
+            $("#divSelecionarVitima").css('display', 'inline');
+        } else {
+            $("#divSelecionarVitima").css('display', 'none');
+        }
     });
 });

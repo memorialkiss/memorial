@@ -1,0 +1,359 @@
+<style>
+    .nav-tabs-navigation {
+        text-align: center;
+        border-bottom: 1px solid #F1EAE0;
+        margin-bottom: 30px;
+    }
+
+    .nav-tabs-wrapper {
+        display: inline-block;
+
+        position: relative;
+        width: auto;
+    }
+
+    .nav-tabs .nav-item.show .nav-link,
+    .nav-tabs .nav-link.active {
+        color: #495057;
+        background-color: inherit;
+        border-color: #dee2e6 #dee2e6 #f4f3ef;
+    }
+
+    .nav-tabs-navigation {
+        text-align: center;
+        border-bottom: 1px solid #dee2e6;
+        margin-top: 15px;
+    }
+
+    .nav-tabs {
+        border-bottom: 0 none;
+    }
+
+    .nav {
+        display: flex;
+        flex-wrap: wrap;
+        padding-left: 0;
+        margin-bottom: 0;
+        list-style: none;
+    }
+
+    .nav-item>a {
+        color: #9b9b9b;
+    }
+
+    #divSelecionarVitima {
+        display: none;
+    }
+
+    .selecioneVitima {
+        margin-top: -30px;
+        margin-bottom: 0;
+    }
+
+    .exibeVitima{
+        margin-top: -25px;
+    }
+
+    @media only screen and (max-width: 800px) {
+        .selecioneVitima {
+            margin-top: 0px;
+            padding-bottom: 10px;
+        }
+
+        .exibeVitima{
+            margin-top: 0px;
+        }
+    }
+
+    .espacamentoCampo{
+        padding-top: 15px;
+    }
+</style>
+
+<div class="main-panel">
+    <!-- Modal comentario -->
+    <div class="modal fade" id="modalMensagem" tabindex="-1" role="dialog" aria-labelledby="modalMensagem" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="border: none">
+                    <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button> -->
+                </div>
+                <div class="modal-body" style="border: none; padding-top: 0; padding-bottom: 0;">
+                    <h5 id="textoModal"></h5>
+                </div>
+                <div class="modal-footer" style="border: none; padding-top: 0;">
+                    <div class="right-side">
+                        <button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Fechar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- fim modal comentario-->
+
+    <!-- Modal sem reload de pagina -->
+    <div class="modal fade" id="modalMensagemSemReload" tabindex="-1" role="dialog" aria-labelledby="modalMensagem" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="border: none">
+                    <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button> -->
+                </div>
+                <div class="modal-body" style="border: none; padding-top: 0; padding-bottom: 0;">
+                    <h5 id="textoModalSemReload"></h5>
+                </div>
+                <div class="modal-footer" style="border: none; padding-top: 0;">
+                    <div class="right-side">
+                        <button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Fechar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- fim modal comentario-->
+
+    <!-- Navbar -->
+    <nav id="navegacao" class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
+        <div class="container-fluid">
+            <div class="navbar-wrapper">
+                <div class="navbar-toggle">
+                    <button type="button" class="navbar-toggler">
+                        <span class="navbar-toggler-bar bar1"></span>
+                        <span class="navbar-toggler-bar bar2"></span>
+                        <span class="navbar-toggler-bar bar3"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Fim navbar -->
+
+    <div class="content">
+        <div class="row">
+            <div class="col-md-12 ml-auto mr-auto text-center">
+                <div class="navbar-wrapper">
+                    <a class="navbar-brand">Documentos</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="nav-tabs-navigation">
+            <div class="nav-tabs-wrapper">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#tabadicionar" role="tab">Adicionar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#tabvisualizar" role="tab">Visualizar</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="tab-content">
+            <div class="tab-pane active" id="tabadicionar" role="tabpanel">
+                <div id="recordacoesAdicionar" class="row">
+                    <div class="col-md-10 mr-auto ml-auto">
+                        <div class="card card-user">
+                            <div class="card-header">
+                                <div class="text-center">
+                                    <br />
+                                    <sup>Espaço destinado a colocar documentos de matérias publicadas a respeito do incêndio ou/e das vítimas</sup>
+                                    <br />
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Título da Publicação*</label>
+                                            <input id="documentoTitulo" type="text" class="form-control" placeholder="Coloque um título para publicação" autocomplete="off" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <div class="form-group">
+                                            <label>Local que foi publicado*</label>
+                                            <input id="documentoLocal" type="text" class="form-control" placeholder="Exemplo: Diário de Santa Maria" autocomplete="off" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Data da publicação*</label>
+                                            <input id="documentoData" type="date" class="form-control" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label>Num da Página</label>
+                                            <input id="documentoPagina" type="number" class="form-control" min="1" placeholder="Número" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label style="margin-bottom: 0px">Qual o assunto da publicação?*</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <input id="documentoCheckDescobramento" class="form-check-input" type="checkbox">
+                                                Incêndio e desdobramentos
+                                                <span class="form-check-sign">
+                                                    <span class="check"></span>
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <input id="documentoCheckVitima" class="form-check-input" type="checkbox">
+                                                Vítima
+                                                <span class="form-check-sign">
+                                                    <span class="check"></span>
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6" id="divSelecionarVitima">
+                                        <div class="form-group selecioneVitima">
+                                            <label>Qual a vítima?*</label>
+                                            <select id="documentoIdVitima" class="form-control">
+                                                <option selected disabled>Selecione a vítima</option>
+                                                <?php foreach ($this->view->vitimas as $key => $vitima) { ?>
+                                                    <option value="<?php echo $vitima['idVitima']; ?>"><?php echo $vitima['nome']; ?></option>
+                                                <?php
+                                            } ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label></label>
+                                            <textarea id="documentoDescricao" name="descricao" class="form-control" rows="10" placeholder="Transcreva a matéria aqui" required></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <sup><span style="font-size: 13px">*</span> campos obrigatórios</sup><br />
+                                    </div>
+                                    <div class="ml-auto mr-auto">
+                                        <button id="documentoBtnAdicionar" type="button" class="btn btn-primary btn-round">Adicionar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane" id="tabvisualizar" role="tabpanel">
+                <?php foreach ($this->view->documentos as $key => $documento) { ?>
+                    <div class="row" style="padding-bottom: 10px">
+                        <div class="col-md-10 ml-auto mr-auto">
+                            <div class="card card-user">
+                                <div class="card-header">
+
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <label>Título da publicação</label>
+                                            <div type="text" class="form-control">
+                                                <?php echo $documento['titulo']; ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 espacamentoCampo">
+                                            <label>Local da publicação</label>
+                                            <div type="text" class="form-control">
+                                                <?php echo $documento['localPublicacao']; ?>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 espacamentoCampo">
+                                            <label>Data da publicação</label>
+                                            <div type="text" class="form-control">
+                                                <?php echo $documento['data']; ?>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 espacamentoCampo">
+                                            <label>Página</label>
+                                            <div type="text" class="form-control">
+                                            <?php 
+                                                if ($documento['numPagina'] != '') { 
+                                                    echo $documento['numPagina']; 
+                                                } else { 
+                                                    echo "Não especificado";
+                                                }
+                                            ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12 espacamentoCampo">
+                                            <label>Assunto da publicação</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4" style="padding-top: 5px">
+                                            <div class="form-check">
+                                                <label class="form-check-label">
+                                                    <input id="documentoCheckDescobramento" class="form-check-input" type="checkbox" <?php if ($documento['flagDesdobramento']){ echo "checked";} ?> disabled>
+                                                    Incêndio e desdobramentos
+                                                    <span class="form-check-sign">
+                                                        <span class="check"></span>
+                                                    </span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2" style="padding-top: 5px">
+                                            <div class="form-check">
+                                                <label class="form-check-label">
+                                                    <input id="documentoCheckVitima" class="form-check-input" type="checkbox" <?php if ($documento['flagVitima']){ echo "checked";} ?> disabled>
+                                                    Vítima
+                                                    <span class="form-check-sign">
+                                                        <span class="check"></span>
+                                                    </span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <?php if ($documento['nomeVitima'] != '') { ?>
+                                        <div class="col-md-6 exibeVitima">
+                                            <label>Nome da Vítima</label>
+                                            <div type="text" class="form-control">
+                                                <?php echo $documento['nomeVitima']; ?>
+                                            </div>
+                                        </div>
+                                        <?php } ?>
+                                    </div>
+                                    <div class="row" style="padding-bottom: 30px;">
+                                        <div class="col-md-12 espacamentoCampo">
+                                            <label>Transcrição da Matéria</label>
+                                            <div type="text" class="form-control">
+                                                <?php echo $documento['descricao']; ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -137,6 +137,29 @@ class DashboardController extends Action {
         $this->render('fotos', 'layout-dashboard');
     }
 
+    public function documentos(){
+        $this->validaAutenticacao();
+
+        $vitimas = Container::getModel('Vitimas');
+        $this->view->vitimas = $vitimas->getAllDashboard();
+
+        $documentos = Container::getModel('Documentos');
+        $todosDocumentos = $documentos->getDocumentos();
+
+        for($i=0; $i < count($todosDocumentos); $i++){
+            if($todosDocumentos[$i]['flagVitima'] == 1){
+                $vitimas->__set('id', $todosDocumentos[$i]['fk_idVitima']);
+                $vtm = $vitimas->getVitima();
+                $todosDocumentos[$i]['nomeVitima'] = $vtm['nome'];
+            } else {
+                $todosDocumentos[$i]['nomeVitima'] = null;
+            }
+        }
+        $this->view->documentos = $todosDocumentos;
+        $this->menu();
+        $this->render('documentos', 'layout-dashboard');
+    }
+
     public function excluirFoto(){
         $this->validaAutenticacao();
         $foto = Container::getModel('Fotos');
@@ -188,6 +211,22 @@ class DashboardController extends Action {
         $foto->__set('legenda', $_POST['descricao']);
 
         echo $foto->atualizarFoto();
+    }
+
+    public function adicionarDocumento(){
+        $this->validaAutenticacao();
+        $documento = Container::getModel('Documentos');
+
+        $tmp = json_decode($_POST['documento']);
+        $documento->__set('titulo', $tmp->titulo);
+        $documento->__set('localPublicacao', $tmp->localPublicacao);
+        $documento->__set('data', $tmp->data);
+        $documento->__set('descricao', $tmp->descricao);
+        $documento->__set('numPagina', $tmp->numPagina);
+        $documento->__set('fk_idVitima', $tmp->fk_idVitima);
+        $documento->__set('flagDesdobramento', $tmp->flagDesdobramento);
+        $documento->__set('flagVitima', $tmp->flagVitima);
+        $documento->gravarDocumento();
     }
 }
 ?>

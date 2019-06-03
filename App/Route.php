@@ -68,6 +68,12 @@ class Route extends Bootstrap {
 			'action' => 'informacoes'
 		);
 
+		$routes['dashboard/documentos'] = array(
+			'route' => '/dashboard/documentos',
+			'controller' => 'DashboardController',
+			'action' => 'documentos'
+		);
+
 		$routes['sair'] = array(
 			'route' => '/sair',
 			'controller' => 'AuthController',
@@ -193,6 +199,12 @@ class Route extends Bootstrap {
 			'route' => '/listarComentarios',
 			'controller' => 'VitimaController',
 			'action' => 'listarComentarios'
+		);
+
+		$routes['adicionarDocumento'] = array(
+			'route' => '/adicionarDocumento',
+			'controller' => 'DashboardController',
+			'action' => 'adicionarDocumento'
 		);
 
 		$this->setRoutes($routes);
