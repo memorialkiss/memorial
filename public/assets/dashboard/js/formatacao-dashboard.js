@@ -3,7 +3,7 @@ $(document).ready(function () {
     var url_atual = window.location.href;
     url_atual = url_atual.split('dashboard/')[1].replace(/#/gi, '');
     url_atual = '#pg'.concat(url_atual);
-    console.log(url_atual);
+    // console.log(url_atual);
     $(url_atual).addClass('active');
 
     //retorna a vitima selecionada
@@ -235,10 +235,16 @@ $(document).ready(function () {
 
     //adiciona nova recordacao com administrador na aba "recordacoes"
     $('#btnAdicionarRecordacao').click(function () {
-        if($("#recordacaoNome").val()&&$("#recordacaoSobrenome").val()&&$("#recordacaoData").val()&&$("#recordacaoDescricao").val()&&$("#recordacaoLugar").val()){
-            var nome = $("#recordacaoNome").val() + " " + $("#recordacaoSobrenome").val(); 
-            var data = $("#recordacaoData").val() + " 04:44:44";
-            var descricao = $("#recordacaoDescricao").val() + "<br/><br/><sup>"+$("#recordacaoLugar").val()+"</sup>";
+        var nome = $("#recordacaoNome").val();
+        var sobrenome = $("#recordacaoSobrenome").val();
+        var data = $("#recordacaoData").val();
+        var lugar = $("#recordacaoLugar").val();
+        var descricao = CKEDITOR.instances.recordacaoDescricao.getData();
+
+        if(nome&&sobrenome&&data&&descricao&&lugar){
+            nome = nome + " " + sobrenome; 
+            data = data + " 04:44:44";
+            descricao = descricao + "<br/><br/><sup>" + lugar + "</sup>";
 
             var recordacao = {};
             recordacao.id = $("#vtmAdicionarRecordacao").val();
@@ -518,24 +524,21 @@ $(document).ready(function () {
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label>Recordação:</label>
-                                <textarea id="comentario" class="form-control" rows="5" placeholder="Descrição"
-                                    style="cursor: auto" disabled>${comentario['comentario']}</textarea>
+                                <div id="comentario" class="form-control" placeholder="Descrição" style="cursor: auto; padding: 10px 5px" disabled>${comentario['comentario']}</div>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <footer>
-                                <div class="container dataHora">
-                                    <div class="copyright float-left">
-                                        Recordação feita em:
-                                        <br />${comentario['data']}
-                                    </div>
+                            <div class="container dataHora">
+                                <div class="copyright float-left" style="margin-left: -10px">
+                                    Recordação feita em:
+                                    <br />${comentario['data']}
                                 </div>
-                            </footer>
+                            </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="ml-auto float-right">
+                            <div class="ml-auto float-right" style="margin-top: -10px">
                                 <button type="button" data-id_rejeitar="${comentario['idComentario']}" class="btn btn-danger btn-round btnRejeitar">EXCLUIR</button>
                             </div>
                         </div>
