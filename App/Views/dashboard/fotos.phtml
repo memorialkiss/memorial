@@ -56,8 +56,8 @@
         z-index: 3000 !important;
     }
 
-    .desativarInput{
-        cursor: text!important
+    .desativarInput {
+        cursor: text !important
     }
 </style>
 
@@ -130,104 +130,112 @@
 
         <div class="tab-content">
             <div class="tab-pane active" id="tabrecebidas" role="tabpanel">
-                <?php foreach ($this->view->fotos as $key => $fotos) { ?>
-                    <div class="row secaoFotos">
-                        <div class="col-md-10 ml-auto mr-auto">
-                            <div class="card card-user">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <label>Foto recebida</label>
+                <?php if ($this->view->fotos == NULL) { ?>
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <div style="font-size: 14px; margin-top:10px">O Memorial não recebeu nenhuma foto nova</div>
+                        </div>
+                    </div>
+                <?php } else {
+                foreach ($this->view->fotos as $key => $fotos) { ?>
+                        <div class="row secaoFotos">
+                            <div class="col-md-10 ml-auto mr-auto">
+                                <div class="card card-user">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <label>Foto recebida</label>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <img src="../public/img/fotos_vitimas/<?php echo $fotos['endereco_foto'] ?>" style="width: 190px; height: 190px; object-fit: cover;" alt="<?php if ($fotos['legenda']) {
+                                                                                                                                                                                                        echo $fotos['legenda'];
+                                                                                                                                                                                                    } ?>" class="img-thumbnail imagem">
+                                                    </div>
+                                                </div><br />
+                                            </div>
+
+                                            <div class="col-md-9">
+                                                <div class="row">
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            <label>Id da vítima</label>
+                                                            <input id="idVitima" class="form-control desativarInput" value="<?php echo $fotos['idVitima'] ?>" disabled>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-7">
+                                                        <div class="form-group">
+                                                            <label>Nome da Vítima</label>
+                                                            <input class="form-control desativarInput" value="<?php echo $fotos['nome'] ?>" disabled>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label>Página da Vítima</label>
+                                                            <div id="pagina" class="form-control"><a target="_blank" href="/vitima?id=<?php echo $fotos['idVitima'] ?>">Acessar</a></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Nome do Remetente</label>
+                                                            <input id="nome" class="form-control desativarInput" value="<?php if ($fotos['nomeRemetente']) {
+                                                                                                                            echo $fotos['nomeRemetente'];
+                                                                                                                        } else {
+                                                                                                                            echo "Nome";
+                                                                                                                        } ?>" disabled>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>E-mail do Remetente</label>
+                                                            <input id="email" class="form-control desativarInput" value="<?php if ($fotos['email']) {
+                                                                                                                                echo $fotos['email'];
+                                                                                                                            } else {
+                                                                                                                                echo "Email";
+                                                                                                                            } ?>" disabled>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label>Descrição da foto</label>
+                                                            <input id="legenda" class="form-control desativarInput" value="<?php if ($fotos['legenda']) {
+                                                                                                                                echo $fotos['legenda'];
+                                                                                                                            } else {
+                                                                                                                                echo "Descrição";
+                                                                                                                            } ?>" disabled>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <img src="../public/img/fotos_vitimas/<?php echo $fotos['endereco_foto']?>" 
-                                                        style="width: 190px; height: 190px; object-fit: cover;" 
-                                                        alt="<?php if ($fotos['legenda']){
-                                                            echo $fotos['legenda'];
-                                                        }?>" class="img-thumbnail imagem">
-                                                </div>
-                                            </div><br />
                                         </div>
 
-                                        <div class="col-md-9">
-                                            <div class="row">
-                                                <div class="col-md-2">
-                                                    <div class="form-group">
-                                                        <label>Id da vítima</label>
-                                                        <input id="idVitima" class="form-control desativarInput" value="<?php echo $fotos['idVitima']?>" disabled>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-7">
-                                                    <div class="form-group">
-                                                        <label>Nome da Vítima</label>
-                                                        <input class="form-control desativarInput" value="<?php echo $fotos['nome'] ?>" disabled>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <label>Página da Vítima</label>
-                                                        <div id="pagina" class="form-control"><a target="_blank" href="/vitima?id=<?php echo $fotos['idVitima'] ?>">Acessar</a></div>
-                                                    </div>
-                                                </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
                                             </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Nome do Remetente</label>
-                                                        <input id="nome" class="form-control desativarInput" value="<?php if ($fotos['nomeRemetente']){
-                                                            echo $fotos['nomeRemetente'];
-                                                        }else {
-                                                            echo "Nome";
-                                                        }?>" disabled>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>E-mail do Remetente</label>
-                                                        <input id="email" class="form-control desativarInput" value="<?php if ($fotos['email']) {
-                                                                echo $fotos['email'];
-                                                            } else {
-                                                                echo "Email";
-                                                            } ?>" disabled>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <label>Descrição da foto</label>
-                                                        <input id="legenda" class="form-control desativarInput" value="<?php if ($fotos['legenda']) {
-                                                                echo $fotos['legenda'];
-                                                            } else {
-                                                                echo "Descrição";
-                                                            }?>" disabled>
-                                                    </div>
+                                            <div class="col-md-6">
+                                                <div class="ml-auto float-right">
+                                                    <button type="button" data-id_rejeitar="<?php echo $fotos['idFoto']; ?>" class="btn btn-danger btn-round btnRejeitarFoto">REJEITAR</button>
+                                                    <button type="button" data-id_aceitar="<?php echo $fotos['idFoto']; ?>" class="btn btn-primary btn-round btnAceitarFoto">ACEITAR</button>
                                                 </div>
                                             </div>
                                         </div>
+
                                     </div>
-
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="ml-auto float-right">
-                                                <button type="button" data-id_rejeitar="<?php echo $fotos['idFoto']; ?>" class="btn btn-danger btn-round btnRejeitarFoto">REJEITAR</button>
-                                                <button type="button" data-id_aceitar="<?php echo $fotos['idFoto']; ?>" class="btn btn-primary btn-round btnAceitarFoto">ACEITAR</button>
-                                            </div>
-                                        </div>
-                                    </div>
-
                                 </div>
                             </div>
+                            <!-- end col-md-12 -->
                         </div>
-                        <!-- end col-md-12 -->
-                    </div>
-                <?php } ?>
+                    <?php
+                }
+            }
+            ?>
             </div>
 
             <div class="tab-pane" id="tabadicionar" role="tabpanel">
@@ -235,7 +243,7 @@
                     <div class="col-md-6 mr-auto ml-auto">
                         <div class="form-group">
                             <select id="listaVitimasAddFoto" class="form-control">
-                                <option selected disabled>Selecione a vítima</option>
+                                <option selected disabled>Selecione a vítima para adicionar</option>
                                 <?php foreach ($this->view->vitimas as $key => $vitima) { ?>
                                     <option value="<?php echo $vitima['idVitima']; ?>"><?php echo $vitima['nome']; ?></option>
                                 <?php
@@ -260,7 +268,7 @@
                     <div class="col-md-6 mr-auto ml-auto">
                         <div class="form-group">
                             <select id="listaVitimasEditFoto" class="form-control">
-                                <option selected disabled>Selecione a vítima</option>
+                                <option selected disabled>Selecione a vítima para editar/remover</option>
                                 <?php foreach ($this->view->vitimas as $key => $vitima) { ?>
                                     <option value="<?php echo $vitima['idVitima']; ?>"><?php echo $vitima['nome']; ?></option>
                                 <?php
@@ -270,6 +278,8 @@
                     </div>
                     <br /><br /><br />
                 </div>
+
+                <div id="mensagemSemFotos" style="display:none"></div>
 
                 <div id="fotosupadas" style="display:none">
                     <div class="row secaoFotos">

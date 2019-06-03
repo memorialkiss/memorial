@@ -61,110 +61,118 @@
 
         <div class="tab-content following">
             <div class="tab-pane active" id="tabnovas" role="tabpanel">
-
-
-                <?php foreach ($this->view->info as $key => $info) { ?>
+                <?php if ($this->view->info == NULL) { ?>
                     <div class="row">
-                        <div class="col-md-10 ml-auto mr-auto">
-                            <div class="card card-user">
-                                <div class="card-body">
-                                    <form>
-                                        <div class="row">
-                                            <div class="col-md-2">
-                                                <div class="form-group">
-                                                    <label>Id da vítima</label>
-                                                    <div id="idVitima" class="form-control"><?php echo $info['idVitima'] ?></div>
+                        <div class="col-md-12 text-center">
+                            <div style="font-size: 14px; margin-top:10px">O Memorial não recebeu nenhuma informação nova enviada por formulário</div>
+                        </div>
+                    </div>
+                <?php } else {
+                foreach ($this->view->info as $key => $info) { ?>
+                        <div class="row">
+                            <div class="col-md-10 ml-auto mr-auto">
+                                <div class="card card-user">
+                                    <div class="card-body">
+                                        <form>
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label>Id da vítima</label>
+                                                        <div id="idVitima" class="form-control"><?php echo $info['idVitima'] ?></div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-8">
-                                                <div class="form-group">
-                                                    <label>Nome da Vítima</label>
-                                                    <div id="nome" class="form-control"><?php echo $info['nomeVitima'] ?></div>
+                                                <div class="col-md-8">
+                                                    <div class="form-group">
+                                                        <label>Nome da Vítima</label>
+                                                        <div id="nome" class="form-control"><?php echo $info['nomeVitima'] ?></div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <div class="form-group">
-                                                    <label>Página da Vítima</label>
-                                                    <div id="pagina" class="form-control"><a target="_blank" href="/vitima?id=<?php echo $info['idVitima'] ?>">Acessar</a></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>Nome do remetente</label>
-                                                    <div id="remetente" class="form-control"><?php echo $info['nomeRemetente'] ?></div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>E-mail do Remetente</label>
-                                                    <div id="email" class="form-control"><?php echo $info['email'] ?></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>Parentesco</label>
-                                                    <div id="parentesco" class="form-control">
-                                                        <?php if ($info['parentesco']) {
-                                                            echo $info['parentesco'];
-                                                        } else {
-                                                            echo 'Parentesco';
-                                                        }
-                                                        ?>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <label>Página da Vítima</label>
+                                                        <div id="pagina" class="form-control"><a target="_blank" href="/vitima?id=<?php echo $info['idVitima'] ?>">Acessar</a></div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>YouTube</label>
-                                                    <div id="youtube" class="form-control">
-                                                        <?php if ($info['youtube']) {
-                                                            echo $info['youtube'];
-                                                        } else {
-                                                            echo 'Link do YouTube';
-                                                        }
-                                                        ?>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Nome do remetente</label>
+                                                        <div id="remetente" class="form-control"><?php echo $info['nomeRemetente'] ?></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>E-mail do Remetente</label>
+                                                        <div id="email" class="form-control"><?php echo $info['email'] ?></div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label>Informação enviada:</label>
-                                                    <textarea id="comentario" class="form-control" rows="8" placeholder="Descrição" style="cursor: auto" disabled><?php echo $info['descricao'] ?></textarea>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <footer>
-                                                    <div class="container dataHora">
-                                                        <div class="copyright float-left">
-                                                            Comentário feito em: <br />
-                                                            <?php
-                                                            echo date('d/m/Y H:i', strtotime($info['data']));
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Parentesco</label>
+                                                        <div id="parentesco" class="form-control">
+                                                            <?php if ($info['parentesco']) {
+                                                                echo $info['parentesco'];
+                                                            } else {
+                                                                echo 'Parentesco';
+                                                            }
                                                             ?>
                                                         </div>
                                                     </div>
-                                                </footer>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="ml-auto float-right">
-                                                    <button type="button" data-id_excluir="<?php echo $info['idInfo']; ?>" class="btn btn-danger btn-round btnExcluirInfo">EXCLUIR</button>
-                                                    <button type="button" data-id_arquivar="<?php echo $info['idInfo']; ?>" class="btn btn-primary btn-round btnArquivarInfo">ARQUIVAR</button>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>YouTube</label>
+                                                        <div id="youtube" class="form-control">
+                                                            <?php if ($info['youtube']) {
+                                                                echo $info['youtube'];
+                                                            } else {
+                                                                echo 'Link do YouTube';
+                                                            }
+                                                            ?>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </form>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label>Informação enviada:</label>
+                                                        <textarea id="comentario" class="form-control" rows="8" placeholder="Descrição" style="cursor: auto" disabled><?php echo $info['descricao'] ?></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <footer>
+                                                        <div class="container dataHora">
+                                                            <div class="copyright float-left">
+                                                                Comentário feito em: <br />
+                                                                <?php
+                                                                echo date('d/m/Y H:i', strtotime($info['data']));
+                                                                ?>
+                                                            </div>
+                                                        </div>
+                                                    </footer>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="ml-auto float-right">
+                                                        <button type="button" data-id_excluir="<?php echo $info['idInfo']; ?>" class="btn btn-danger btn-round btnExcluirInfo">EXCLUIR</button>
+                                                        <button type="button" data-id_arquivar="<?php echo $info['idInfo']; ?>" class="btn btn-primary btn-round btnArquivarInfo">ARQUIVAR</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                <?php } ?>
+                    <?php
+                }
+            }
+            ?>
             </div>
 
             <div class="tab-pane" id="tabarquivadas" role="tabpanel">

@@ -29,11 +29,11 @@ $(document).ready(function () {
                 $("#cidade").val(data.cidade);
                 $("#legenda").val(data.legenda);
 
-                if(data.sexo == 0){
+                if (data.sexo == 0) {
                     $("#sexo").val('M');
                 } else {
                     $("#sexo").val('F');
-                }      
+                }
 
                 if (data.nome) {
                     $("#card-nome").html(data.nome);
@@ -56,7 +56,7 @@ $(document).ready(function () {
                     $("#foto_capa").attr("src", "../public/assets/dashboard/img/fotografias/frente2.jpg");
                 }
 
-                if(data.estado==0){
+                if (data.estado == 0) {
                     $("#status").prop("checked", true);
                     $("#desativado").css("display", "inline");
                 } else {
@@ -68,7 +68,7 @@ $(document).ready(function () {
             }
         });
     });
-    
+
     //atualiza a vitima
     $('#btnAtualizarVitima').click(function () {
         if ($("#idVitima").val() != '' && $("#nome").val() != '') {
@@ -79,8 +79,8 @@ $(document).ready(function () {
             vitima.idade = $("#idade").val();
             vitima.cidade = $("#cidade").val();
             vitima.legenda = $("#legenda").val();
-            
-            if($("#status").is(":checked")==true){
+
+            if ($("#status").is(":checked") == true) {
                 vitima.status = 0;
             } else {
                 vitima.status = 1;
@@ -98,7 +98,7 @@ $(document).ready(function () {
                     if (data.nome) $("#card-nome").html(data.nome);
                     if (data.cidade) $("#card-cidade").html(data.cidade);
                     if (data.legenda) $("#card-legenda").html(data.legenda);
-                    if (data.estado==0){
+                    if (data.estado == 0) {
                         $("#desativado").css("display", "inline");
                     } else {
                         $("#desativado").css("display", "none");
@@ -230,7 +230,7 @@ $(document).ready(function () {
     $('#vtmAdicionarRecordacao').change(function () {
         $("#recordacoesAdicionar").css("display", "block");
         var link = "/vitima?id=" + $("#vtmAdicionarRecordacao").val();
-        $("#linkVtm"). attr("href", link);
+        $("#linkVtm").attr("href", link);
     });
 
     //adiciona nova recordacao com administrador na aba "recordacoes"
@@ -241,8 +241,8 @@ $(document).ready(function () {
         var lugar = $("#recordacaoLugar").val();
         var descricao = CKEDITOR.instances.recordacaoDescricao.getData();
 
-        if(nome&&sobrenome&&data&&descricao&&lugar){
-            nome = nome + " " + sobrenome; 
+        if (nome && sobrenome && data && descricao && lugar) {
+            nome = nome + " " + sobrenome;
             data = data + " 04:44:44";
             descricao = descricao + "<br/><br/><sup>" + lugar + "</sup>";
 
@@ -258,7 +258,7 @@ $(document).ready(function () {
                 data: {
                     recordacao: recordacao
                 },
-                success: function(data) {
+                success: function (data) {
                     $('#textoModal').html('Recordação realizada com sucesso!');
                     $('#modalMensagem').modal('show');
                 }
@@ -281,27 +281,27 @@ $(document).ready(function () {
         let pagina = $("#documentoPagina").val();
 
         //verificacoes dos campos
-        if(!titulo){
+        if (!titulo) {
             $('#textoModalSemReload').html('Você deve colocar um título na publicação');
             $('#modalMensagemSemReload').modal('show');
             return;
-        } else if(!local){
+        } else if (!local) {
             $('#textoModalSemReload').html('Você deve colocar o local da publicação');
             $('#modalMensagemSemReload').modal('show');
             return;
-        } else if(!data){
+        } else if (!data) {
             $('#textoModalSemReload').html('Você deve colocar a data da publicação');
             $('#modalMensagemSemReload').modal('show');
             return;
-        } else if(!descricao){
+        } else if (!descricao) {
             $('#textoModalSemReload').html('Você deve transcrever a matéria');
             $('#modalMensagemSemReload').modal('show');
             return;
-        } else if(!checkDesdobramento&&!checkVitima){
+        } else if (!checkDesdobramento && !checkVitima) {
             $('#textoModalSemReload').html('Você deve selecionar o assunto da publicação');
             $('#modalMensagemSemReload').modal('show');
             return;
-        } else if(checkVitima&&!idVitima){
+        } else if (checkVitima && !idVitima) {
             $('#textoModalSemReload').html('Você deve selecionar a vítima');
             $('#modalMensagemSemReload').modal('show');
             return;
@@ -312,7 +312,7 @@ $(document).ready(function () {
         if (!idVitima) idVitima = null;
         if (!checkDesdobramento) checkDesdobramento = 0;
         if (!checkVitima) checkVitima = 0;
-        
+
         //enviar documento
         var documento = {};
         documento.titulo = titulo;
@@ -330,7 +330,7 @@ $(document).ready(function () {
             data: {
                 documento: documento
             },
-            success: function(data) {
+            success: function (data) {
                 $('#textoModal').html("Documento cadastrado com sucesso");
                 $('#modalMensagem').modal('show');
             }
@@ -350,6 +350,7 @@ $(document).ready(function () {
 
     //listar vitimas na aba "editar fotos"
     $('#listaVitimasEditFoto').change(function () {
+        $("#mensagemSemFotos").css("display", "none");
         $("#fotosupadas").css("display", "none");
         var resultado = '';
         var tmp = '';
@@ -361,75 +362,108 @@ $(document).ready(function () {
                 idVitima: $(this).val()
             },
             success: function (data) {
-                $.each(data, function (i, foto) {
-                    if (foto['legenda'] != null) tmp = foto['legenda']; else tmp = '';
+                /* SE NAO TEM NENHUMA FOTO */
+                if (data == '') {
+                    resultado = `
+<div class="row">
+    <div class="col-md-12 text-center">
+        <div style="font-size: 14px">Essa vítima não tem nenhuma foto</div>
+    </div>
+</div>`;
+                    $("#mensagemSemFotos").html(resultado);
+                    $("#mensagemSemFotos").css("display", "inline");
+                
+                /* SE TEM FOTO */
+                } else {
+                    $.each(data, function (i, foto) {
+                        if (foto['legenda'] != null) tmp = foto['legenda']; else tmp = '';
+                        resultado +=
+                            `                            
+    <div class="card card-user">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label>Foto</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <img src="../public/img/fotos_vitimas/${foto['endereco_foto']}" style="width: 180px; height: 180px; object-fit: cover;" alt="${foto['legenda']}" class="img-thumbnail imagem">
+                        </div>
+                    </div><br />
+                </div>
 
-                    resultado +=
-                        `                            
-<div class="card card-user">
-    <div class="card-body">
-        <div class="row">
-            <div class="col-md-3">
-                <div class="row">
-                    <div class="col-md-12">
-                        <label>Foto</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <img src="../public/img/fotos_vitimas/${foto['endereco_foto']}" style="width: 180px; height: 180px; object-fit: cover;" alt="${foto['legenda']}" class="img-thumbnail imagem">
-                    </div>
-                </div><br />
-            </div>
-
-            <div class="col-md-9">
-                <div class="row">
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label>Id da vítima</label>
-                            <input class="form-control desativarInput" value="${foto['fk_idVitima']}" disabled>
+                <div class="col-md-9">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label>Id da vítima</label>
+                                <input class="form-control desativarInput" value="${foto['fk_idVitima']}" disabled>
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                <label>Nome da Vítima</label>
+                                <input class="form-control desativarInput" value="${foto['nome']}" disabled>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label></label>
+                                <div id="pagina" class="form-control"><a target="_blank" href="/vitima?id=${foto['fk_idVitima']}">Acessar perfil</a></div>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-7">
-                        <div class="form-group">
-                            <label>Nome da Vítima</label>
-                            <input class="form-control desativarInput" value="${foto['nome']}" disabled>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label></label>
-                            <div id="pagina" class="form-control"><a target="_blank" href="/vitima?id=${foto['fk_idVitima']}">Acessar perfil</a></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label>Descrição da foto</label>
-                            <textarea class="form-control descricaotext" id="form${foto['idFoto']}" rows="3" placeholder="Descrição">${tmp}</textarea>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Descrição da foto</label>
+                                <textarea class="form-control descricaotext" id="form${foto['idFoto']}" rows="3" placeholder="Descrição">${tmp}</textarea>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-            </div>
-            <div class="col-md-6">
-                <div class="ml-auto float-right">
-                    <button type="button" data-id_excluirfoto="${foto['idFoto']}" class="btn btn-danger btn-round btnExcluirFotoAdmin">EXCLUIR</button>
-                    <button type="button" data-id_atualizarfoto="${foto['idFoto']}" class="btn btn-primary btn-round btnAtualizarFotoAdmin">ATUALIZAR</button>
+            <div class="row">
+                <div class="col-md-6">
+                </div>
+                <div class="col-md-6">
+                    <div class="ml-auto float-right">
+                        <button type="button" data-id_excluirfoto="${foto['idFoto']}" class="btn btn-danger btn-round btnExcluirFotoAdmin">EXCLUIR</button>
+                        <button type="button" data-id_atualizarfoto="${foto['idFoto']}" class="btn btn-primary btn-round btnAtualizarFotoAdmin">ATUALIZAR</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<br/>
+    <br/>
 
-`;
+    `;
+                    });
+
                     $("#fotosRecebidas").html(resultado);
                     $("#fotosupadas").css("display", "inline");
+
+                    $('.btnAtualizarFotoAdmin').click(function () {
+                        var id = $(this).data('id_atualizarfoto');
+                        var descricao = $('#form' + id).val();
+                        if (id != '') {
+                            $.ajax({
+                                url: "/atualizarFoto",
+                                method: "POST",
+                                data: {
+                                    id: id,
+                                    descricao: descricao
+                                },
+                                success: function (data) {
+                                    $('#textoModal').html('Foto atualizada com sucesso!');
+                                    $('#modalMensagem').modal('show');
+                                }
+                            });
+                        }
+                    });
 
                     $(".imagem").click(function () {
                         if (this.alt == 'null') this.alt = '';
@@ -456,7 +490,7 @@ $(document).ready(function () {
 
                     $('.btnAtualizarFotoAdmin').click(function () {
                         var id = $(this).data('id_atualizarfoto');
-                        var descricao = $('#form'+id).val();
+                        var descricao = $('#form' + id).val();
                         if (id != '') {
                             $.ajax({
                                 url: "/atualizarFoto",
@@ -472,13 +506,14 @@ $(document).ready(function () {
                             });
                         }
                     });
-                });
+                }
+                /* FIM DO ELSE */
             }
         });
     });
 
 
-    //listar comentarios aceitos
+    //LISTAR RECORDACOES ACEITAS
     $('#listarComentariosAceitos').change(function () {
         $("#fotosupadas").css("display", "none");
         var resultado = '';
@@ -491,9 +526,18 @@ $(document).ready(function () {
                 idVitima: $(this).val()
             },
             success: function (data) {
-                console.log(data);
-                $.each(data, function (i, comentario) {
-                    resultado += `
+                /* SE NAO TEM RECORDACAO */
+                if (data == '') {
+                    resultado = `
+<div class="row">
+    <div class="col-md-12 text-center">
+        <div style="font-size: 14px">Essa vítima não recebeu nenhuma recordação</div>
+    </div>
+</div>`;
+                /* SE TEM RECORDACAO */
+                } else {
+                    $.each(data, function (i, comentario) {
+                        resultado += `
 <div class="row secaoComentario">
     <div class="col-md-10 ml-auto mr-auto">
         <div class="card card-user">
@@ -550,10 +594,13 @@ $(document).ready(function () {
     <!-- end col-md-12 -->
 </div>     
 `;
-                });
+                    });
+                };
+                /* FIM DO ELSE */
 
                 $("#campoDeRecordacoes").html(resultado);
                 $("#recordacoesRecebidas").css("display", "inline");
+                
                 $('.btnRejeitar').click(function () {
                     var id = $(this).data('id_rejeitar');
                     if (id != '') {
@@ -577,8 +624,8 @@ $(document).ready(function () {
         });
     });
 
-    $("#documentoCheckVitima").click(function () {  
-        if( $("#documentoCheckVitima").is(':checked') ){
+    $("#documentoCheckVitima").click(function () {
+        if ($("#documentoCheckVitima").is(':checked')) {
             $("#divSelecionarVitima").css('display', 'inline');
         } else {
             $("#divSelecionarVitima").css('display', 'none');
