@@ -228,7 +228,7 @@ $(document).ready(function() {
                 `;
             });
 
-            /* concatena com as fotos padrao */
+            /* se nao tiver uma quantidade minima, concatena com as fotos padrao */
             if(recebidas.length < fotosDefault.length){
                 for(let i=0; i< (fotosDefault.length - recebidas.length); i++){
                     resultado += `
