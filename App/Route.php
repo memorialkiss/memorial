@@ -74,6 +74,12 @@ class Route extends Bootstrap {
 			'action' => 'documentos'
 		);
 
+		$routes['dashboard/backup'] = array(
+			'route' => '/dashboard/backup',
+			'controller' => 'DashboardController',
+			'action' => 'backup'
+		);
+
 		$routes['sair'] = array(
 			'route' => '/sair',
 			'controller' => 'AuthController',
@@ -211,6 +217,12 @@ class Route extends Bootstrap {
 			'route' => '/getFotos',
 			'controller' => 'VitimaController',
 			'action' => 'getFotos'
+		);
+
+		$routes['download'] = array(
+			'route' => '/download',
+			'controller' => 'DashboardController',
+			'action' => 'download'
 		);
 
 		$this->setRoutes($routes);

@@ -67,6 +67,13 @@ class InfoAnalisar extends Model {
         $stmt->execute();
         return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
+
+    public function backup(){
+        $query = "select idVitima, v.nome as vitima, i.nome as autor, email, parentesco, data, i.status as arquivado, i.descricao FROM infoAnalisar as i left join vitimas as v on i.fk_idVitima = v.idVitima order by v.idVitima";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
 }
 
 ?>

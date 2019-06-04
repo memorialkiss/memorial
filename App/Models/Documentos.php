@@ -46,4 +46,11 @@ class Documentos extends Model {
         $stmt->execute();
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
+
+    public function backup(){
+        $query = "select idDocumento as idDoc, titulo, localPublicacao as localDaPublicacao, data, numPagina as numeroDaPagina, d.descricao, flagDesdobramento as incendioDesdobramento, flagVitima as relativoVitima, nome as nomeDaVitima FROM documentos as d left join vitimas as v on d.fk_idVitima = v.idVitima";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
 }

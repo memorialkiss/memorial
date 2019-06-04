@@ -183,6 +183,12 @@ class DashboardController extends Action {
         $this->render('informacoes', 'layout-dashboard');
     }
 
+    public function backup(){
+        $this->validaAutenticacao();
+        $this->menu();
+        $this->render('backup', 'layout-dashboard');
+    }
+
     public function arquivarInfo(){
         $this->validaAutenticacao();
         $info = Container::getModel('infoAnalisar');
@@ -227,6 +233,20 @@ class DashboardController extends Action {
         $documento->__set('flagDesdobramento', $tmp->flagDesdobramento);
         $documento->__set('flagVitima', $tmp->flagVitima);
         $documento->gravarDocumento();
+    }
+
+    public function download(){
+        $this->validaAutenticacao();
+        if($_POST['escolha'] == 1) {
+            $classe = Container::getModel('Vitimas');
+        } else if($_POST['escolha'] == 2) {
+            $classe = Container::getModel('Comentarios');
+        } else if($_POST['escolha'] == 3) {
+            $classe = Container::getModel('InfoAnalisar');
+        } else {
+            $classe = Container::getModel('Documentos');
+        }
+        echo (json_encode($classe->backup()));
     }
 }
 ?>

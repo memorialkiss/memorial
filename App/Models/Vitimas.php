@@ -68,6 +68,13 @@ class Vitimas extends Model {
         $stmt->bindValue(':id', $this->__get('id'));
         $stmt->execute();
     }
+
+    public function backup(){
+        $query = "select idVitima, nome, idade, cidade, sexo, legenda, descricao from vitimas";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
 }
 
 ?>

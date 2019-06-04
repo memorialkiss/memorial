@@ -105,6 +105,13 @@ class Comentarios extends Model {
         $quantidade = $stmt->fetch(\PDO::FETCH_ASSOC);
         return $quantidade['contador'];
     }
+
+    public function backup(){
+        $query = "select idVitima, v.nome as vitima, c.nome as autorRecordacao, data as dataRecordacao, email, comentario as recordacao FROM comentarios as c left join vitimas as v on c.fk_idVitima = v.idVitima order by idVitima";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
 }
 
 ?>
