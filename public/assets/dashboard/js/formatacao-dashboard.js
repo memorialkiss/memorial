@@ -537,6 +537,10 @@ $(document).ready(function () {
                 /* SE TEM RECORDACAO */
                 } else {
                     $.each(data, function (i, comentario) {
+                        if(comentario['data'].indexOf("04:44:44") != -1){
+                            comentario['data'] = comentario['data'].split(' ')[0];
+                        }
+                        
                         resultado += `
 <div class="row secaoComentario">
     <div class="col-md-10 ml-auto mr-auto">

@@ -1,23 +1,3 @@
-// $(document).ready(function() {
-//     window.onscroll = function() {
-//         disableNavbar()
-//     };
-
-//     const disableNavbar = () => {
-//         if ((document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) && ($(window).width() >= 1200)) {
-//             $("#sectionsNav").css("display", "none");
-//             // $("#sectionsNav").addClass("newNavBar");
-//         } else {
-//             $("#sectionsNav").css("display", "inline");
-//             // $("#sectionsNav").removeClass("newNavBar");
-//         }
-//     }
-
-//     if ((document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) && ($(window).width() >= 1200)) {
-//         $("#sectionsNav").css("display", "none");
-//     }
-// });
-
 //enviar recordacao
 $(document).ready(function() {
     //pega o id da vitima
