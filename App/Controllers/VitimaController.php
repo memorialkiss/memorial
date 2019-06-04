@@ -43,6 +43,13 @@ class VitimaController extends Action
 		$this->render('infoajudar', 'layout-infoajudar');
 	}
 
+	//retorna fotos para pagina da vitima
+	public function getFotos(){
+		$fotos = Container::getModel('Fotos');
+		$fotos->__set('idVitima', $_POST['id']);
+		echo (json_encode($fotos->getFotosVitima()));
+	}
+
 	public function uploadimagens($admin = null)
 	{
 		$my_file = $_FILES['fotos'];

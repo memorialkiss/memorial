@@ -87,7 +87,7 @@ class Fotos extends Model {
     }
 
     public function getFotosVitima(){
-        $query = "select idFoto, endereco_foto, fotos.legenda, vitimas.nome, fk_idVitima from fotos, vitimas where status = 1 and fk_idVitima = :id and fk_idVitima = idVitima";
+        $query = "select idFoto, endereco_foto, fotos.legenda, vitimas.nome, fk_idVitima from fotos, vitimas where status = 1 and fk_idVitima = :id and fk_idVitima = idVitima order by idFoto desc";
         $stmt = $this->db->prepare($query);
         $stmt->bindValue(':id', $this->__get('idVitima'));
         $stmt->execute();

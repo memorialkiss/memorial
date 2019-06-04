@@ -184,3 +184,83 @@ function modalRecordacao(componente){
     $("#recordacaoTexto").html(comentario);
     $('#recordacaoModal').modal('show');
 }
+
+//exibe a galeria de fotos da vitima
+$(document).ready(function() {
+    var id = galeria_fotos.getAttribute("idvitima");
+    var resultado = '';
+    var tmp = '';
+
+    /* Fotos padrao para caso nao tenha imagens */
+    var fotosDefault = [
+        {'legenda':'Frente da boate hoje', 'link': 'frente.jpg'},
+        {'legenda':'Silhuetas das vítimas', 'link': 'ciluetas.jpg'},
+        {'legenda':'Manifestação nas ruas de Santa Maria', 'link': 'cartases.jpg'},
+        {'legenda':'Aniversário da tragédia', 'link': 'vigilia.jpg'},
+        {'legenda':'Manifestação nas ruas de Santa Maria', 'link': 'desfile.jpg'},
+        {'legenda':'Passeata em Demanda de Justiça', 'link': 'marcha.jpg'},
+        {'legenda':'Associação dos Familiares das Vítimas', 'link': 'movimiento.jpg'},
+        {'legenda':'Dia das Crianças na Tenda', 'link': 'chicos.jpg'}
+    ];
+
+    $.ajax({
+        url: "/getFotos",
+        method: "POST",
+        data: {
+            id: id
+        },
+        beforeSend: function () {
+            $("#loaderGaleria").css("display", "inline");
+        },
+        success: function(data) {
+            recebidas = JSON.parse(data);
+
+            /* formata em html as fotos recebidas*/ 
+            recebidas.forEach((foto)=> {
+                if(foto.legenda == null) foto.legenda = '';
+                resultado += `
+                <a class="" href="public/img/fotos_vitimas/${foto.endereco_foto}" data-sub-html="${foto.legenda}">
+                    <img class="img-responsive" src="public/img/fotos_vitimas/${foto.endereco_foto}">
+                    <div class="demo-gallery-poster">
+                        <img src="public/img/zoom.png">
+                    </div>
+                </a>
+                `;
+            });
+
+            /* concatena com as fotos padrao */
+            if(recebidas.length < fotosDefault.length){
+                for(let i=0; i< (fotosDefault.length - recebidas.length); i++){
+                    resultado += `
+                    <a class="" href="public/img/fotografias/${fotosDefault[i].link}" data-sub-html="${fotosDefault[i].legenda}">
+                        <img class="img-responsive" src="public/img/fotografias_thumbnails/${fotosDefault[i].link}">
+                        <div class="demo-gallery-poster">
+                            <img src="public/img/zoom.png">
+                        </div>
+                    </a>
+                    `;
+                }
+            }
+
+            /* Cria instancia do lightGallery */
+            $("#galeria_fotos").html(resultado);
+            var $galeria = $('#galeria_fotos');
+            if ($galeria.length) {
+                $galeria.justifiedGallery({
+                    rowHeight: 120,
+                    maxRowHeight: 140,
+                    margins: 2,
+                    lastRow: 'justify',
+                }).on('jg.complete', function () {
+                    $galeria.lightGallery({
+                        thumbnail: true
+                    });
+                });
+            };
+            $("#loaderGaleria").css("display", "none");
+        },
+        error: function (){
+            $("#loaderGaleria").css("display", "none");
+        }
+    }); 
+});

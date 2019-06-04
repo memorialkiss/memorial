@@ -29,7 +29,6 @@
                         </span>
                     <?php } ?>
                 </div>
-
                 <!-- Botao compartilhar -->
                 <div class="follow">
                     <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fmemorialkiss.org%2Fvitima%3Fid%3D<?php echo $this->view->perfil_vitima['idVitima']; ?>&layout=button&size=small&width=97&height=20&appId" width="97" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
@@ -52,82 +51,14 @@
             </div>
         </div>
 
-        <div class="tab-content tab-space">
-            <div class="row">
-                <div class="col-md-7 mr-auto ml-auto">
-                    <h4 class="text-center card-title" style="font-size: 22px;">Galeria de Memórias</h4><br />
-                    <div class="demo-gallery">
-                        <div id="galeria_fotos">
-                            <?php
-                            if ($this->view->fotos != '') {
-                                foreach ($this->view->fotos as $key => $fotos) {
-                                    ?>
-                                    <a href="public/img/fotos_vitimas/<?php echo $fotos['endereco_foto'] ?>" data-sub-html="<?php echo $fotos['legenda'] ?>">
-                                        <img class="img-responsive" src="public/img/fotos_vitimas/<?php echo $fotos['endereco_foto'] ?>">
-                                        <div class="demo-gallery-poster">
-                                            <img src="public/img/zoom.png">
-                                        </div>
-                                    </a>
-                                <?php
-                            }
-                        }
-                        ?>
-
-                            <a class="" href="public/img/fotografias/frente.jpg" data-sub-html="Frente da boate hoje">
-                                <img class="img-responsive" src="public/img/fotografias_thumbnails/frente.jpg">
-                                <div class="demo-gallery-poster">
-                                    <img src="public/img/zoom.png">
-                                </div>
-                            </a>
-                            <a class="" href="public/img/fotografias/ciluetas.jpg" data-sub-html="Silhuetas das vítimas">
-                                <img class="img-responsive" src="public/img/fotografias_thumbnails/ciluetas.jpg">
-                                <div class="demo-gallery-poster">
-                                    <img src="public/img/zoom.png">
-                                </div>
-                            </a>
-                            <a class="" href="public/img/fotografias/cartases.jpg" data-sub-html="Manifestação nas ruas de Santa Maria">
-                                <img class="img-responsive" src="public/img/fotografias_thumbnails/cartases.jpg">
-                                <div class="demo-gallery-poster">
-                                    <img src="public/img/zoom.png">
-                                </div>
-                            </a>
-                            <a class="" href="public/img/fotografias/vigilia.jpg" data-sub-html="Aniversário da tragédia">
-                                <img class="img-responsive" src="public/img/fotografias_thumbnails/vigilia.jpg">
-                                <div class="demo-gallery-poster">
-                                    <img src="public/img/zoom.png">
-                                </div>
-                            </a>
-                            <a class="" href="public/img/fotografias/desfile.jpg" data-sub-html="Manifestação nas ruas de Santa Maria">
-                                <img class="img-responsive" src="public/img/fotografias_thumbnails/desfile.jpg">
-                                <div class="demo-gallery-poster">
-                                    <img src="public/img/zoom.png">
-                                </div>
-                            </a>
-                            <a class="" href="public/img/fotografias/tenda.jpg" data-sub-html="Tenda da tragédia">
-                                <img class="img-responsive" src="public/img/fotografias_thumbnails/tenda.jpg">
-                                <div class="demo-gallery-poster">
-                                    <img src="public/img/zoom.png">
-                                </div>
-                            </a>
-                            <a class="" href="public/img/fotografias/marcha.jpg" data-sub-html="Passeata em Demanda de Justiça">
-                                <img class="img-responsive" src="public/img/fotografias_thumbnails/marcha.jpg">
-                                <div class="demo-gallery-poster">
-                                    <img src="public/img/zoom.png">
-                                </div>
-                            </a>
-                            <a class="" href="public/img/fotografias/movimiento.jpg" data-sub-html="Associação dos Familiares das Vítimas">
-                                <img class="img-responsive" src="public/img/fotografias_thumbnails/movimiento.jpg">
-                                <div class="demo-gallery-poster">
-                                    <img src="public/img/zoom.png">
-                                </div>
-                            </a>
-                            <a class="" href="public/img/fotografias/chicos.jpg" data-sub-html="Dia das Crianças na Tenda">
-                                <img class="img-responsive" src="public/img/fotografias_thumbnails/chicos.jpg">
-                                <div class="demo-gallery-poster">
-                                    <img src="public/img/zoom.png">
-                                </div>
-                            </a>
-                        </div>
+        <div class="row">
+            <div class="col-md-7 mr-auto ml-auto">
+                <h4 class="text-center card-title" style="font-size: 22px; margin-top: 30px">Galeria de Memórias</h4><br />
+                <div class="d-flex justify-content-center">
+                    <div id="loaderGaleria" class="loader" style="display: none"></div>
+                </div>
+                <div class="demo-gallery">
+                    <div id="galeria_fotos" idvitima="<?php echo $this->view->perfil_vitima['idVitima']; ?>">
                     </div>
                 </div>
             </div>

@@ -207,6 +207,12 @@ class Route extends Bootstrap {
 			'action' => 'adicionarDocumento'
 		);
 
+		$routes['getFotos'] = array(
+			'route' => '/getFotos',
+			'controller' => 'VitimaController',
+			'action' => 'getFotos'
+		);
+
 		$this->setRoutes($routes);
 	}
 

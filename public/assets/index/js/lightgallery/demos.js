@@ -44,19 +44,5 @@ $(document).ready(function () {
                 });
             });
         };
-    } else { //esta na pagina de vitima
-        var $animThumb = $('#galeria_fotos');
-        if ($animThumb.length) {
-            $animThumb.justifiedGallery({
-                rowHeight: 120,
-                maxRowHeight: 140,
-                margins: 2,
-                lastRow: 'justify',
-            }).on('jg.complete', function () {
-                $animThumb.lightGallery({
-                    thumbnail: true
-                });
-            });
-        };
-    }
+    } 
 });
