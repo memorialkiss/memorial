@@ -58,7 +58,7 @@ class Videos extends Model {
     }
 
     public function getVideosVitima(){
-        $query = "select idVideo, link FROM videos WHERE fk_idVitima = :id order by idVideo desc";
+        $query = "select idVideo, link FROM videos WHERE fk_idVitima = :id AND videos.status=1 order by idVideo desc";
         $stmt = $this->db->prepare($query);
         $stmt->bindValue(':id', $this->__get('fk_idVitima'));
         $stmt->execute();
