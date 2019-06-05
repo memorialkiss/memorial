@@ -50,10 +50,10 @@ class Route extends Bootstrap {
 			'action' => 'vitimas'
 		);
 
-		$routes['dashboard/comentarios'] = array(
-			'route' => '/dashboard/comentarios',
+		$routes['dashboard/recordacoes'] = array(
+			'route' => '/dashboard/recordacoes',
 			'controller' => 'DashboardController',
-			'action' => 'comentarios'
+			'action' => 'recordacoes'
 		);
 
 		$routes['dashboard/fotos'] = array(

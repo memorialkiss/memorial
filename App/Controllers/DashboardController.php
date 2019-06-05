@@ -54,7 +54,7 @@ class DashboardController extends Action {
     }
 
     //retorna pagina de comentarios no dashboard
-    public function comentarios(){
+    public function recordacoes(){
         $this->validaAutenticacao();
         $comentario = Container::getModel('Comentarios');
         $this->view->comentarios = $comentario->getComentariosNaoAprovado();
@@ -63,7 +63,7 @@ class DashboardController extends Action {
         $this->view->vitimas = $vitimas->getAllDashboard();
 
         $this->menu();
-        $this->render('comentarios', 'layout-dashboard');
+        $this->render('recordacoes', 'layout-dashboard');
     }
 
     //retorna comentarios aceitos no dashboard na aba visualizar/remover recordacoes

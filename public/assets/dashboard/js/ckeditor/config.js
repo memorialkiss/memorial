@@ -21,7 +21,7 @@ CKEDITOR.editorConfig = function( config ) {
 			{ name: 'document',	   groups: [ 'mode', 'document', 'doctools' ] },
 			{ name: 'tools' },
 		];
-	} else if (pagina == 'comentarios') {
+	} else if (pagina == 'recordacoes') {
 		config.toolbarGroups = [
 			{ name: 'clipboard',   groups: [ 'undo' ] },
 			{ name: 'document',	   groups: [ 'mode', 'document', 'doctools' ] },

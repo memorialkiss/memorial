@@ -233,18 +233,37 @@ $(document).ready(function () {
         $("#linkVtm").attr("href", link);
     });
 
+    let retornaMes = (mes) => {
+        if(mes == 1) return 'Janeiro';
+        if(mes == 2) return 'Fevereiro';
+        if(mes == 3) return 'Março';
+        if(mes == 4) return 'Abril';
+        if(mes == 5) return 'Maio';
+        if(mes == 6) return 'Junho';
+        if(mes == 7) return 'Julho';
+        if(mes == 8) return 'Agosto';
+        if(mes == 9) return 'Setembro';
+        if(mes == 10) return 'Outubro';
+        if(mes == 11) return 'Novembro';
+        if(mes == 12) return 'Dezembro';
+    }
+
     //adiciona nova recordacao com administrador na aba "recordacoes"
     $('#btnAdicionarRecordacao').click(function () {
         var nome = $("#recordacaoNome").val();
         var sobrenome = $("#recordacaoSobrenome").val();
-        var data = $("#recordacaoData").val();
-        var lugar = $("#recordacaoLugar").val();
+        var periodico = $("#recordacaoPeriodico").val();
         var descricao = CKEDITOR.instances.recordacaoDescricao.getData();
+        var data = $("#recordacaoData").val();
+        var pagina = $("#recordacaoPagina").val();
 
-        if (nome && sobrenome && data && descricao && lugar) {
+
+        if (nome && sobrenome && data && descricao && periodico && pagina) {
             nome = nome + " " + sobrenome;
+            dataFormatada = data.split("-")[2] + " de " + retornaMes(data.split("-")[1]) + " de " + data.split("-")[0];
+            descricaoPeriodico = periodico + ", " + dataFormatada + ". Página " + pagina + "."; 
             data = data + " 04:44:44";
-            descricao = descricao + "<br/><br/><sup>" + lugar + "</sup>";
+            descricao = descricao + "<br/><br/><sup>" + descricaoPeriodico + "</sup>";
 
             var recordacao = {};
             recordacao.id = $("#vtmAdicionarRecordacao").val();

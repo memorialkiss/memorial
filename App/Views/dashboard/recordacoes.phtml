@@ -279,30 +279,36 @@
                             </div>
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-md-4">
+                                    <div class="col-md-6 col-6">
                                         <div class="form-group">
-                                            <label>Nome</label>
+                                            <label>Nome (autor)</label>
                                             <input id="recordacaoNome" name="nome" type="text" class="form-control" placeholder="Nome" autocomplete="off" required>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-6 col-6">
                                         <div class="form-group">
-                                            <label>Sobrenome</label>
+                                            <label>Sobrenome (autor)</label>
                                             <input id="recordacaoSobrenome" name="sobrenome" type="text" class="form-control" placeholder="Sobrenome" autocomplete="off" required>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Nome do Periódico</label>
+                                            <input id="recordacaoPeriodico" name="legenda" type="text" class="form-control" placeholder="Exemplo: Diário de Santa Maria" autocomplete="off" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-6">
                                         <div class="form-group">
                                             <label>Data</label>
                                             <input id="recordacaoData" type="date" class="form-control" required>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-2 col-6">
                                         <div class="form-group">
-                                            <label>Lugar, data (formatada) e página da publicação</label>
-                                            <input id="recordacaoLugar" name="legenda" type="text" class="form-control" placeholder="Exemplo: Publicado no Diário de Santa Maria, 26 de fevereiro de 2013. Página 38." autocomplete="off" required>
+                                            <label>Página</label>
+                                            <input id="recordacaoPagina" class="form-control" type="number" min="1" placeholder="Número" required>
                                         </div>
                                     </div>
                                 </div>
