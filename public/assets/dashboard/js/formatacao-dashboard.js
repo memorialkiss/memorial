@@ -263,7 +263,7 @@ $(document).ready(function () {
             dataFormatada = data.split("-")[2] + " de " + retornaMes(data.split("-")[1]) + " de " + data.split("-")[0];
             descricaoPeriodico = periodico + ", " + dataFormatada + ". Página " + pagina + "."; 
             data = data + " 04:44:44";
-            descricao = descricao + "<br/><br/><sup>" + descricaoPeriodico + "</sup>";
+            descricao = descricao + "<br/><br/><sup> " + descricaoPeriodico + " </sup>";
 
             var recordacao = {};
             recordacao.id = $("#vtmAdicionarRecordacao").val();
