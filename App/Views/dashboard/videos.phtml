@@ -1,0 +1,175 @@
+<link href="../public/assets/dashboard/css/formatacao-informacoes.css" rel="stylesheet" />
+
+<div class="main-panel">
+    <!-- Modal videos -->
+    <div class="modal fade" id="modalMensagem" tabindex="-1" role="dialog" aria-labelledby="modalMensagem" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="border: none"></div>
+                <div class="modal-body" style="border: none; padding-top: 0; padding-bottom: 0;">
+                    <h5 id="textoModal"></h5>
+                </div>
+                <div class="modal-footer" style="border: none; padding-top: 0;">
+                    <div class="right-side">
+                        <button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Fechar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- fim modal videos-->
+
+    <!-- Navbar -->
+    <nav id="navegacao" class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
+        <div class="container-fluid">
+            <div class="navbar-wrapper">
+                <div class="navbar-toggle">
+                    <button type="button" class="navbar-toggler">
+                        <span class="navbar-toggler-bar bar1"></span>
+                        <span class="navbar-toggler-bar bar2"></span>
+                        <span class="navbar-toggler-bar bar3"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Fim navbar -->
+
+    <div class="content">
+        <div class="row">
+            <div class="col-md-12 ml-auto mr-auto">
+                <div class="navbar-wrapper text-center">
+                    <a class="navbar-brand">Vídeos</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="nav-tabs-navigation">
+            <div class="nav-tabs-wrapper">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#tabrecebidas" role="tab">Recebidos</a>
+                    </li>
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#tabadicionar" role="tab">Adicionar</a>
+                    </li> -->
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#tabremover" role="tab">Visualizar/Remover</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="tab-content">
+            <div class="tab-pane active" id="tabrecebidas" role="tabpanel">
+                <?php if ($this->view->videos == NULL) { ?>
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <div style="font-size: 14px; margin-top:10px">O Memorial não recebeu nenhum vídeo novo</div>
+                        </div>
+                    </div>
+                <?php } else {
+                foreach ($this->view->videos as $key => $video) { ?>
+                        <div class="row">
+                            <div class="col-md-10 ml-auto mr-auto">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <label>Vídeo recebido</label>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="embed-responsive embed-responsive-16by9">
+                                                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?php echo $video['link'] ?>" allowfullscreen></iframe>
+                                                        </div>
+                                                    </div>
+                                                </div><br />
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="row">
+                                                    <div class="col-md-10 col-sm-10 col-10">
+                                                        <div class="form-group">
+                                                            <label>Vítima</label>
+                                                            <div class="form-control" value="Nome" style="cursor:auto" disabled><?php echo $video['nomeVitima'] ?></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2 col-sm-2 col-2">
+                                                        <div class="form-group">
+                                                            <label></label>
+                                                            <div id="pagina" class="form-control">
+                                                                <a target="_blank" title="Acessar perfil da vítima" href="/vitima?id=<?php echo $video['idVitima'] ?>"><i class="fas fa-external-link-alt" style="font-size: 18px"></i></a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label>Nome do remetente</label>
+                                                            <div class="form-control" value="Nome" style="cursor:auto" disabled><?php echo $video['nomeRemetente'] ?></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label>Descrição</label>
+                                                            <textarea class="form-control" value="Nome" rows="2" style="cursor:auto" disabled><?php if ($video['descricao'] != '') {
+                                                                                                                                                    echo $video['descricao'];
+                                                                                                                                                } else {
+                                                                                                                                                    echo 'Sem descrição';
+                                                                                                                                                } ?></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="ml-auto float-right">
+                                                            <button type="button" data-id_rejeitar="<?php echo $video['idVideo'] ?>" class="btn btn-danger btn-round videoBtnRejeitar">REJEITAR</button>
+                                                            <button type="button" data-id_aceitar="<?php echo $video['idVideo'] ?>" class="btn btn-primary btn-round videoBtnAceitar">ACEITAR</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php }
+            }
+            ?>
+            </div>
+
+            <div class="tab-pane" id="tabremover" role="tabpanel">
+                <div class="row">
+                    <div class="col-md-6 mr-auto ml-auto">
+                        <div class="form-group">
+                            <select id="videosListaRemover" class="form-control">
+                                <option selected disabled>Selecione a vítima para visualizar/remover os vídeos</option>
+                                <?php foreach ($this->view->vitimas as $key => $vitima) { ?>
+                                    <option value="<?php echo $vitima['idVitima']; ?>"><?php echo $vitima['nome']; ?></option>
+                                <?php
+                            } ?>
+                            </select>
+                        </div>
+                    </div>
+                    <br /><br /><br />
+                </div>
+
+                <div id="mensagemSemVideos" style="display:none"></div>
+                <div id="videosAceitos" style="display:none">
+                    <div class="row">
+                        <div id="campoDeVideos" class="col-md-10 ml-auto mr-auto"></div> <!-- recebe os videos dinamicamente do bd -->
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>

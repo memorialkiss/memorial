@@ -22,12 +22,12 @@ class InfoAnalisar extends Model {
     }
 
     public function submeterFormulario(){
-        $query = "insert into infoAnalisar (nome, email, parentesco, youtube, descricao, fk_idVitima, status) values(:nome, :email, :parentesco, :youtube, :descricao, :fk, 0)";
+        $query = "insert into infoAnalisar (nome, email, parentesco, descricao, fk_idVitima, status) values(:nome, :email, :parentesco, :descricao, :fk, 0)";
         $stmt = $this->db->prepare($query);
         $stmt->bindValue(':nome', $this->__get('nome'));
         $stmt->bindValue(':email', $this->__get('email'));
         $stmt->bindValue(':parentesco', $this->__get('parentesco'));
-        $stmt->bindValue(':youtube', $this->__get('youtube'));
+        // $stmt->bindValue(':youtube', $this->__get('youtube'));
         $stmt->bindValue(':descricao', $this->__get('descricao'));
         $stmt->bindValue(':fk', $this->__get('fkIdVitima'));
         $stmt->execute();

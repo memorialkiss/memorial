@@ -2,7 +2,6 @@ $(document).ready(function() {
     window.onscroll = function() {
         disableNavbar()
     };
-
     const disableNavbar = () => {
         if ((document.body.scrollTop > 80 || document.documentElement.scrollTop > 80)) {
             $("#navegacao").css("display", "none");
@@ -10,7 +9,6 @@ $(document).ready(function() {
             $("#navegacao").css("display", "inline");
         }
     }
-
     if ((document.body.scrollTop > 80 || document.documentElement.scrollTop > 80)) {
         $("#navegacao").css("display", "none");
     };
@@ -48,7 +46,11 @@ $(document).ready(function() {
             info.parentesco = $("#parentesco").val();
             info.youtube = $("#youtube").val();
             info.descricao = $("#descricao").val();
+            if($("#sobrenome").val()){
+                info.nome = info.nome + " " + $("#sobrenome").val();
+            }
             info = JSON.stringify(info);
+
             $.ajax({
                 url: "/enviarInformacao",
                 method: "POST",
@@ -59,14 +61,57 @@ $(document).ready(function() {
                     $('#modalMensagem').modal('show');
                 }
             });
-        } else {
-            console.log('eh NULL')
         }
     });
 
     $('#modalMensagem').on('hidden.bs.modal', function() {
         window.location.replace("/vitima?id=".concat(url_atual));
-    })
+    });
+
+    $('#btnEnviarVideo').click(function() {
+        let link = $("#videoLink").val(); 
+        let nome = $("#videoNome").val(); 
+        let descricao = $("#videoDescricao").val();
+
+        if(link == '' || (link.indexOf("youtu") == -1)){
+            $('#mensagemDaModal').html('Você deve colocar o link de um vídeo do youtube!');
+            $('#modalMensagem2').modal('show');
+            return false;
+        } else if(nome == ''){
+            $('#mensagemDaModal').html('Você deve colocar seu nome!');
+            $('#modalMensagem2').modal('show');
+            return false;
+        } 
+
+        //pegando parametro do video
+        link = link.split('v=')[1];
+        if(link == undefined) link = link.split('be/')[1];
+        link = link.split('&')[0];
+
+        if(link != '' && nome != '' && url_atual != '') {
+            var video = {};
+            video.id = url_atual;
+            video.link = link;
+            video.nome = nome;
+            video.descricao = descricao;
+            video = JSON.stringify(video);
+
+            $.ajax({
+                url: "/enviarVideo",
+                method: "POST",
+                data: {
+                    video: video
+                },
+                success: function(data) {
+                    $('#mensagemDaModal').html('Video enviado com sucesso! <span style="color: red"><i class="fas fa-heart"></i>');
+                    $('#modalMensagem2').modal('show');
+                    $('#modalMensagem2').on('hidden.bs.modal', function () {
+                        location.reload();
+                    });
+                }
+            });
+        }
+    });
 });
 
 var uppy = Uppy.Core({

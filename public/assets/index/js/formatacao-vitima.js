@@ -184,7 +184,7 @@ $(document).ready(function() {
     ];
 
     $.ajax({
-        url: "/getFotos",
+        url: "/getFotosVideos",
         method: "POST",
         data: {
             id: id
@@ -194,18 +194,30 @@ $(document).ready(function() {
         },
         success: function(data) {
             recebidas = JSON.parse(data);
+            console.log(recebidas);
 
             /* formata em html as fotos recebidas*/ 
-            recebidas.forEach((foto)=> {
-                if(foto.legenda == null) foto.legenda = '';
-                resultado += `
-                <a class="" href="public/img/fotos_vitimas/${foto.endereco_foto}" data-sub-html="${foto.legenda}">
-                    <img class="img-responsive" src="public/img/fotos_vitimas/${foto.endereco_foto}">
-                    <div class="demo-gallery-poster">
-                        <img src="public/img/zoom.png">
-                    </div>
-                </a>
-                `;
+            recebidas.forEach((elemento)=> {
+                if(elemento.idFoto){
+                    if(elemento.legenda == null) elemento.legenda = '';
+                    resultado += `
+                    <a class="" href="public/img/fotos_vitimas/${elemento.endereco_foto}" data-sub-html="${elemento.legenda}">
+                        <img class="img-responsive" src="public/img/fotos_vitimas/${elemento.endereco_foto}">
+                        <div class="demo-gallery-poster">
+                            <img src="public/img/zoom.png">
+                        </div>
+                    </a>
+                    `;
+                } else if(elemento.idVideo){
+                    resultado += `
+                    <a class="" href="https://www.youtube.com/watch?v=${elemento.link}"">
+                        <img class="img-responsive" src="http://i3.ytimg.com/vi/${elemento.link}/hqdefault.jpg">
+                        <div class="demo-gallery-poster" style="margin-left: -10px; margin-top: -10px">
+                            <img src="public/img/play-button.png">
+                        </div>
+                    </a>
+                    `;
+                }
             });
 
             /* se nao tiver uma quantidade minima, concatena com as fotos padrao */

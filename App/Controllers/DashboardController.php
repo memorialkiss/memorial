@@ -18,8 +18,12 @@ class DashboardController extends Action {
         $fotos = Container::getModel('Fotos');
         $this->view->contFotos = $fotos->getContFotos();
 
+        $videos = Container::getModel('Videos');
+        $this->view->contVideos = $videos->getContVideos();
+
         $info = Container::getModel('InfoAnalisar');
         $this->view->contInfo = $info->getContInfo();
+        
     }
 
     //editar vitimas no dashboard
@@ -137,6 +141,19 @@ class DashboardController extends Action {
         $this->render('fotos', 'layout-dashboard');
     }
 
+    public function videos(){
+        $this->validaAutenticacao();
+        
+        $videos = Container::getModel('Videos');
+        $this->view->videos = $videos->getVideosNaoAceitos();
+        
+        $vitimas = Container::getModel('Vitimas');
+        $this->view->vitimas = $vitimas->getAllDashboard();
+        
+        $this->menu();
+        $this->render('videos', 'layout-dashboard');
+    }
+
     public function documentos(){
         $this->validaAutenticacao();
 
@@ -208,6 +225,13 @@ class DashboardController extends Action {
         $foto = Container::getModel('Fotos');
         $foto->__set('idVitima', $_POST['idVitima']);
         echo (json_encode($foto->getFotosVitima()));
+    }
+
+    public function getVideosVitima(){
+        $this->validaAutenticacao();
+        $videos = Container::getModel('Videos');
+        $videos->__set('fk_idVitima', $_POST['idVitima']);
+        echo (json_encode($videos->getVideosVitimaFull()));
     }
 
     public function atualizarFoto(){

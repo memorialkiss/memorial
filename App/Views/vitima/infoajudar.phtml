@@ -141,8 +141,8 @@
         <div class="row">
             <div class="col-md-6 ml-auto mr-auto">
                 <div class="textoDescricao text-center" style="font-weight: 400">A memória é um dos alicerces que dá sentido a vida. Ajude-nos enviando informações sobre <?php echo $this->view->perfil_vitima['nome']; ?>, para que sua memória seja preservada.
+                    <br/><br/>O que você deseja enviar?
                 </div>
-                <br />
             </div>
         </div>
         <br />
@@ -154,14 +154,17 @@
                         <a class="nav-link active" data-toggle="tab" href="#tabinfo" role="tab">Informações</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#tabfotos" role="tab">Enviar fotos</a>
+                        <a class="nav-link" data-toggle="tab" href="#tabfotos" role="tab">Fotos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#tabvideo" role="tab">Video</a>
                     </li>
                 </ul>
             </div>
         </div>
 
         <!-- Tab panes -->
-        <div class="tab-content following">
+        <div class="tab-content">
             <div class="tab-pane active" id="tabinfo" role="tabpanel">
                 <div class="row">
                     <div class="col-md-8 ml-auto mr-auto">
@@ -175,22 +178,22 @@
                                 </div>
                                 <div class="col-md-6 col-sm-6">
                                     <div class="form-group">
-                                        <label>E-mail*</label>
-                                        <input id="email" name="email" type="email" class="form-control border-input" placeholder="Digite seu e-mail" required>
+                                        <label>Sobrenome</label>
+                                        <input id="sobrenome" type="text" class="form-control border-input" placeholder="Digite seu sobrenome" required>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6 col-sm-12">
+                                <div class="col-md-6 col-sm-6">
                                     <div class="form-group">
-                                        <label>O que você era da vítima?</label>
-                                        <input id="parentesco" name="parentesco" type="text" class="form-control border-input" placeholder="Amigo, primo, irmão etc">
+                                        <label>E-mail*</label>
+                                        <input id="email" name="email" type="email" class="form-control border-input" placeholder="Digite seu e-mail" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-sm-12">
                                     <div class="form-group">
-                                        <label>Tem um vídeo no YouTube? </label>
-                                        <input id="youtube" name="youtube" type="text" class="form-control border-input" placeholder="Coloque o link aqui">
+                                        <label>O que você era da vítima?</label>
+                                        <input id="parentesco" name="parentesco" type="text" class="form-control border-input" placeholder="Amigo, primo, irmão etc">
                                     </div>
                                 </div>
                             </div>
@@ -203,14 +206,14 @@
                             <div class="form-check">
                                 <label class="form-check-label textoCheckbox">
                                     <input id="termodecompartilhamento" class="form-check-input" type="checkbox" value="">
-                                    Estou de acordo com a 
+                                    Estou de acordo com a
                                     <span class="form-check-sign">
                                         <span class="check"></span>
                                     </span>
                                     <a href="#" data-toggle="modal" data-target="#termosdeuso" style="font-weight: 500;">política de compartilhamento</a>
                                 </label>
                             </div>
-                            <br/>
+                            <br />
 
                             <div class="text-center">
                                 <button type="button" id="btnEnviarInformacao" class="btn btn-outline-info btn-round btn-wd"><i class="fas fa-heart"></i>&nbsp;&nbsp;Enviar</button>
@@ -220,15 +223,58 @@
                     </div>
                 </div>
             </div>
+
+            <!-- tab fotos -->
             <div class="tab-pane text-center" id="tabfotos" role="tabpanel">
                 <div class="row">
                     <div class="col-md-6 ml-auto mr-auto">
-                        <div class="textoDescricao text-center" style="font-weight: 400; color: #3c4858">Você tem fotos com/ou de <?php echo $this->view->perfil_vitima['nome']; ?> e gostaria de compartilhar? Clique no botão abaixo para enviar para o Memorial.<br/><br/>Ao enviar fotos você concorda com a <a href="#" data-toggle="modal" data-target="#termosdeuso" style="font-weight: 500;">política de compartilhamento</a>
+                        <div class="textoDescricao text-center" style="font-weight: 400; color: #3c4858">Você tem fotos com/ou de <?php echo $this->view->perfil_vitima['nome']; ?> e gostaria de compartilhar? Clique no botão abaixo para enviar para o Memorial.<br /><br />Ao enviar fotos você concorda com a <a href="#" data-toggle="modal" data-target="#termosdeuso" style="font-weight: 500;">política de compartilhamento</a>
                         </div><br />
                         <button class="btn btn-outline-default btn-round" id="uppyModalOpener"><i class="fas fa-heart"></i>&nbsp;&nbsp;Enviar Fotos</button>
                     </div>
                 </div>
             </div>
+
+            <!-- Tab videos -->
+            <div class="tab-pane" id="tabvideo" role="tabpanel">
+                <div class="row">
+                    <div class="col-md-8 ml-auto mr-auto">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-7 col-sm-6">
+                                    <div class="form-group">
+                                        <label>Link do vídeo (Youtube)*</label>
+                                        <input id="videoLink" type="text" class="form-control border-input" placeholder="Exemplo: www.youtube.com/watch?v=VYRCTpMfRfk" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-5 col-sm-6">
+                                    <div class="form-group">
+                                        <label>Seu nome*</label>
+                                        <input id="videoNome" type="text" class="form-control border-input" placeholder="Digite seu nome" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 col-sm-6">
+                                    <div class="form-group">
+                                        <label>Breve descrição da importância do vídeo (não obrigatório)</label>
+                                        <textarea id="videoDescricao" class="form-control" placeholder="Exemplo: Essa era uma música que ele gostava bastante ou essa é uma filmagem de uma festa de aniversário etc." rows="3" maxlength="150" required></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="textoDescricao text-center">
+                                Ao enviar um vídeo você concorda com a <a href="#" data-toggle="modal" data-target="#termosdeuso" style="font-weight: 500;">política de compartilhamento</a>
+                            </div>
+
+                            <div class="text-center" style="padding-top: 10px">
+                                <button type="button" id="btnEnviarVideo" class="btn btn-outline-danger btn-round btn-wd"><i class="fas fa-heart"></i>&nbsp;&nbsp;Enviar vídeo</button>
+                            </div>
+                            <input id="idVitima" name="idVitima" type="text" value="<?php echo $this->view->perfil_vitima['idVitima'] ?>" style="display: none">
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</div>

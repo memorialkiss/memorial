@@ -80,6 +80,12 @@ class Route extends Bootstrap {
 			'action' => 'backup'
 		);
 
+		$routes['dashboard/videos'] = array(
+			'route' => '/dashboard/videos',
+			'controller' => 'DashboardController',
+			'action' => 'videos'
+		);
+
 		$routes['sair'] = array(
 			'route' => '/sair',
 			'controller' => 'AuthController',
@@ -213,16 +219,40 @@ class Route extends Bootstrap {
 			'action' => 'adicionarDocumento'
 		);
 
-		$routes['getFotos'] = array(
-			'route' => '/getFotos',
+		$routes['getFotosVideos'] = array(
+			'route' => '/getFotosVideos',
 			'controller' => 'VitimaController',
-			'action' => 'getFotos'
+			'action' => 'getFotosVideos'
 		);
 
 		$routes['download'] = array(
 			'route' => '/download',
 			'controller' => 'DashboardController',
 			'action' => 'download'
+		);
+
+		$routes['enviarVideo'] = array(
+			'route' => '/enviarVideo',
+			'controller' => 'VitimaController',
+			'action' => 'enviarVideo'
+		);
+
+		$routes['aceitarVideo'] = array(
+			'route' => '/aceitarVideo',
+			'controller' => 'VitimaController',
+			'action' => 'aceitarVideo'
+		);
+
+		$routes['rejeitarVideo'] = array(
+			'route' => '/rejeitarVideo',
+			'controller' => 'VitimaController',
+			'action' => 'rejeitarVideo'
+		);
+
+		$routes['getVideosVitima'] = array(
+			'route' => '/getVideosVitima',
+			'controller' => 'DashboardController',
+			'action' => 'getVideosVitima'
 		);
 
 		$this->setRoutes($routes);

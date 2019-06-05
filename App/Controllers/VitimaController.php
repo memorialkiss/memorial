@@ -20,13 +20,19 @@ class VitimaController extends Action
 		//comentarios
 		$comentarios = Container::getModel('Comentarios');
 		$comentarios->__set('idVitima', $_GET['id']);
+		
 		//fotos
 		$fotos = Container::getModel('Fotos');
 		$fotos->__set('idVitima', $_GET['id']);
 
+		//videos
+		$videos = Container::getModel('Videos');
+		$videos->__set('fk_idVitima', $_GET['id']);
+
 		$this->view->perfil_vitima = $pessoa->getVitima();
 		$this->view->comentarios = $comentarios->getComentariosAprovado();
-		$this->view->fotos = $fotos->getFotosVitima();
+		// $this->view->fotos = $fotos->getFotosVitima();
+		// $this->view->videos = $videos->getVideosVitima();
 		$this->view->contRecordacoes = $comentarios->getContComentariosAceitos();
 		$this->render('vitima', 'layout-vitima');
 	}
@@ -44,10 +50,19 @@ class VitimaController extends Action
 	}
 
 	//retorna fotos para pagina da vitima
-	public function getFotos(){
+	public function getFotosVideos(){
 		$fotos = Container::getModel('Fotos');
 		$fotos->__set('idVitima', $_POST['id']);
-		echo (json_encode($fotos->getFotosVitima()));
+
+		$videos = Container::getModel('Videos');
+		$videos->__set('fk_idVitima', $_POST['id']);
+
+		$fotosResultado = $fotos->getFotosVitima();
+		$videosResultado = $videos->getVideosVitima();
+
+		$resultado = array_merge($fotosResultado, $videosResultado);
+
+		echo (json_encode($resultado));
 	}
 
 	public function uploadimagens($admin = null)
@@ -120,7 +135,7 @@ class VitimaController extends Action
 		$info->__set('nome', $tmp->nome);
 		$info->__set('email', $tmp->email);
 		$info->__set('parentesco', $tmp->parentesco);
-		$info->__set('youtube', $tmp->youtube);
+		// $info->__set('youtube', $tmp->youtube);
 		$info->__set('descricao', $tmp->descricao);
 		print_r($info->submeterFormulario());
 	}
@@ -147,5 +162,27 @@ class VitimaController extends Action
 		$vitima = Container::getModel('Vitimas');
 		$this->view->jovens = $vitima->getAllSimplicified();
 		$this->render('jovens', 'layout-jovens');
+	}
+
+	public function enviarVideo(){
+		$video = Container::getModel('Videos');
+		$tmp = json_decode($_POST['video']);
+		$video->__set('fk_idVitima', $tmp->id);
+		$video->__set('link', $tmp->link);
+		$video->__set('nome', $tmp->nome);
+		$video->__set('descricao', $tmp->descricao);
+		print_r($video->submeterVideo());
+	}
+
+	public function aceitarVideo(){
+		$video = Container::getModel('Videos');
+		$video->__set('idVideo', $_POST['id']);
+		$video->aceitarVideo();
+	}
+
+	public function rejeitarVideo(){
+		$video = Container::getModel('Videos');
+		$video->__set('idVideo', $_POST['id']);
+		$video->rejeitarVideo();
 	}
 }

@@ -348,6 +348,48 @@ $(document).ready(function () {
         $("#uppyModalOpener").css("display", "inline");
     });
 
+    //aceitar comentario
+    $('.videoBtnAceitar').click(function () {
+        var id = $(this).data('id_aceitar');
+        if (id != '') {
+            $.ajax({
+                url: "/aceitarVideo",
+                method: "POST",
+                data: {
+                    id: id
+                },
+                success: function (data) {
+                    $('#textoModal').html('Vídeo aprovado com sucesso!');
+                    $('#modalMensagem').modal('show');
+                },
+                error: function (request, status, error) {
+                    alert(request.responseText);
+                }
+            });
+        }
+    });
+
+    //aceitar comentario
+    $('.videoBtnRejeitar').click(function () {
+        var id = $(this).data('id_rejeitar');
+        if (id != '') {
+            $.ajax({
+                url: "/rejeitarVideo",
+                method: "POST",
+                data: {
+                    id: id
+                },
+                success: function (data) {
+                    $('#textoModal').html('Vídeo rejeitado com sucesso!');
+                    $('#modalMensagem').modal('show');
+                },
+                error: function (request, status, error) {
+                    alert(request.responseText);
+                }
+            });
+        }
+    });
+
     //listar vitimas na aba "editar fotos"
     $('#listaVitimasEditFoto').change(function () {
         $("#mensagemSemFotos").css("display", "none");
@@ -372,8 +414,8 @@ $(document).ready(function () {
 </div>`;
                     $("#mensagemSemFotos").html(resultado);
                     $("#mensagemSemFotos").css("display", "inline");
-                
-                /* SE TEM FOTO */
+
+                    /* SE TEM FOTO */
                 } else {
                     $.each(data, function (i, foto) {
                         if (foto['legenda'] != null) tmp = foto['legenda']; else tmp = '';
@@ -534,13 +576,13 @@ $(document).ready(function () {
         <div style="font-size: 14px">Essa vítima não recebeu nenhuma recordação</div>
     </div>
 </div>`;
-                /* SE TEM RECORDACAO */
+                    /* SE TEM RECORDACAO */
                 } else {
                     $.each(data, function (i, comentario) {
-                        if(comentario['data'].indexOf("04:44:44") != -1){
+                        if (comentario['data'].indexOf("04:44:44") != -1) {
                             comentario['data'] = comentario['data'].split(' ')[0];
                         }
-                        
+
                         resultado += `
 <div class="row secaoComentario">
     <div class="col-md-10 ml-auto mr-auto">
@@ -604,7 +646,7 @@ $(document).ready(function () {
 
                 $("#campoDeRecordacoes").html(resultado);
                 $("#recordacoesRecebidas").css("display", "inline");
-                
+
                 $('.btnRejeitar').click(function () {
                     var id = $(this).data('id_rejeitar');
                     if (id != '') {
@@ -634,5 +676,139 @@ $(document).ready(function () {
         } else {
             $("#divSelecionarVitima").css('display', 'none');
         }
+    });
+
+    //listar videos na aba remover de "Videos"
+    $('#videosListaRemover').change(function () {
+        $("#mensagemSemVideos").css("display", "none");
+        $("#videosaceitos").css("display", "none");
+        var resultado = '';
+        var tmp = '';
+        $.ajax({
+            url: "/getVideosVitima",
+            method: "POST",
+            dataType: 'json',
+            data: {
+                idVitima: $(this).val()
+            },
+            success: function (data) {
+                if (data == '') {
+                    resultado = `
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <div style="font-size: 14px">Essa vítima não tem nenhum vídeo</div>
+                            </div>
+                        </div>
+                        `;
+                    $("#mensagemSemVideos").html(resultado);
+                    $("#mensagemSemVideos").css("display", "inline");
+                } else {
+                    $.each(data, function (i, video) {
+                        video['descricao'] = video['descricao'] == null ? 'Sem descrição' : video['descricao'];
+                        resultado += `
+                            <div class="row">
+                                <div class="col-md-12 ml-auto mr-auto">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <label>Vídeo recebido</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="embed-responsive embed-responsive-16by9">
+                                                                <iframe class="embed-responsive-item"
+                                                                    src="https://www.youtube.com/embed/${video['link']}"
+                                                                    allowfullscreen></iframe>
+                                                            </div>
+                                                        </div>
+                                                    </div><br />
+                                                </div>
+                            
+                                                <div class="col-md-6">
+                                                    <div class="row">
+                                                        <div class="col-md-10 col-sm-10 col-10">
+                                                            <div class="form-group">
+                                                                <label>Vítima</label>
+                                                                <div class="form-control" value="Nome" style="cursor:auto" disabled>${video['nomeVitima']}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2 col-sm-2 col-2">
+                                                            <div class="form-group">
+                                                                <label></label>
+                                                                <div id="pagina" class="form-control">
+                                                                    <a target="_blank" title="Acessar perfil da vítima"
+                                                                        href="/vitima?id=${video['idVitima']}"><i
+                                                                            class="fas fa-external-link-alt" style="font-size: 18px"></i></a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label>Nome do remetente</label>
+                                                                <div class="form-control" value="Nome" style="cursor:auto" disabled>
+                                                                    ${video['nomeRemetente']}</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label>Descrição</label>
+                                                                <textarea class="form-control" rows="2" style="cursor:auto"
+                                                                    disabled>${video['descricao']}</textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="ml-auto float-right">
+                                                                <button type="button" data-id_rejeitar="${video['idVideo']}"
+                                                                    class="btn btn-danger btn-round videoBtnRejeitar">EXCLUIR</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    });
+
+                    $("#campoDeVideos").html(resultado);
+                    $("#videosAceitos").css("display", "inline");
+
+                    //aceitar comentario
+                    $('.videoBtnRejeitar').click(function () {
+                        var id = $(this).data('id_rejeitar');
+                        if (id != '') {
+                            $.ajax({
+                                url: "/rejeitarVideo",
+                                method: "POST",
+                                data: {
+                                    id: id
+                                },
+                                success: function (data) {
+                                    $('#textoModal').html('Vídeo excluído com sucesso!');
+                                    $('#modalMensagem').modal('show');
+                                },
+                                error: function (request, status, error) {
+                                    alert(request.responseText);
+                                }
+                            });
+                        }
+                    });
+                }
+            }
+        });
     });
 });
