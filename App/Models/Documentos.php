@@ -48,7 +48,7 @@ class Documentos extends Model {
     }
 
     public function backup(){
-        $query = "select idDocumento as idDoc, titulo, localPublicacao as localDaPublicacao, data, numPagina as numeroDaPagina, d.descricao, flagDesdobramento as incendioDesdobramento, flagVitima as relativoVitima, nome as nomeDaVitima FROM documentos as d left join vitimas as v on d.fk_idVitima = v.idVitima";
+        $query = "select idDocumento as id, titulo, localPublicacao as localDaPublicacao, data, numPagina as numDaPagina, flagDesdobramento as incendioDesdobramento, flagVitima as relativoVitima, nome as nomeDaVitima, d.descricao FROM documentos as d left join vitimas as v on d.fk_idVitima = v.idVitima";
         $stmt = $this->db->prepare($query);
         $stmt->execute();
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);

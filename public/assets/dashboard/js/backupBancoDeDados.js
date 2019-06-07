@@ -62,7 +62,8 @@ $(document).ready(function (){
                     });
                     nomeArquivo = "kiss_informacoes_";
                 } else {
-                    data.forEach(function(documento){
+                    data.forEach(function(documento, i){
+                        documento['id'] = i+1;
                         documento['descricao'] = removerTagHTML(documento['descricao']);
                         documento['descricao'] = entidadesHTML.decodificar(documento['descricao']);
                         documento['incendioDesdobramento'] = documento['incendioDesdobramento'] == '1' ? 'Sim' : 'Não';
