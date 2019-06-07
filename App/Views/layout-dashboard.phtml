@@ -108,13 +108,20 @@
         <script src="../public/assets/dashboard/js/formatacao-uppy.js" type="text/javascript"></script>
 
         <?php
-        $url = str_replace("/dashboard/", "", $_SERVER["REQUEST_URI"]);
+        $url = str_replace("/dashboard/", "", $_SERVER["REQUEST_URI"]); //pega qual pagina do dashboard usuario esta
+        
         if ($url == 'backup') { ?>
             <script src="../public/assets/dashboard/js/alasql/jszip.js"></script>
             <script src="../public/assets/dashboard/js/alasql/xlsx.js"></script>
             <script src="../public/assets/dashboard/js/alasql/alasql.min.js"></script>
             <script src="../public/assets/dashboard/js/backupBancoDeDados.js" type="text/javascript"></script>
-        <?php } ?>
+        <?php
+        } else if ($url == 'documentos'){
+        ?>
+            <script src="../public/assets/dashboard/js/dashboardDocumentos.js"></script>
+        <?php
+        } 
+        ?>
 </body>
 
 </html>

@@ -172,7 +172,9 @@ class DashboardController extends Action {
                 $todosDocumentos[$i]['nomeVitima'] = null;
             }
         }
+        $this->view->contDocumentos = $documentos->getContDocumentos();
         $this->view->documentos = $todosDocumentos;
+
         $this->menu();
         $this->render('documentos', 'layout-dashboard');
     }
@@ -271,6 +273,31 @@ class DashboardController extends Action {
             $classe = Container::getModel('Documentos');
         }
         echo (json_encode($classe->backup()));
+    }
+
+    public function listarDocumentos(){
+        $documentos = Container::getModel('Documentos');
+        
+		//recebe pagina atual e quantidade de comentarios por pagina
+		$paginaAtual = $_POST['paginaAtual'];
+		$quantidadePorPagina = $_POST['quantidadePorPagina'];
+		$inicio = ($paginaAtual * $quantidadePorPagina) - $quantidadePorPagina;
+
+        $resultado = $documentos->getDocumentosPorPaginacao($inicio, $quantidadePorPagina);
+        
+        $vitimas = Container::getModel('Vitimas');
+        for($i=0; $i < count($resultado); $i++){
+            if($resultado[$i]['flagVitima'] == 1){
+                $vitimas->__set('id', $resultado[$i]['fk_idVitima']);
+                $vtm = $vitimas->getVitima();
+                $resultado[$i]['nomeVitima'] = $vtm['nome'];
+            } else {
+                $resultado[$i]['nomeVitima'] = null;
+            }
+        }
+        $this->view->contDocumentos = $documentos->getContDocumentos();
+
+        echo json_encode($resultado);
     }
 }
 ?>

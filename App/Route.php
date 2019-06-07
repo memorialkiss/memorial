@@ -255,6 +255,12 @@ class Route extends Bootstrap {
 			'action' => 'getVideosVitima'
 		);
 
+		$routes['listarDocumentos'] = array(
+			'route' => '/listarDocumentos',
+			'controller' => 'DashboardController',
+			'action' => 'listarDocumentos'
+		);
+
 		$this->setRoutes($routes);
 	}
 

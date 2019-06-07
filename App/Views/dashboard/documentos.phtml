@@ -68,6 +68,8 @@
     .espacamentoCampo {
         padding-top: 15px;
     }
+
+
 </style>
 
 <div class="main-panel">
@@ -127,7 +129,7 @@
     </nav>
     <!-- Fim navbar -->
 
-    <div class="content">
+    <div id="navegacao2" class="content">
         <div class="row">
             <div class="col-md-12 ml-auto mr-auto text-center">
                 <div class="navbar-wrapper">
@@ -257,108 +259,19 @@
 
             <div class="tab-pane" id="tabvisualizar" role="tabpanel">
                 <div class="row"></div>
-
-                <?php foreach ($this->view->documentos as $key => $documento) { ?>
-                    <div class="row" style="padding-bottom: 10px">
-                        <div class="col-md-10 ml-auto mr-auto">
-                            <div class="card card-user">
-                                <div class="card-header">
-
-                                </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <label>Título da publicação</label>
-                                            <div type="text" class="form-control">
-                                                <?php echo $documento['titulo']; ?>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6 espacamentoCampo">
-                                            <label>Local da publicação</label>
-                                            <div type="text" class="form-control">
-                                                <?php echo $documento['localPublicacao']; ?>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3 espacamentoCampo">
-                                            <label>Data da publicação</label>
-                                            <div type="text" class="form-control">
-                                                <?php echo $documento['data']; ?>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3 espacamentoCampo">
-                                            <label>Página</label>
-                                            <div type="text" class="form-control">
-                                                <?php
-                                                if ($documento['numPagina'] != '') {
-                                                    echo $documento['numPagina'];
-                                                } else {
-                                                    echo "Não especificado";
-                                                }
-                                                ?>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12 espacamentoCampo">
-                                            <label>Assunto da publicação</label>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-4" style="padding-top: 5px">
-                                            <div class="form-check">
-                                                <label class="form-check-label">
-                                                    <input id="documentoCheckDescobramento" class="form-check-input" type="checkbox" <?php if ($documento['flagDesdobramento']) {
-                                                                                                                                            echo "checked";
-                                                                                                                                        } ?> disabled>
-                                                    Incêndio e desdobramentos
-                                                    <span class="form-check-sign">
-                                                        <span class="check"></span>
-                                                    </span>
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-2" style="padding-top: 5px">
-                                            <div class="form-check">
-                                                <label class="form-check-label">
-                                                    <input id="documentoCheckVitima" class="form-check-input" type="checkbox" <?php if ($documento['flagVitima']) {
-                                                                                                                                    echo "checked";
-                                                                                                                                } ?> disabled>
-                                                    Vítima
-                                                    <span class="form-check-sign">
-                                                        <span class="check"></span>
-                                                    </span>
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <?php if ($documento['nomeVitima'] != '') { ?>
-                                            <div class="col-md-6 exibeVitima">
-                                                <label>Nome da Vítima</label>
-                                                <div type="text" class="form-control">
-                                                    <?php echo $documento['nomeVitima']; ?>
-                                                </div>
-                                            </div>
-                                        <?php } ?>
-                                    </div>
-                                    <div class="row" style="padding-bottom: 30px;">
-                                        <div class="col-md-12 espacamentoCampo">
-                                            <label>Transcrição da Matéria</label>
-                                            <div type="text" class="form-control" style="cursor:auto;" disabled>
-                                                <div style="padding: 8px 3px">
-                                                    <?php echo $documento['descricao']; ?>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                <nav>
+                    <div class="col-md-10 ml-auto mr-auto">
+                        <ul id="documentosPaginacaoAntes" class="pagination justify-content-end"></ul>
                     </div>
-                <?php } ?>
-                <!-- <nav>
-                    <ul id="documentosPaginacao" class="pagination justify-content-end"></ul>
-                </nav> -->
+                </nav>
+
+                <div id="documentosPaineis"></div>
+
+                <nav id="documentosNavPaginacao" quantidade="<?php echo $this->view->contDocumentos ?>">
+                    <div class="col-md-10 ml-auto mr-auto">
+                        <ul id="documentosPaginacaoDepois" class="pagination justify-content-end"></ul>
+                    </div>
+                </nav>
             </div>
         </div>
 
