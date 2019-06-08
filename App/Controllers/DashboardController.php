@@ -163,6 +163,7 @@ class DashboardController extends Action {
         $documentos = Container::getModel('Documentos');
         $todosDocumentos = $documentos->getDocumentos();
 
+        //se o documento for de vitima retorna o nome da vitima
         for($i=0; $i < count($todosDocumentos); $i++){
             if($todosDocumentos[$i]['flagVitima'] == 1){
                 $vitimas->__set('id', $todosDocumentos[$i]['fk_idVitima']);
@@ -172,8 +173,12 @@ class DashboardController extends Action {
                 $todosDocumentos[$i]['nomeVitima'] = null;
             }
         }
+
         $this->view->contDocumentos = $documentos->getContDocumentos();
         $this->view->documentos = $todosDocumentos;
+
+        $eventos = Container::getModel('DocEventos');
+        $this->view->eventos = $eventos->getEventos();
 
         $this->menu();
         $this->render('documentos', 'layout-dashboard');
@@ -259,6 +264,19 @@ class DashboardController extends Action {
         $documento->__set('flagDesdobramento', $tmp->flagDesdobramento);
         $documento->__set('flagVitima', $tmp->flagVitima);
         $documento->gravarDocumento();
+    }
+
+    public function adicionarDocEvento(){
+        $this->validaAutenticacao();
+        $evento = Container::getModel('DocEventos');
+        $tmp = json_decode($_POST['evento']);
+
+        $evento->__set('titulo', $tmp->titulo);
+        $evento->__set('periodico', $tmp->periodico);
+        $evento->__set('data', $tmp->data);
+        $evento->__set('flagDesdobramento', $tmp->flagDesdobramento);
+        $evento->__set('flagVitima', $tmp->flagVitima);
+        $evento->adicionarDocEvento();
     }
 
     public function download(){

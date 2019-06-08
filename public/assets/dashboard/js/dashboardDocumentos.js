@@ -86,7 +86,6 @@ $(document).ready(function () {
         let titulo = $("#eventoTitulo").val();
         let periodico = $("#eventoPeriodico").val();
         let data = $("#eventoData").val();
-        let pagina = $("#eventoPagina").val();
         let checkDesdobramento = $("#eventoCheckDescobramento").is(':checked');
         let checkVitima = $("#eventoCheckVitima").is(':checked');
 
@@ -103,7 +102,6 @@ $(document).ready(function () {
 
         //atribuicoes padrao
         if (!data) data = null;
-        if (!pagina) pagina = null;
         if (!checkDesdobramento) checkDesdobramento = 0;
         if (!checkVitima) checkVitima = 0;
 
@@ -112,12 +110,11 @@ $(document).ready(function () {
         evento.titulo = titulo;
         evento.periodico = periodico;
         evento.data = data;
-        evento.numPagina = pagina;
         evento.flagDesdobramento = checkDesdobramento;
         evento.flagVitima = checkVitima;
         evento = JSON.stringify(evento);
         $.ajax({
-            url: "/adicionarEvento",
+            url: "/adicionarDocEvento",
             method: "POST",
             data: {
                 evento: evento
@@ -127,6 +124,33 @@ $(document).ready(function () {
                 $('#modalMensagem').modal('show');
             }
         });
+    });
+
+    $('#documentoEvento').change(function () {
+        let obj = {};
+        obj.titulo = $('option:selected', this).attr('titulo');
+        obj.periodico = $('option:selected', this).attr('periodico');
+        obj.data = $('option:selected', this).attr('data');
+        obj.fdesdo = $('option:selected', this).attr('fdesdobramento');
+        obj.fvitima = $('option:selected', this).attr('fvitima');
+        
+        $("#documentoTitulo").val(obj.titulo);
+        $("#documentoPeriodico").val(obj.periodico);
+        $("#documentoData").val(obj.data);
+
+        if(obj.fdesdo=='1'){
+            $("#documentoCheckDescobramento").prop("checked", true);
+        } else { 
+            $("#documentoCheckDescobramento").prop("checked", false);
+        }
+
+        if(obj.fvitima=='1'){
+            $("#documentoCheckVitima").prop("checked", true);
+            $("#divSelecionarVitima").css('display', 'inline');
+        } else {
+            $("#divSelecionarVitima").css('display', 'none');
+            $("#documentoCheckVitima").prop("checked", false);
+        }
     });
 });
 

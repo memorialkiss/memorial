@@ -147,9 +147,9 @@
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="tab" href="#tabvisualizar" role="tab">Visualizar</a>
                     </li>
-                    <!-- <li class="nav-item">
+                    <li class="nav-item">
                         <a class="nav-link" data-toggle="tab" href="#tabeventocriar" role="tab">Cadastrar Evento</a>
-                    </li> -->
+                    </li>
                 </ul>
             </div>
         </div>
@@ -168,10 +168,27 @@
                             </div>
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-7">
                                         <div class="form-group">
                                             <label>Título da Publicação*</label>
                                             <input id="documentoTitulo" type="text" class="form-control" placeholder="Coloque um título para publicação" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <label>Corresponde a algum evento cadastrado?</label>
+                                            <select id="documentoEvento" class="form-control">
+                                                <option titulo='' periodico='' data='' fdesdobramento='' fvitima='' selected>Não corresponde</option>
+                                                <?php foreach ($this->view->eventos as $key => $evento) { ?>
+                                                    <option 
+                                                        titulo="<?php echo $evento ['titulo']; ?>" 
+                                                        periodico="<?php echo $evento ['periodico']; ?>"
+                                                        data="<?php echo $evento ['data']; ?>"
+                                                        fdesdobramento="<?php echo $evento ['flagDesdobramento']; ?>"
+                                                        fvitima="<?php echo $evento ['flagVitima']; ?>"
+                                                    ><?php echo $evento['titulo']; ?></option>
+                                                <?php } ?>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -277,7 +294,7 @@
                 </nav>
             </div>
 
-            <!-- <div class="tab-pane" id="tabeventocriar" role="tabpanel">
+            <div class="tab-pane" id="tabeventocriar" role="tabpanel">
                 <div id="recordacoesAdicionar" class="row">
                     <div class="col-md-10 mr-auto ml-auto">
                         <div class="card card-user">
@@ -298,7 +315,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-7">
+                                    <div class="col-md-9">
                                         <div class="form-group">
                                             <label>Periódico*</label>
                                             <input id="eventoPeriodico" type="text" class="form-control" placeholder="Exemplo: Diário de Santa Maria" required>
@@ -308,12 +325,6 @@
                                         <div class="form-group">
                                             <label>Data da publicação</label>
                                             <input id="eventoData" type="date" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <div class="form-group">
-                                            <label>Num da Página</label>
-                                            <input id="eventoPagina" type="number" class="form-control" min="1" placeholder="Número" required>
                                         </div>
                                     </div>
                                 </div>
@@ -357,7 +368,7 @@
                         </div>
                     </div>
                 </div>
-            </div> -->
+            </div>
         </div>
 
     </div>

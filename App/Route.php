@@ -261,6 +261,12 @@ class Route extends Bootstrap {
 			'action' => 'listarDocumentos'
 		);
 
+		$routes['adicionarDocEvento'] = array(
+			'route' => '/adicionarDocEvento',
+			'controller' => 'DashboardController',
+			'action' => 'adicionarDocEvento'
+		);
+
 		$this->setRoutes($routes);
 	}
 
