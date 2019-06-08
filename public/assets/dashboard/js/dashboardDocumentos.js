@@ -170,6 +170,18 @@ function listarDocumentos(paginaAtual, quantidadePorPagina) {
             documento['flagDesdobramento'] = documento['flagDesdobramento'] == 1 ? 'checked' : '';
             documento['flagVitima'] = documento['flagVitima'] == 1 ? 'checked' : '';
 
+            if(documento['nomeVitima']!=null){
+                documento['nomeVitima'] = 
+                    `<div class="col-md-6 exibeVitima">
+                        <label>Nome da Vítima</label>
+                        <div type="text" class="form-control">
+                            ${documento['nomeVitima']}
+                        </div>
+                    </div>`;
+            } else {
+                documento['nomeVitima'] = '';
+            }
+
             textoHtml +=
                 `  
                 <div class="row" style="padding-bottom: 10px">
@@ -235,14 +247,7 @@ function listarDocumentos(paginaAtual, quantidadePorPagina) {
                                             </label>
                                         </div>
                                     </div>
-                                    <?php if ($documento['nomeVitima'] != '') { ?>
-                                        <div class="col-md-6 exibeVitima">
-                                            <label>Nome da Vítima</label>
-                                            <div type="text" class="form-control">
-                                                ${documento['nomeVitima']}
-                                            </div>
-                                        </div>
-                                    <?php } ?>
+                                    ${documento['nomeVitima']}
                                 </div>
                                 <div class="row" style="padding-bottom: 30px;">
                                     <div class="col-md-12 espacamentoCampo">
