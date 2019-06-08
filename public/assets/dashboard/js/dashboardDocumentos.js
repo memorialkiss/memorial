@@ -126,6 +126,7 @@ $(document).ready(function () {
         });
     });
 
+    //selecionar um evento no cadastro de documentos
     $('#documentoEvento').change(function () {
         let obj = {};
         obj.titulo = $('option:selected', this).attr('titulo');
