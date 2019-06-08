@@ -251,7 +251,7 @@ class DashboardController extends Action {
 
         $tmp = json_decode($_POST['documento']);
         $documento->__set('titulo', $tmp->titulo);
-        $documento->__set('localPublicacao', $tmp->localPublicacao);
+        $documento->__set('periodico', $tmp->periodico);
         $documento->__set('data', $tmp->data);
         $documento->__set('descricao', $tmp->descricao);
         $documento->__set('numPagina', $tmp->numPagina);

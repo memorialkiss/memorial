@@ -6,7 +6,7 @@ use MF\Model\Model;
 class Documentos extends Model {
     private $idDocumento;
     private $titulo;
-    private $localPublicacao;
+    private $periodico;
     private $data;
     private $numPagina;
     private $descricao;
@@ -24,12 +24,12 @@ class Documentos extends Model {
 
     public function gravarDocumento(){
         $query = 
-            "insert into documentos(titulo, localPublicacao, data, numPagina, descricao, flagDesdobramento, flagVitima, fk_idVitima)". 
-            "values(:titulo, :localPublicacao, :data, :numPagina, :descricao, :flagDesdobramento, :flagVitima, :idVitima)";
+            "insert into documentos(titulo, periodico, data, numPagina, descricao, flagDesdobramento, flagVitima, fk_idVitima)". 
+            "values(:titulo, :periodico, :data, :numPagina, :descricao, :flagDesdobramento, :flagVitima, :idVitima)";
         
         $stmt = $this->db->prepare($query);
         $stmt->bindValue(':titulo', $this->__get('titulo'));
-        $stmt->bindValue(':localPublicacao', $this->__get('localPublicacao'));
+        $stmt->bindValue(':periodico', $this->__get('periodico'));
         $stmt->bindValue(':data', $this->__get('data'));
         $stmt->bindValue(':numPagina', $this->__get('numPagina'));
         $stmt->bindValue(':descricao', $this->__get('descricao'));
@@ -63,7 +63,7 @@ class Documentos extends Model {
     }
 
     public function backup(){
-        $query = "select idDocumento as id, titulo, localPublicacao as localDaPublicacao, data, numPagina as numDaPagina, flagDesdobramento as incendioDesdobramento, flagVitima as relativoVitima, nome as nomeDaVitima, d.descricao FROM documentos as d left join vitimas as v on d.fk_idVitima = v.idVitima";
+        $query = "select idDocumento as id, titulo, periodico as localDaPublicacao, data, numPagina as numDaPagina, flagDesdobramento as incendioDesdobramento, flagVitima as relativoVitima, nome as nomeDaVitima, d.descricao FROM documentos as d left join vitimas as v on d.fk_idVitima = v.idVitima";
         $stmt = $this->db->prepare($query);
         $stmt->execute();
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
