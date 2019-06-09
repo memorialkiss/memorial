@@ -285,34 +285,31 @@ $(document).ready(function () {
     });
 });
 
-//excluir documento
-$(document).ready(function () {
-    $('#excluirBtn').click(function () {
-        let iddoc = $("#excluirBtn").attr('iddoc');
-        $.ajax({
-            url: "/excluirDocumento",
-            method: "POST",
-            data: {
-                iddoc: iddoc
-            },
-            success: function (data) {
-                $('#modalExcluirDocumento').modal('hide');
-                $('#textoModal').html("Documento excluido com sucesso");
-                $('#modalMensagem').modal('show');
-            },
-            error: function (request, status, error) {
-                $('#modalExcluirDocumento').modal('hide');
-                $('#textoModal').html("Erro ao excluir, tente novamente mais tarde");
-                $('#modalMensagem').modal('show');
-            }
-        });
+$('#excluirBtn').click(function () {
+    let iddoc = $("#excluirBtn").attr('iddoc');
+    $.ajax({
+        url: "/excluirDocumento",
+        method: "POST",
+        data: {
+            iddoc: iddoc
+        },
+        success: function (data) {
+            $('#modalExcluirDocumento').modal('hide');
+            $('#textoModal').html("Documento excluido com sucesso");
+            $('#modalMensagem').modal('show');
+        },
+        error: function (request, status, error) {
+            $('#modalExcluirDocumento').modal('hide');
+            $('#textoModal').html("Erro ao excluir, tente novamente mais tarde");
+            $('#modalMensagem').modal('show');
+        }
     });
+});
 
-    $(document).on('click', '.documentoBtnExcluir', function() {
-        let idDoc = $(this).attr('idDoc');
-        $("#excluirBtn").attr("iddoc", idDoc);
-        $('#modalExcluirDocumento').modal('show');
-    });
+$(document).on('click', '.documentoBtnExcluir', function() {
+    let idDoc = $(this).attr('idDoc');
+    $("#excluirBtn").attr("iddoc", idDoc);
+    $('#modalExcluirDocumento').modal('show');
 });
 
 
@@ -473,12 +470,12 @@ function documentosListar(paginaAtual, quantidadePorPagina) {
             if (paginaAtual == 1) {
                 textoHtml2 += `<li class="page-item disabled"><a class="page-link">Primeira</a></li>\n`;
             } else {
-                textoHtml2 += `<li class="page-item"><a class="page-link" onclick='listarDocumentos(1, ${quantidadePorPagina})'>Primeira</a></li>\n`;
+                textoHtml2 += `<li class="page-item"><a class="page-link" onclick='documentosListar(1, ${quantidadePorPagina})'>Primeira</a></li>\n`;
             }
             //antes da pagina atual
             for (let pgAnteriores = paginaAtual - maxLinksPaginas; pgAnteriores <= paginaAtual - 1; pgAnteriores++) {
                 if (pgAnteriores >= 1) {
-                    textoHtml2 += `<li class="page-item"><a class="page-link" onclick='listarDocumentos(${pgAnteriores}, ${quantidadePorPagina})'>${pgAnteriores}</a></li>\n`;
+                    textoHtml2 += `<li class="page-item"><a class="page-link" onclick='documentosListar(${pgAnteriores}, ${quantidadePorPagina})'>${pgAnteriores}</a></li>\n`;
                 }
             }
             //pagina atual
@@ -486,13 +483,13 @@ function documentosListar(paginaAtual, quantidadePorPagina) {
             //depois da pagina atual
             for (let pgPosteriores = paginaAtual + 1; pgPosteriores <= paginaAtual + maxLinksPaginas; pgPosteriores++) {
                 if (pgPosteriores <= quantidadeDePaginas) {
-                    textoHtml2 += `<li class="page-item"><a class="page-link" onclick='listarDocumentos(${pgPosteriores}, ${quantidadePorPagina})'>${pgPosteriores}</a></li>\n`;
+                    textoHtml2 += `<li class="page-item"><a class="page-link" onclick='documentosListar(${pgPosteriores}, ${quantidadePorPagina})'>${pgPosteriores}</a></li>\n`;
                 }
             }
             //proxima pagina
             if (paginaAtual < quantidadeDePaginas) {
                 // textoHtml2 += `<li class="page-item"><a class="page-link" onclick='listarDocumentos(${paginaAtual + 1}, ${quantidadePorPagina})'>&gt;&gt;</a></li>\n`;
-                textoHtml2 += `<li class="page-item"><a class="page-link" onclick='listarDocumentos(${quantidadeDePaginas}, ${quantidadePorPagina})'>Última</a></li>\n`;
+                textoHtml2 += `<li class="page-item"><a class="page-link" onclick='documentosListar(${quantidadeDePaginas}, ${quantidadePorPagina})'>Última</a></li>\n`;
             } else {
                 // textoHtml2 += `<li class="page-item disabled"><a class="page-link">&gt;&gt;</a></li>\n`;
                 textoHtml2 += `<li class="page-item disabled"><a class="page-link">Última</a></li>\n`;
