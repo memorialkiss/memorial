@@ -55,6 +55,9 @@ $(document).ready(function () {
         documento.flagVitima = checkVitima;
         documento.fk_idVitima = idVitima;
         documento = JSON.stringify(documento);
+        
+        let textoCarregando = '&nbsp&nbsp<i class="fa fa-spinner fa-spin"></i>&nbsp&nbspcadastrando&nbsp&nbsp';
+        $("#documentoBtnAdicionar").html(textoCarregando);
         $.ajax({
             url: "/adicionarDocumento",
             method: "POST",
@@ -108,6 +111,9 @@ $(document).ready(function () {
         materia.flagDesdobramento = checkDesdobramento;
         materia.flagVitima = checkVitima;
         materia = JSON.stringify(materia);
+
+        let textoCarregando = '&nbsp&nbsp<i class="fa fa-spinner fa-spin"></i>&nbsp&nbspAdicionando&nbsp&nbsp';
+        $("#materiaBtnAdicionar").html(textoCarregando);
         $.ajax({
             url: "/adicionarDocMateria",
             method: "POST",

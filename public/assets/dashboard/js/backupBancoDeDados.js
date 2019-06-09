@@ -63,6 +63,7 @@ $(document).ready(function (){
                     nomeArquivo = "kiss_informacoes_";
                 } else {
                     data.forEach(function(documento, i){
+                        documento['idBancoDado'] = documento['id'];
                         documento['id'] = i+1;
                         documento['descricao'] = removerTagHTML(documento['descricao']);
                         documento['descricao'] = entidadesHTML.decodificar(documento['descricao']);

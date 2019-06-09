@@ -15,7 +15,7 @@ $(document).ready(function () {
     $('#btnEnviarEmail').click(function() {
         if ($("#nome").val() != '' && $("#email").val() != '' && $("#mensagem").val() != '' && ($("#naorobo").is(":checked")==true)) {
             var textoCarregando = '&nbsp&nbsp<i class="fa fa-spinner fa-spin"></i>&nbsp&nbsp&nbsp&nbspenviando&nbsp&nbsp&nbsp&nbsp&nbsp';
-            var btn = $("#btnEnviarEmail").html(textoCarregando);
+            $("#btnEnviarEmail").html(textoCarregando);
 
             var mensagem = {};
             
@@ -36,7 +36,7 @@ $(document).ready(function () {
                 },
                 success: function(data) {
                     textoCarregando = "ENVIAR MENSAGEM";
-                    var btn = $("#btnEnviarEmail").html(textoCarregando);
+                    $("#btnEnviarEmail").html(textoCarregando);
                     
                     if(data == '1'){
                         $("#modalTitulo").html("Mensagem enviando com sucesso!");
