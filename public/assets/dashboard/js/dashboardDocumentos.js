@@ -1,10 +1,4 @@
 $(document).ready(function () {
-    var quantidadePorPagina = 10;
-    var paginaAtual = 1;
-    documentosListar(paginaAtual, quantidadePorPagina); //Chamar a função para listar as recordacoes
-});
-
-$(document).ready(function () {
     $('#documentoBtnAdicionar').click(function () {
         let titulo = $("#documentoTitulo").val();
         let periodico = $("#documentoPeriodico").val();
@@ -312,6 +306,12 @@ $(document).on('click', '.documentoBtnExcluir', function() {
     $('#modalExcluirDocumento').modal('show');
 });
 
+//listar documentos
+$(document).ready(function () {
+    var quantidadePorPagina = 10;
+    var paginaAtual = 1;
+    documentosListar(paginaAtual, quantidadePorPagina);
+});
 
 function documentosListar(paginaAtual, quantidadePorPagina) {
     var dados = {

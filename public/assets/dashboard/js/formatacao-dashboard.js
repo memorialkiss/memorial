@@ -1,3 +1,10 @@
+//desativar scroll do fundo, quando modal esta aberta
+$('.modal').on('show.bs.modal', function(){ 
+    $('.main-panel').perfectScrollbar('destroy');
+}).on('hidden.bs.modal', function(){ 
+    $('.sidebar .sidebar-wrapper, .main-panel').perfectScrollbar();
+}); 
+
 $(document).ready(function () {
     //usado para ativar a pagina atual no menu lateral esquerdo
     var url_atual = window.location.href;
