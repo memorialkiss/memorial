@@ -453,7 +453,6 @@ function documentosListar(paginaAtual, quantidadePorPagina) {
                 </div>
 
             `;
-            // $('html,body').animate({ scrollTop: $("#paginacao2") }, 1000, 'swing');
         });
         $("#documentosPaineis").html(textoHtml);
 
@@ -495,6 +494,7 @@ function documentosListar(paginaAtual, quantidadePorPagina) {
                 textoHtml2 += `<li class="page-item disabled"><a class="page-link">Última</a></li>\n`;
             }
 
+            textoHtml2 += `<div style="padding-top: 8px; padding-left: 15px">${paginaAtual} de ${quantidadeDePaginas}</span>`;
             $("#documentosPaginacaoAntes").html(textoHtml2);
             $("#documentosPaginacaoDepois").html(textoHtml2);
         }
