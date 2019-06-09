@@ -81,13 +81,13 @@ $(document).ready(function () {
         }
     });
 
-    $('#eventoBtnAdicionar').click(function () {
+    $('#materiaBtnAdicionar').click(function () {
         // let titulo = 
-        let titulo = $("#eventoTitulo").val();
-        let periodico = $("#eventoPeriodico").val();
-        let data = $("#eventoData").val();
-        let checkDesdobramento = $("#eventoCheckDescobramento").is(':checked');
-        let checkVitima = $("#eventoCheckVitima").is(':checked');
+        let titulo = $("#materiaTitulo").val();
+        let periodico = $("#materiaPeriodico").val();
+        let data = $("#materiaData").val();
+        let checkDesdobramento = $("#materiaCheckDescobramento").is(':checked');
+        let checkVitima = $("#materiaCheckVitima").is(':checked');
 
         //verificacoes dos campos
         if (!titulo) {
@@ -106,28 +106,28 @@ $(document).ready(function () {
         if (!checkVitima) checkVitima = 0;
 
         //enviar documento
-        let evento = {};
-        evento.titulo = titulo;
-        evento.periodico = periodico;
-        evento.data = data;
-        evento.flagDesdobramento = checkDesdobramento;
-        evento.flagVitima = checkVitima;
-        evento = JSON.stringify(evento);
+        let materia = {};
+        materia.titulo = titulo;
+        materia.periodico = periodico;
+        materia.data = data;
+        materia.flagDesdobramento = checkDesdobramento;
+        materia.flagVitima = checkVitima;
+        materia = JSON.stringify(materia);
         $.ajax({
-            url: "/adicionarDocEvento",
+            url: "/adicionarDocMateria",
             method: "POST",
             data: {
-                evento: evento
+                materia: materia
             },
             success: function (data) {
-                $('#textoModal').html("Evento cadastrado com sucesso");
+                $('#textoModal').html("Matéria cadastrado com sucesso");
                 $('#modalMensagem').modal('show');
             }
         });
     });
 
-    //selecionar um evento no cadastro de documentos
-    $('#documentoEvento').change(function () {
+    //selecionar um Materia no cadastro de documentos
+    $('#documentoMateria').change(function () {
         let obj = {};
         obj.titulo = $('option:selected', this).attr('titulo');
         obj.periodico = $('option:selected', this).attr('periodico');

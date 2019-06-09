@@ -177,8 +177,8 @@ class DashboardController extends Action {
         $this->view->contDocumentos = $documentos->getContDocumentos();
         $this->view->documentos = $todosDocumentos;
 
-        $eventos = Container::getModel('DocEventos');
-        $this->view->eventos = $eventos->getEventos();
+        $materias = Container::getModel('DocMaterias');
+        $this->view->materias = $materias->getMaterias();
 
         $this->menu();
         $this->render('documentos', 'layout-dashboard');
@@ -266,17 +266,17 @@ class DashboardController extends Action {
         $documento->gravarDocumento();
     }
 
-    public function adicionarDocEvento(){
+    public function adicionarDocMateria(){
         $this->validaAutenticacao();
-        $evento = Container::getModel('DocEventos');
-        $tmp = json_decode($_POST['evento']);
+        $materia = Container::getModel('DocMaterias');
+        $tmp = json_decode($_POST['materia']);
 
-        $evento->__set('titulo', $tmp->titulo);
-        $evento->__set('periodico', $tmp->periodico);
-        $evento->__set('data', $tmp->data);
-        $evento->__set('flagDesdobramento', $tmp->flagDesdobramento);
-        $evento->__set('flagVitima', $tmp->flagVitima);
-        $evento->adicionarDocEvento();
+        $materia->__set('titulo', $tmp->titulo);
+        $materia->__set('periodico', $tmp->periodico);
+        $materia->__set('data', $tmp->data);
+        $materia->__set('flagDesdobramento', $tmp->flagDesdobramento);
+        $materia->__set('flagVitima', $tmp->flagVitima);
+        $materia->adicionarDocMateria();
     }
 
     public function download(){

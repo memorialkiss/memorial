@@ -3,8 +3,8 @@
 namespace App\Models;
 use MF\Model\Model;
 
-class DocEventos extends Model {
-    private $idEvento;
+class DocMaterias extends Model {
+    private $idMateria;
     private $titulo;
     private $periodico;
     private $data;
@@ -19,9 +19,9 @@ class DocEventos extends Model {
         $this->$atributo = $valor;
     }
 
-    public function adicionarDocEvento(){
+    public function adicionarDocMateria(){
         $query = 
-            "insert into docEventos(titulo, periodico, data, flagDesdobramento, flagVitima)". 
+            "insert into docMaterias(titulo, periodico, data, flagDesdobramento, flagVitima)". 
             "values(:titulo, :periodico, :data, :flagDesdobramento, :flagVitima)";
         
         $stmt = $this->db->prepare($query);
@@ -34,8 +34,8 @@ class DocEventos extends Model {
         return $this;
     }
 
-    public function getEventos(){
-        $query = "select * from docEventos";
+    public function getMaterias(){
+        $query = "select * from docMaterias";
         $stmt = $this->db->prepare($query);
         $stmt->execute();
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
