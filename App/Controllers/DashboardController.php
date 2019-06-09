@@ -294,13 +294,13 @@ class DashboardController extends Action {
     }
 
     public function listarDocumentos(){
+        $this->validaAutenticacao();
         $documentos = Container::getModel('Documentos');
         
 		//recebe pagina atual e quantidade de comentarios por pagina
 		$paginaAtual = $_POST['paginaAtual'];
 		$quantidadePorPagina = $_POST['quantidadePorPagina'];
 		$inicio = ($paginaAtual * $quantidadePorPagina) - $quantidadePorPagina;
-
         $resultado = $documentos->getDocumentosPorPaginacao($inicio, $quantidadePorPagina);
         
         $vitimas = Container::getModel('Vitimas');
@@ -316,6 +316,29 @@ class DashboardController extends Action {
         $this->view->contDocumentos = $documentos->getContDocumentos();
 
         echo json_encode($resultado);
+    }
+
+    public function atualizarDocumento(){
+        $this->validaAutenticacao();
+        $documento = Container::getModel('Documentos');
+        $tmp = json_decode($_POST['documento']);
+        $documento->__set('idDocumento', $tmp->idDoc);
+        $documento->__set('titulo', $tmp->titulo);
+        $documento->__set('periodico', $tmp->periodico);
+        $documento->__set('data', $tmp->data);
+        $documento->__set('numPagina', $tmp->numPagina);
+        $documento->__set('descricao', $tmp->descricao);
+        $documento->__set('flagDesdobramento', $tmp->flagDesdobramento);
+        $documento->__set('flagVitima', $tmp->flagVitima);
+        $documento->__set('fk_idVitima', $tmp->fk_idVitima);
+        $documento->atualizarDocumento();
+    }
+
+    public function excluirDocumento(){
+        $this->validaAutenticacao();
+        $documento = Container::getModel('Documentos');
+        $documento->__set('idDocumento', $_POST['iddoc']);
+        $documento->excluirDocumento();
     }
 }
 ?>

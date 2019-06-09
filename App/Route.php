@@ -267,6 +267,18 @@ class Route extends Bootstrap {
 			'action' => 'adicionarDocMateria'
 		);
 
+		$routes['atualizarDocumento'] = array(
+			'route' => '/atualizarDocumento',
+			'controller' => 'DashboardController',
+			'action' => 'atualizarDocumento'
+		);
+
+		$routes['excluirDocumento'] = array(
+			'route' => '/excluirDocumento',
+			'controller' => 'DashboardController',
+			'action' => 'excluirDocumento'
+		);
+
 		$this->setRoutes($routes);
 	}
 

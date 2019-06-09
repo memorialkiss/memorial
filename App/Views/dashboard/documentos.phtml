@@ -45,6 +45,10 @@
         display: none;
     }
 
+    #editarSeletorVitima {
+        display: none;
+    }
+
     .selecioneVitima {
         margin-top: -30px;
         margin-bottom: 0;
@@ -88,6 +92,139 @@
         </div>
     </div>
     <!-- fim modal comentario-->
+
+    <!-- Modal editar -->
+    <div class="modal fade" id="modalEditarDocumento" tabindex="-1" role="dialog" aria-labelledby="modalMensagem" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div id="editarAlerta"></div>
+                <div class="modal-header" style="border:none">
+                    <h5 class="modal-title">Editar documento</h5>
+                    <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" style="font-size: 32px">&times;</span>
+                    </button> -->
+                </div>
+
+                <div class="modal-body" style="border: none; padding-top: 0; padding-bottom: 0;">
+                    <div class="row">
+                        <div class="col-md-9">
+                            <div class="form-group">
+                                <label>Título da Publicação*</label>
+                                <input id="editarTitulo" type="text" class="form-control" placeholder="Coloque um título para publicação" required>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Num da Página</label>
+                                <input id="editarPagina" type="number" class="form-control" min="1" placeholder="Número" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-9">
+                            <div class="form-group">
+                                <label>Periódico*</label>
+                                <input id="editarPeriodico" type="text" class="form-control" placeholder="Exemplo: Diário de Santa Maria" required>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Data da publicação*</label>
+                                <input id="editarData" type="date" class="form-control" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label style="margin-bottom: 0px">Qual o assunto da publicação?*</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-check" style="padding-top: 7px">
+                                <label class="form-check-label">
+                                    <input id="editarCheckDesdo" class="form-check-input" type="checkbox">
+                                    Incêndio e desdobramentos
+                                    <span class="form-check-sign">
+                                        <span class="check"></span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-check" style="padding-top: 7px">
+                                <label class="form-check-label">
+                                    <input id="editarCheckVitima" class="form-check-input" type="checkbox">
+                                    Vítima
+                                    <span class="form-check-sign">
+                                        <span class="check"></span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-6" id="editarSeletorVitima">
+                            <div class="form-group selecioneVitima">
+                                <label>Qual a vítima?*</label>
+                                <select id="editarIdVitima" class="form-control">
+                                    <option selected disabled>Selecione a vítima</option>
+                                    <?php foreach ($this->view->vitimas as $key => $vitima) { ?>
+                                        <option value="<?php echo $vitima['idVitima']; ?>"><?php echo $vitima['nome']; ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label></label>
+                                <textarea id="editarDescricao" class="form-control ckeditor" required></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <div class="right-side">
+                        <button type="button" class="btn btn-default btn-link" data-dismiss="modal">Cancelar</button>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="left-side">
+                        <button id="editarBtnAtualizar" type="button" class="btn btn-info btn-link" iddoc="">Atualizar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- fim modal editar-->
+
+    <!-- modal excluir -->
+    <div class="modal fade" id="modalExcluirDocumento" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header no-border-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h5 class="text-center">Tem certeza que deseja excluir este documento?</h5>
+                </div>
+                <div class="modal-footer">
+                    <div class="left-side">
+                        <button type="button" class="btn btn-default btn-link" data-dismiss="modal">Cancelar</button>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="right-side">
+                        <button id="excluirBtn" type="button" class="btn btn-danger btn-link" iddoc="">Excluir</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- fim modal excluir -->
 
     <!-- Modal sem reload de pagina -->
     <div class="modal fade" id="modalMensagemSemReload" tabindex="-1" role="dialog" aria-labelledby="modalMensagem" aria-hidden="true">
@@ -143,7 +280,7 @@
                         <a class="nav-link active" data-toggle="tab" href="#tabadicionar" role="tab">Adicionar</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#tabvisualizar" role="tab">Visualizar</a>
+                        <a class="nav-link" data-toggle="tab" href="#tabvisualizar" role="tab">Visualizar/editar</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="tab" href="#tabmateriacriar" role="tab">Cadastrar matéria</a>
@@ -156,6 +293,9 @@
             <div class="tab-pane active" id="tabadicionar" role="tabpanel">
                 <div id="recordacoesAdicionar" class="row">
                     <div class="col-md-10 mr-auto ml-auto">
+                        <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEditarDocumento">
+                            Abrir modal de demonstração
+                        </button> -->
                         <div class="card card-user">
                             <div class="card-header">
                                 <div class="text-center">
@@ -172,13 +312,7 @@
                                             <select id="documentoMateria" class="form-control">
                                                 <option titulo='' periodico='' data='' fdesdobramento='' fvitima='' selected>Não corresponde</option>
                                                 <?php foreach ($this->view->materias as $key => $materia) { ?>
-                                                    <option 
-                                                        titulo="<?php echo $materia ['titulo']; ?>" 
-                                                        periodico="<?php echo $materia ['periodico']; ?>"
-                                                        data="<?php echo $materia ['data']; ?>"
-                                                        fdesdobramento="<?php echo $materia ['flagDesdobramento']; ?>"
-                                                        fvitima="<?php echo $materia ['flagVitima']; ?>"
-                                                    ><?php echo $materia['titulo']; ?></option>
+                                                    <option titulo="<?php echo $materia['titulo']; ?>" periodico="<?php echo $materia['periodico']; ?>" data="<?php echo $materia['data']; ?>" fdesdobramento="<?php echo $materia['flagDesdobramento']; ?>" fvitima="<?php echo $materia['flagVitima']; ?>"><?php echo $materia['titulo']; ?></option>
                                                 <?php } ?>
                                             </select>
                                         </div>
@@ -221,7 +355,7 @@
                                     <div class="col-md-4">
                                         <div class="form-check">
                                             <label class="form-check-label">
-                                                <input id="documentoCheckDescobramento" class="form-check-input" type="checkbox">
+                                                <input id="documentoCheckDesdobramento" class="form-check-input" type="checkbox">
                                                 Incêndio e desdobramentos
                                                 <span class="form-check-sign">
                                                     <span class="check"></span>
@@ -299,7 +433,7 @@
                             <div class="card-header">
                                 <div class="text-center">
                                     <br />
-                                    <sup>Espaço destinado facilitar o processo de cadastro de documentos, pré-definindo coisas que são comuns aos campos.<br/>Apenas os campos Título da Publicação e Periódico são obrigatórios*.</sup>
+                                    <sup>Espaço destinado facilitar o processo de cadastro de documentos, pré-definindo coisas que são comuns aos campos.<br />Apenas os campos Título da Publicação e Periódico são obrigatórios*.</sup>
                                     <br />
                                 </div>
                             </div>
@@ -337,7 +471,7 @@
                                     <div class="col-md-4">
                                         <div class="form-check">
                                             <label class="form-check-label">
-                                                <input id="materiaCheckDescobramento" class="form-check-input" type="checkbox">
+                                                <input id="materiaCheckDesdobramento" class="form-check-input" type="checkbox">
                                                 Incêndio e desdobramentos
                                                 <span class="form-check-sign">
                                                     <span class="check"></span>

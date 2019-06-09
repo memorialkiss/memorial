@@ -14,17 +14,14 @@ CKEDITOR.editorConfig = function( config ) {
 	
 	if(pagina == 'documentos'){
 		config.toolbarGroups = [
-			{ name: 'clipboard',   groups: [ 'undo' ] },
-			{ name: 'links' },
+			{ name: 'clipboard'},
 			{ name: 'basicstyles', groups: [ 'basicstyles'] },
 			{ name: 'paragraph',   groups: [ 'align', 'bidi', 'list', 'blocks' ] },
-			{ name: 'document',	   groups: [ 'mode', 'document', 'doctools' ] },
 			{ name: 'tools' },
 		];
 	} else if (pagina == 'recordacoes') {
 		config.toolbarGroups = [
 			{ name: 'clipboard',   groups: [ 'undo' ] },
-			{ name: 'document',	   groups: [ 'mode', 'document', 'doctools' ] },
 			{ name: 'tools' },
 		];
 	} else {
