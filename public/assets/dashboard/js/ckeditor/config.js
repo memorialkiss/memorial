@@ -14,7 +14,7 @@ CKEDITOR.editorConfig = function( config ) {
 	
 	if(pagina == 'documentos'){
 		config.toolbarGroups = [
-			{ name: 'clipboard'},
+			{ name: 'clipboard',   groups: [ 'undo' ] },
 			{ name: 'basicstyles', groups: [ 'basicstyles'] },
 			{ name: 'paragraph',   groups: [ 'align', 'bidi', 'list', 'blocks' ] },
 			{ name: 'tools' },
