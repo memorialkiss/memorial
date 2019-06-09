@@ -3,8 +3,14 @@
   <!--Url Extract: 1-->
   <url>
     <loc>https://www.memorialkiss.org/</loc>
-    <lastmod>2019-05-02</lastmod>
+    <lastmod>2019-06-09</lastmod>
     <changefreq>always</changefreq>
     <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://www.memorialkiss.org/portal</loc>
+    <lastmod>2019-06-09</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.8</priority>
   </url>
 </urlset>
