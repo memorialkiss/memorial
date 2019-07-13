@@ -60,7 +60,114 @@
 </head>
 
 <body>
+    <!-- Navegacao -->
+    <nav class="navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg" color-on-scroll="100" id="sectionsNav">
+        <div class="container">
+            <div class="navbar-translate">
+                <a class="navbar-brand" href="/">Inicio</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+
+            <!-- menu -->
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="dropdown nav-item">
+                        <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                            <span class="font-navegacao">
+                                <i class="material-icons">supervised_user_circle</i> Memorial
+                                <div class="ripple-container"></div>
+                            </span>
+                        </a>
+                        <div class="dropdown-menu dropdown-with-icons">
+                            <a href="/vidas" class="dropdown-item">
+                                <i class="material-icons">people</i> 242 Vidas
+                            </a>
+                            <a href="#" class="dropdown-item">
+                                <!-- <i class="material-icons">event_busy</i> 27 de Janeiro de 2013 -->
+                                <i class="material-icons">fingerprint</i> 27 de Janeiro de 2013
+                            </a>
+                            <a href="#" class="dropdown-item">
+                                <i class="material-icons">bubble_chart</i> Pós tragédia
+                            </a>
+                        </div>
+                    </li>
+
+                    <li class="nav-item navegacao">
+                        <a href="/inicio#avtsm" class="nav-link">
+                            <span class="font-navegacao">
+                                <i class="material-icons">local_florist</i> AVTSM
+                            </span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item navegacao">
+                        <a href="/inicio#equipe" class="nav-link">
+                            <span class="font-navegacao">
+                                <i class="material-icons">school</i> Equipe
+                            </span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item navegacao">
+                        <a href="/inicio#galeria" class="nav-link">
+                            <span class="font-navegacao">
+                                <i class="material-icons">photo_library</i> Galeria
+                            </span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item navegacao">
+                        <a href="/inicio#contato" class="nav-link">
+                            <span class="font-navegacao">
+                                <i class="material-icons">contact_mail</i> Contato
+                            </span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Fim navegacao -->
+
+    <!-- Modal confirmação de envio de formulario -->
+    <div class="modal fade" id="modalMensagem" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm modalConfiguracao" style="">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 id="modalTitulo" class="modal-title"></h5>
+                </div>
+                <div class="modal-body">
+                    <p id="modalComentario"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Principal -->
+    <main id="inicio" class="page-header header-filter cd-section" data-parallax="true" style="background-image: url('public/img/capa2.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5 ml-auto" style="text-align: center;">
+                    <br />
+                    <h1 class="title" style="margin-top: 70px; font-family: Montserrat; font-size: 2.4em; font-weight: 300;">Memorial Virtual às Vítimas da Boate Kiss</h1>
+                    <br />
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- Fim Principal -->
+
     <?= $this->content() ?>
+
     <!--   Core JS Files   -->
     <script src="public/assets/index/js/core/jquery.min.js" type="text/javascript"></script>
     <script src="public/assets/index/js/core/popper.min.js" type="text/javascript"></script>

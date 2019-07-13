@@ -18,8 +18,8 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 ml-auto mr-auto text-center">
-                <h1 class="title">CONHEÇA OS JOVENS</h1>
-                <h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel fermentum augue.</h4>
+                <div class="title" style="font-size: 95px; letter-spacing: 5px">242 VIDAS</div>
+                <!-- <h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel fermentum augue.</h4> -->
             </div>
         </div>
     </div>
@@ -47,9 +47,9 @@
                                 <h4 class="text-center text-muted" style="padding-bottom: 35px"></h4>
                                 <div class="demo-gallery">
                                     <div class="galeriaJovens">
-                                        <?php foreach ($this->view->jovens as $key => $jovem) { ?>
-                                            <a href='/vitima?id=<?= $jovem['idVitima'] ?>'>
-                                                <img alt='<?= $jovem['nome'] ?>' src='public/img/vitimas/<?= $jovem['foto_perfil'] ?>' />
+                                        <?php foreach ($this->view->vidas as $key => $vida) { ?>
+                                            <a href='/vitima?id=<?= $vida['idVitima'] ?>'>
+                                                <img alt='<?= $vida['nome'] ?>' src='public/img/vitimas/<?= $vida['foto_perfil'] ?>' />
                                             </a>
                                         <?php
                                     } ?>

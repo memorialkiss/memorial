@@ -12,7 +12,13 @@ class IndexController extends Action
 	public function index()
 	{
 		$vitimas = Container::getModel('Vitimas');
-		$this->view->vitimas = $vitimas->getAllSimplicified();
+		// $this->view->vitimas = $vitimas->getAllSimplicified();
 		$this->render('index', 'layout-index');
+	}
+
+	public function inicio()
+	{
+		$vitimas = Container::getModel('Vitimas');
+		$this->render('inicio', 'layout-index');
 	}
 }

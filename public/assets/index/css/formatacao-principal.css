@@ -92,9 +92,9 @@
     margin-top: -100px;
 }
 
-#avtsm{
+/* #avtsm{
     margin-top: -150px;
-}
+} */
 
 @media only screen and (min-width: 800px) {
     .card-efeito {
@@ -153,10 +153,10 @@
     #objetivo{
         margin-top: -100px;
     }
-
+/* 
     #avtsm{
         margin-top: -200px;
-    }
+    } */
 
 }
 
@@ -354,4 +354,147 @@
     font-size: 13px;
     font-weight: 700;
     text-transform: uppercase;
+}
+
+.box {
+    background-color: gray;
+    height: 240px;
+    width: 80%;
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+}
+
+.overlay {
+    position: absolute;
+    background: #d31111;
+    background: rgba(40, 40, 40, 0.9);
+    width: 700px;
+    height: 300px;
+    mix-blend-mode: multiply;
+    z-index: 100;
+    top: 180px;
+    left: -110px;
+}
+
+
+/***********************
+Names and titles
+************************/
+
+.exec-name {
+    color: white;
+    font-size: 1.2em;
+    font-weight: 200;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    margin: 0 30px 15px 0;
+    z-index: 100;
+}
+
+/*for button in box 1*/
+.box-button {
+    /* background-color: white;
+    border: 1px solid #fff; */
+    border-radius: 4px;
+    position: absolute;
+    right: 0;
+    font-weight: 700;
+    left: 20%;
+    padding: .8em 0;
+    /* -webkit-transition: .1s ease;
+    transition: .1s ease; */
+    text-align: center;
+    width: 60%;
+    z-index: 100;
+    bottom: -50px;
+}
+
+/********************  
+Hover Styles
+********************/
+
+.box:hover .overlay {
+    top: 0;
+
+}
+
+.box:hover .exec-name {
+    top: -30px;
+}
+
+.box:hover .exec-title {
+    opacity: 0;
+}
+
+/*For Hover CTA Number 1*/
+.box:hover .box-button {
+    bottom: 85px;
+    color: white;
+}
+
+
+#btnportal:hover {
+    text-decoration: none;
+}
+
+#imgNoticias {
+    width: 450px;
+}
+
+#boxNoticias {
+    display: block;
+    text-align: -webkit-center;
+}
+
+.jovensMural {
+    background-color: rgba(0, 0, 0, .6);
+    padding: 34px 10px;
+    border-radius: 10px;
+}
+
+.dropdown-menu .dropdown-item:focus, .dropdown-menu .dropdown-item:hover, .dropdown-menu a:active, .dropdown-menu a:focus, .dropdown-menu a:hover {
+    background-color: #CECECE;
+    box-shadow: none;
+    color: inherit;
+}
+
+.navbar .dropdown-item:hover {
+    box-shadow: none;
+}
+
+@media only screen and (max-width: 768px) {
+    .box {
+        background-color: gray;
+        height: 200px;
+        width: 77%;
+        position: relative;
+        display: inline-block;
+        overflow: hidden;
+    }
+
+    .box:hover .box-button {
+        bottom: 70px;
+    }
+
+    .overlay {
+        top: 140px;
+    }
+
+    .modalConfiguracao {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+    #imgNoticias {
+        width: 350px;
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    .modalConfiguracao {
+        padding-left: 160px;
+        padding-right: 160px;
+    }
 }

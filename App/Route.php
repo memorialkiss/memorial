@@ -26,10 +26,10 @@ class Route extends Bootstrap {
 			'action' => 'administrador'
 		);
 
-		$routes['jovens'] = array(
-			'route' => '/jovens',
+		$routes['vidas'] = array(
+			'route' => '/vidas',
 			'controller' => 'VitimaController',
-			'action' => 'jovens'
+			'action' => 'vidas'
 		);
 
 		$routes['autenticar'] = array(
@@ -277,6 +277,13 @@ class Route extends Bootstrap {
 			'route' => '/excluirDocumento',
 			'controller' => 'DashboardController',
 			'action' => 'excluirDocumento'
+		);
+
+		/* Excluir depois */
+		$routes['inicio'] = array(
+			'route' => '/inicio',
+			'controller' => 'indexController',
+			'action' => 'inicio'
 		);
 
 		$this->setRoutes($routes);

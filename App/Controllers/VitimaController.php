@@ -157,11 +157,11 @@ class VitimaController extends Action
 		echo json_encode($resultado);
 	}
 
-	public function jovens()
+	public function vidas()
 	{
 		$vitima = Container::getModel('Vitimas');
-		$this->view->jovens = $vitima->getAllSimplicified();
-		$this->render('jovens', 'layout-jovens');
+		$this->view->vidas = $vitima->getAllSimplicified();
+		$this->render('vidas', 'layout-vidas');
 	}
 
 	public function enviarVideo(){
