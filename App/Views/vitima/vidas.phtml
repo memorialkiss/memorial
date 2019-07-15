@@ -1,3 +1,21 @@
+<style>
+    .tituloVidas {
+        font-size: 95px; 
+        letter-spacing: 5px
+    }
+
+    @media only screen and (max-width: 600px) {
+        .tituloVidas {
+            letter-spacing: 3px;
+            font-size: 62px;
+        }
+
+        .secaoTextoMosaico{
+            padding: 10px 15px;
+        }
+    }
+</style>
+
 <!-- Navegacao -->
 <nav class="navbar navbar-transparent fixed-top navbar-expand-lg" id="sectionsNav">
     <div class="container">
@@ -18,8 +36,8 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 ml-auto mr-auto text-center">
-                <div class="title" style="font-size: 95px; letter-spacing: 5px">242 VIDAS</div>
-                <!-- <h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel fermentum augue.</h4> -->
+                <div class="title tituloVidas">242 VIDAS</div>
+                <!-- <h4>Aqui tecemos um pouco da história de vida daqueles que<br/>antecipadamente foram tirados de nossa convivência</h4> -->
             </div>
         </div>
     </div>
@@ -30,18 +48,23 @@
         <div class="container">
             <div class="row">
                 <div class="container">
-                    <div class="section section-text">
+                    <div class="section section-text secaoTextoMosaico">
                         <div class="row">
                             <div class="col-md-10 ml-auto mr-auto">
-                                <h3 class="title">The Castle Looks Different at Night...</h3>
-                                <h4>Vivamus id nulla sit amet lacus semper fermentum. Sed eget iaculis sem, eget lobortis odio. Ut ullamcorper nec lorem mattis pulvinar. Nunc euismod enim sit amet tristique interdum. Nullam eget nisi aliquam, consequat erat vel, maximus nunc Duis in placerat sapien. Donec sodales mi mi, at tristique ipsum molestie eu.
-                                    <br/>
-                                    <br/> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel fermentum augue, et mattis diam. Aliquam tincidunt sem ac arcu dignissim condimentum. Praesent est augue, sollicitudin sed nunc interdum, posuere mattis mi. Integer quis massa mollis, auctor ex eu, varius ex.
-                                    <br/>
+                                <h3 class="title">Moisaco das vidas</h3>
+                                <h4>
+                                    242 é o número de homens e mulheres, meninos e meninas que podes conhecer em tua
+                                    visita. Estes foram vitimados pelo incêndio na boate Kiss, em 27 de janeiro de 2013. O
+                                    mosaico abaixo apresentado é um espaço de homenagem e visa a construção coletiva da
+                                    biografia de cada um deles.
+                                    <br/><br/>
+                                    Quem eram, de onde vieram, o que faziam em Santa Maria. Que lembranças seus familiares a amigos guardam com carinho?
+                                    <br/><br/>
+                                    Dentro do perfil, possibilita-se que sejam acrescidas recordações por meio de novos depoimentos, textos, imagens e/ou vídeos sobre essas pessoas. Contribua com este processo.
                                 </h4>
                             </div>
                         </div>
-                    
+
                         <div class="row">
                             <div class="col-md-10 ml-auto mr-auto">
                                 <h4 class="text-center text-muted" style="padding-bottom: 35px"></h4>
@@ -52,7 +75,7 @@
                                                 <img alt='<?= $vida['nome'] ?>' src='public/img/vitimas/<?= $vida['foto_perfil'] ?>' />
                                             </a>
                                         <?php
-                                    } ?>
+                                        } ?>
                                     </div>
                                 </div>
                             </div>
@@ -73,8 +96,10 @@
             </ul>
         </nav>
         <div class="copyright float-right" style="font-size: 14px;">
-            © <span id="anoRodape"></span> Memorial Virtual Kiss<br/>
-            <div style="font-size: 12px; margin-top: -5px;">Desenvolvedor: Rafael Nascimento<br/><div style="font-size: 12px; margin-top: -5px">rdsnascimento@inf.ufpel.edu.br</div></div>
+            © <span id="anoRodape"></span> Memorial Virtual Kiss<br />
+            <div style="font-size: 12px; margin-top: -5px;">Desenvolvedor: Rafael Nascimento<br />
+                <div style="font-size: 12px; margin-top: -5px">rdsnascimento@inf.ufpel.edu.br</div>
+            </div>
         </div>
     </div>
 </footer>
