@@ -162,6 +162,16 @@ class VitimaController extends Action
 		$this->render('vidas', 'layout-vidas');
 	}
 
+	public function tragedia()
+	{
+		$this->render('tragedia', 'layout-tragedia');
+	}
+
+	public function futuro()
+	{
+		$this->render('futuro', 'layout-futuro');
+	}
+
 	public function enviarVideo(){
 		$video = Container::getModel('Videos');
 		$tmp = json_decode($_POST['video']);

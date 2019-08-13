@@ -32,6 +32,18 @@ class Route extends Bootstrap {
 			'action' => 'vidas'
 		);
 
+		$routes['tragedia'] = array(
+			'route' => '/tragedia',
+			'controller' => 'VitimaController',
+			'action' => 'tragedia'
+		);
+
+		$routes['futuro'] = array(
+			'route' => '/futuro',
+			'controller' => 'VitimaController',
+			'action' => 'futuro'
+		);
+
 		$routes['autenticar'] = array(
 			'route' => '/autenticar',
 			'controller' => 'AuthController',
